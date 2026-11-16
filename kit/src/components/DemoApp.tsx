@@ -1,15 +1,23 @@
-import { useEffect, useMemo, type CSSProperties, type ReactNode } from 'react'
+import { useEffect, useMemo, useState, type CSSProperties } from 'react'
+import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
+import { Shell } from '../app/Shell'
 import { PackContext, useT } from '../i18n'
 import { definePack, type Pack } from '../pack'
+import { ArchitecturePage } from '../pages/ArchitecturePage'
+import { BriefsPage } from '../pages/BriefsPage'
+import { CommandWall } from '../pages/CommandWall'
+import { ExecutivePack } from '../pages/ExecutivePack'
+import { ExpertIntro } from '../pages/ExpertIntro'
+import { ExpertsHome } from '../pages/ExpertsHome'
+import { ExpertWorkspace } from '../pages/ExpertWorkspace'
+import { OverviewPage } from '../pages/OverviewPage'
+import { PlanningPage } from '../pages/PlanningPage'
+import { SitesPage } from '../pages/SitesPage'
 import { useDemo } from '../store'
 import type { DemoSpec } from '../types'
-import { ExpertsView } from './ExpertsView'
-import { OrganisationView } from './GroupGrid'
 import { IncidentList } from './IncidentList'
 import { KpiRow } from './KpiRow'
-import { PresenterBar } from './PresenterBar'
-import { ReportView } from './ReportView'
-import { TopBar } from './TopBar'
+import { OrganisationView } from './GroupGrid'
 
 export function OverviewView() {
   const { pack } = useT()
@@ -24,41 +32,48 @@ export function OverviewView() {
   )
 }
 
-function Footer() {
-  const { t, pack } = useT()
-  return (
-    <footer className="no-print flex flex-wrap items-center justify-between gap-2 px-6 pb-24 pt-2 text-[0.76rem] text-muted">
-      <span>{t('illustrative')}</span>
-      <span className="font-semibold text-ink" data-testid="powered-by">
-        {pack.spec.brand.coBrand ? t('poweredBy') : ''}
-      </span>
-    </footer>
-  )
+/** Old ?view= links open the matching page. */
+function legacyPath() {
+  const q = new URLSearchParams(globalThis.location?.hash.split('?')[1] ?? globalThis.location?.search ?? '')
+  const view = q.get('view')
+  if (view === 'report') useDemo.getState().setMode('report')
+  return view === 'experts' ? '/' : view === 'overview' || view === 'report' ? '/overview' : undefined
 }
 
-function Shell({ extra }: { extra?: ReactNode }) {
-  const view = useDemo((s) => s.view)
+function Routed() {
+  const [legacy] = useState(legacyPath)
   return (
-    <div className="flex min-h-full flex-col">
-      <TopBar />
-      <main className="mx-auto w-full max-w-[110rem] flex-1 p-4 sm:p-6" data-testid={`view-${view}`}>
-        {view === 'overview' && <OverviewView />}
-        {view === 'report' && <ReportView />}
-        {view === 'experts' && <ExpertsView />}
-        {extra}
-      </main>
-      <Footer />
-      <PresenterBar />
-    </div>
+    <HashRouter>
+      <Routes>
+        <Route element={<Shell />}>
+          <Route index element={legacy && legacy !== '/' ? <Navigate to={legacy} replace /> : <ExpertsHome />} />
+          <Route path="overview" element={<OverviewPage />} />
+          <Route path="experts/:expertId" element={<ExpertIntro />} />
+          <Route path="experts/:expertId/chat" element={<ExpertWorkspace />} />
+          <Route path="sites" element={<SitesPage />} />
+          <Route path="planning" element={<PlanningPage />} />
+          <Route path="briefs" element={<BriefsPage />} />
+          <Route path="architecture" element={<ArchitecturePage />} />
+          <Route path="wall" element={<CommandWall />} />
+          <Route path="pack" element={<ExecutivePack />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
+    </HashRouter>
   )
 }
 
 /** The whole standard demo. A demo repository renders this with its pack and nothing else. */
-export function DemoApp({ spec, children }: { spec: DemoSpec | Pack; children?: ReactNode }) {
+export function DemoApp({ spec }: { spec: DemoSpec | Pack }) {
   const pack = useMemo(() => ('spec' in spec ? spec : definePack(spec)), [spec])
+  const [ready, setReady] = useState(false)
   const locale = useDemo((s) => s.locale)
   const scale = useDemo((s) => s.scale)
   const reduced = useDemo((s) => s.reducedMotion)
+  useEffect(() => {
+    useDemo.getState().initPack(pack.spec)
+    setReady(true)
+  }, [pack])
   useEffect(() => {
     const el = document.documentElement
     el.lang = locale
@@ -74,7 +89,7 @@ export function DemoApp({ spec, children }: { spec: DemoSpec | Pack; children?: 
   return (
     <PackContext.Provider value={pack}>
       <div className="h-full" style={accent} data-testid="demo-app">
-        <Shell extra={children} />
+        {ready && <Routed />}
       </div>
     </PackContext.Provider>
   )

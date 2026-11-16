@@ -16,7 +16,11 @@
   "dependencies": {
     "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
     "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "@xyflow/react": "^13.0.0",
     "lucide-react": "^1.72.0",
+    "maplibre-gl": "^6.18.0",
+    "react-router-dom": "^7.18.5",
+    "recharts": "^3.10.1",
     "tsx": "^4.23.15",
     "zustand": "^5.1.0"
   },

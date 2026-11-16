@@ -1,4 +1,5 @@
 import { BOUNDARIES, type Boundaries } from './geo'
+import { configureClock } from './model/time'
 import type { DemoSpec, Kpi, Locale, Severity, Site, SiteFilter, Sourced, Text } from './types'
 
 export interface ResolvedKpi {
@@ -108,6 +109,7 @@ export function collectAssumptions(spec: DemoSpec): Assumption[] {
 
 export function definePack(raw: unknown): Pack {
   const spec = raw as DemoSpec
+  configureClock(spec.clock)
   const boundaries = spec.geo ? BOUNDARIES[spec.geo] : undefined
   const sites = new Map(spec.sites.map((s) => [s.id, s]))
   const regions = new Map(spec.regions.map((r) => [r.id, r]))
