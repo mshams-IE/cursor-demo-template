@@ -1,0 +1,36 @@
+import type { Text } from '../../types'
+
+const L = (en: string, ar: string): Text => ({ en, ar })
+
+export const S = {
+  title: L('Daily {label} report', 'تقرير {plural} اليومي'),
+  basis: L('{plural} by {region} and {site} · {yesterday} and today to {time}', '{plural} حسب {region} و{site} · {yesterday} واليوم حتى {time}'),
+  today: L('Today', 'اليوم'),
+  yesterday: L('Yesterday', 'أمس'),
+  both: L('Both days', 'اليومان'),
+  daysShown: L('Days shown', 'الأيام المعروضة'),
+  spanToday: L('today', 'اليوم'),
+  spanYesterday: L('yesterday', 'أمس'),
+  spanBoth: L('both days', 'خلال اليومين'),
+  countToday: L('{plural} today', '{plural} اليوم'),
+  countYesterday: L('{plural} yesterday', '{plural} أمس'),
+  toTime: L('{date} to {time}', '{date} حتى {time}'),
+  sitesWith: L('{sites} with at least one, {span}', '{sites} بها سجل واحد على الأقل، {span}'),
+  regionsWith: L('{regions} with at least one, {span}', '{regions} بها سجل واحد على الأقل، {span}'),
+  of: L('of', 'من'),
+  byCategory: L('By category, {span}', 'حسب الفئة، {span}'),
+  ofSpan: L('of {n} {span}', 'من {n} {span}'),
+  slice: L('Report slice', 'نطاق التقرير'),
+  clearCategory: L('Clear category', 'إلغاء الفئة'),
+  mapTitle: L('{plural} by {region}', '{plural} حسب {region}'),
+  mapLegend: L('Shade and bubble: {plural}, {span}, by {region} of each {site}.', 'اللون والدائرة: {plural}، {span}، حسب {region} لكل {site}.'),
+  sitesIn: L('{sites} with records', '{sites} التي بها سجلات'),
+  summaryTitle: L('By {region} and {site}', 'حسب {region} و{site}'),
+  recordsTitle: L('Records', 'السجلات'),
+  total: L('Total', 'الإجمالي'),
+  time: L('Time', 'الوقت'),
+  category: L('Category', 'الفئة'),
+  shown: L('{n} of {total} shown', '{n} من {total} معروضة'),
+  none: L('No records in this slice.', 'لا توجد سجلات ضمن هذا النطاق.'),
+  uncategorised: L('Other', 'أخرى'),
+}

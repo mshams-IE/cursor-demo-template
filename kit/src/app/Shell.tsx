@@ -64,12 +64,19 @@ export function Shell() {
   useClockTicker()
 
   const allowed = path.startsWith('/experts/') ? pack.spec.experts.length > 0 : FULLSCREEN.includes(path) || pages.some((p) => p.path === path)
-  if (!allowed) return <Navigate to={{ pathname: homePath(pack), search: location.search }} replace />
+  if (!allowed)
+    return (
+      <>
+        <Navigate to={{ pathname: homePath(pack), search: location.search }} replace />
+        <PresenterBar />
+      </>
+    )
 
   if (FULLSCREEN.includes(path))
     return (
       <div className="h-full">
         <Outlet />
+        <PresenterBar />
         <Toast />
       </div>
     )
