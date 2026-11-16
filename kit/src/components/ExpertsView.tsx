@@ -55,7 +55,7 @@ function useReveal(full: string, active: boolean) {
 }
 
 function ExpertTurn({ turn, expert, latest }: { turn: ChatTurn; expert: Expert; latest: boolean }) {
-  const { pack, r, t } = useT()
+  const { pack, r, t, locale } = useT()
   if (turn.kind === 'refusal')
     return (
       <div className="flex items-start gap-2 rounded-2xl border border-line bg-surface p-4 text-[0.92rem]" data-testid="chat-refusal">
@@ -71,8 +71,8 @@ function ExpertTurn({ turn, expert, latest }: { turn: ChatTurn; expert: Expert; 
           {turn.suggestions?.map((id) => {
             const a = expert.answers.find((x) => x.id === id)!
             return (
-              <button key={id} type="button" className="chip border border-line bg-surface text-ink hover:bg-surface-2" onClick={() => sendQuestion(pack, expert.id, a.questions[0])}>
-                {a.questions[0]}
+              <button key={id} type="button" className="chip border border-line bg-surface text-ink hover:bg-surface-2" onClick={() => sendQuestion(pack, expert.id, phrasingFor(a.questions, locale))}>
+                {phrasingFor(a.questions, locale)}
               </button>
             )
           })}
@@ -80,10 +80,10 @@ function ExpertTurn({ turn, expert, latest }: { turn: ChatTurn; expert: Expert; 
       </div>
     )
   const a = expert.answers.find((x) => x.id === turn.answerId)!
-  return <AnswerBody pack={pack} expert={expert} lead={r(a.lead)} points={a.points.map((pt) => r(pt))} followUps={(a.followUps ?? []).map((id) => expert.answers.find((x) => x.id === id)!).filter(Boolean)} latest={latest} t={t} />
+  return <AnswerBody pack={pack} expert={expert} lead={r(a.lead)} points={a.points.map((pt) => r(pt))} followUps={(a.followUps ?? []).map((id) => expert.answers.find((x) => x.id === id)!).filter(Boolean)} latest={latest} t={t} locale={locale} />
 }
 
-function AnswerBody({ pack, expert, lead, points, followUps, latest, t }: { pack: Pack; expert: Expert; lead: string; points: string[]; followUps: Expert['answers']; latest: boolean; t: ReturnType<typeof useT>['t'] }) {
+function AnswerBody({ pack, expert, lead, points, followUps, latest, t, locale }: { pack: Pack; expert: Expert; lead: string; points: string[]; followUps: Expert['answers']; latest: boolean; t: ReturnType<typeof useT>['t']; locale: string }) {
   const full = [lead, ...points].join('\n')
   const n = useReveal(full, latest)
   const done = n >= full.length
@@ -109,8 +109,8 @@ function AnswerBody({ pack, expert, lead, points, followUps, latest, t }: { pack
         <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-line pt-3">
           <span className="text-[0.78rem] font-semibold text-muted">{t('tellMeMore')}</span>
           {followUps.map((f) => (
-            <button key={f.id} type="button" className="chip border border-line bg-surface text-ink hover:bg-surface-2" onClick={() => sendQuestion(pack, expert.id, f.questions[0])} data-testid={`followup-${f.id}`}>
-              {f.questions[0]}
+            <button key={f.id} type="button" className="chip border border-line bg-surface text-ink hover:bg-surface-2" onClick={() => sendQuestion(pack, expert.id, phrasingFor(f.questions, locale))} data-testid={`followup-${f.id}`}>
+              {phrasingFor(f.questions, locale)}
             </button>
           ))}
         </div>
@@ -120,7 +120,7 @@ function AnswerBody({ pack, expert, lead, points, followUps, latest, t }: { pack
   )
 }
 
-function arabicFirst(questions: string[], locale: string) {
+function phrasingFor(questions: string[], locale: string) {
   const ar = questions.find((q) => /[\u0600-\u06FF]/.test(q))
   return locale === 'ar' && ar ? ar : questions.find((q) => !/[\u0600-\u06FF]/.test(q)) ?? questions[0]
 }
@@ -155,8 +155,8 @@ export function ExpertChat({ expert }: { expert: Expert }) {
             </div>
             <div className="flex flex-wrap gap-2">
               {expert.answers.slice(0, 4).map((a) => (
-                <button key={a.id} type="button" className="chip border border-line bg-surface text-ink hover:bg-surface-2" onClick={() => sendQuestion(pack, expert.id, arabicFirst(a.questions, locale))} data-testid={`starter-${a.id}`}>
-                  {arabicFirst(a.questions, locale)}
+                <button key={a.id} type="button" className="chip border border-line bg-surface text-ink hover:bg-surface-2" onClick={() => sendQuestion(pack, expert.id, phrasingFor(a.questions, locale))} data-testid={`starter-${a.id}`}>
+                  {phrasingFor(a.questions, locale)}
                 </button>
               ))}
             </div>

@@ -19,6 +19,16 @@ describe('gates on the water sample', () => {
 })
 
 describe('gates catch seeded failures', () => {
+  it('brand: co-branding needs a local logo file', () => {
+    const s = clone()
+    s.brand.coBrand = true
+    expect(errorsIn(s, 'brand').map((e) => e.message)).toEqual(['Co-branding is on but there is no customer logo'])
+    s.customer.logo = 'https://example.com/logo.png'
+    expect(errorsIn(s, 'brand').map((e) => e.message)).toEqual([expect.stringContaining('works offline')])
+    s.customer.logo = './brand/missing.svg'
+    expect(checkSpec(s, { assetExists: () => false }).issues.filter((i) => i.gate === 'brand' && i.level === 'error').map((e) => e.message)).toEqual(['No file at public/brand/missing.svg'])
+  })
+
   it('one spelling per name: catches two spellings of one site', () => {
     const s = clone()
     s.sites.push({ ...s.sites.find((x) => x.id === 'KHB-PS1')!, id: 'KHB-PS9', name: { en: 'Alkhobar Pumping Station', ar: 'محطة ضخ الخبر 9' } })

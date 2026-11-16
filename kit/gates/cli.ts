@@ -40,7 +40,8 @@ for (const file of targets) {
     process.exit(2)
   }
   const spec = JSON.parse(readFileSync(file, 'utf8'))
-  const report = checkSpec(spec, partial ? { upToStep: stepArg ? Number(stepArg) : 9 } : {})
+  const assetExists = (p: string) => existsSync(join(cwd, 'public', p.replace(/^\.?\//, '')))
+  const report = checkSpec(spec, { assetExists, ...(partial ? { upToStep: stepArg ? Number(stepArg) : 9 } : {}) })
   results.push({ file: relative(cwd, file), report })
   if (report.issues.some((i) => i.level === 'error')) failed = true
 }

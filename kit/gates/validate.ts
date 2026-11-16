@@ -89,8 +89,11 @@ export function nameKey(s: string) {
 
 const PLACEHOLDER = /\{(kpi|fact|site|region)\.([A-Za-z0-9_-]+)(\.value)?\}/g
 
-/** Pass `upToStep` to check only what the wizard has filled so far. */
-export function checkSpec(raw: unknown, opts: { upToStep?: number } = {}): Report {
+/**
+ * Pass `upToStep` to check only what the wizard has filled so far.
+ * Pass `assetExists` (paths as written in the spec, relative to `public/`) to check that logo files exist.
+ */
+export function checkSpec(raw: unknown, opts: { upToStep?: number; assetExists?: (path: string) => boolean } = {}): Report {
   const spec = raw as DemoSpec
   const issues: Issue[] = []
   const err = (gate: GateId, path: string, message: string) => issues.push({ gate, level: 'error', path, message })
@@ -174,6 +177,12 @@ export function checkSpec(raw: unknown, opts: { upToStep?: number } = {}): Repor
     for (const b of spec.presenter?.beats ?? []) if (b.spotlight && !KNOWN_TESTIDS.some((t) => b.spotlight === t || b.spotlight!.startsWith(`${t}-`))) warn('presenter', `presenter.beats.${b.id}.spotlight`, `"${b.spotlight}" is not a kit element`)
   }
 
+  if (has(2) && spec.brand?.coBrand) {
+    const logo = spec.customer?.logo
+    if (!logo) err('brand', 'customer.logo', 'Co-branding is on but there is no customer logo')
+    else if (/^(https?:)?\/\//.test(logo)) err('brand', 'customer.logo', 'Logo must be a file in public/, so the demo works offline')
+    else if (opts.assetExists && !opts.assetExists(logo)) err('brand', 'customer.logo', `No file at public/${logo.replace(/^\.?\//, '')}`)
+  }
   if (has(2) && spec.customer?.accent) {
     if (!hexToRgb(spec.customer.accent)) err('brand', 'customer.accent', 'Accent must be a #RRGGBB colour')
     else if (STATUS_HEX.some((h) => colourDistance(h, spec.customer.accent!) < 60)) warn('brand', 'customer.accent', 'Accent is close to a status colour, so branded tiles may read as alerts')

@@ -68,6 +68,16 @@ test('presenter beats with a question produce the scripted answer', async ({ pag
   }
 })
 
+test('suggested questions are in the chosen language', async ({ page }) => {
+  test.skip(!spec.languages.includes('ar'), 'English-only pack')
+  await page.goto('./?lang=ar&view=experts&motion=reduced')
+  const arabic = /[\u0600-\u06FF]/
+  for (const chip of await page.locator('[data-testid^="starter-"]').allTextContents()) expect(chip).toMatch(arabic)
+  await page.locator('[data-testid^="starter-"]').first().click()
+  await expect(page.getByTestId('chat-answer').last()).toBeVisible()
+  for (const chip of await page.locator('[data-testid^="followup-"]').allTextContents()) expect(chip).toMatch(arabic)
+})
+
 test('out-of-scope questions are refused', async ({ page }) => {
   await page.goto('./?view=experts&motion=reduced')
   await page.getByTestId('chat-input').fill(`What about ${spec.refusals.topics[0].keywords[0]}?`)
