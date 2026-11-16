@@ -1,0 +1,67 @@
+import type { Text } from '../../types'
+
+export const SITES = {
+  pickHint: {
+    en: 'Select an item on the map or from the lists to investigate.',
+    ar: 'اختر عنصراً على الخريطة أو من القوائم للتحقيق فيه.',
+  },
+  active: { en: 'Active', ar: 'نشط' },
+  restored: { en: 'Restored', ar: 'تمت الاستعادة' },
+  noIncidents: {
+    en: 'No incidents in scope.',
+    ar: 'لا توجد حوادث ضمن النطاق.',
+  },
+  noSites: {
+    en: 'Nothing matches these filters.',
+    ar: 'لا شيء يطابق عوامل التصفية هذه.',
+  },
+  confirmed: { en: 'Confirmed cause', ar: 'السبب المؤكد' },
+  suspected: { en: 'Suspected cause', ar: 'السبب المرجّح' },
+  evidence: { en: 'Evidence', ar: 'الأدلة' },
+  restoreIn: { en: 'Restoration estimate in', ar: 'تقدير الاستعادة خلال' },
+  restoreOpen: {
+    en: 'Estimated restoration window open · closes in',
+    ar: 'نافذة الاستعادة المقدرة مفتوحة · تغلق خلال',
+  },
+  restorePast: {
+    en: 'Past the estimated restoration window',
+    ar: 'تجاوز نافذة الاستعادة المقدرة',
+  },
+  restoredAt: { en: 'Restored at', ar: 'أعيدت الخدمة الساعة' },
+  restoreEstimate: { en: 'Restoration estimate', ar: 'تقدير الاستعادة' },
+  fromDetection: { en: 'from detection', ar: 'من وقت الاكتشاف' },
+  incidentsTitle: { en: 'Incidents', ar: 'الحوادث' },
+  register: { en: 'Register', ar: 'السجل' },
+  keyReading: { en: 'Key reading', ar: 'القراءة الرئيسية' },
+  sinceCol: { en: 'Since', ar: 'منذ' },
+  needsAttention: { en: 'Needs attention', ar: 'تتطلب الانتباه' },
+  observed: { en: 'Observed', ar: 'الرصد' },
+  askExpert: { en: 'Ask the expert', ar: 'اسأل الخبير' },
+  assessment: { en: 'Expert assessment', ar: 'تقييم الخبير' },
+  incidentTimeline: { en: 'Incident timeline', ar: 'الخط الزمني للحادثة' },
+  readings: { en: 'Readings against limits', ar: 'القراءات مقابل الحدود' },
+  trends: { en: 'Trends to the clock', ar: 'الاتجاهات حتى الوقت المعروض' },
+  details: { en: 'Details', ar: 'التفاصيل' },
+  statusTimeline: { en: 'Status through the day', ar: 'الحالة خلال اليوم' },
+  limit: { en: 'Limit', ar: 'الحد' },
+  ofLimit: { en: 'of limit', ar: 'من الحد' },
+  noReadings: {
+    en: 'No readings for this item.',
+    ar: 'لا توجد قراءات لهذا العنصر.',
+  },
+  noChanges: {
+    en: 'No status changes in this window.',
+    ar: 'لا تغييرات في الحالة ضمن هذه النافذة.',
+  },
+  noIncidentHere: {
+    en: 'No incident here in this window.',
+    ar: 'لا توجد حادثة هنا ضمن هذه النافذة.',
+  },
+  dayStart: { en: 'Start of window', ar: 'بداية النافذة' },
+  observation: { en: 'Observation', ar: 'الرصد' },
+  detection: { en: 'Detection', ar: 'الاكتشاف' },
+  investigation: { en: 'Investigation', ar: 'التحقيق' },
+  recommendation: { en: 'Recommendation', ar: 'التوصية' },
+  response: { en: 'Response', ar: 'الاستجابة' },
+  shown: { en: 'shown', ar: 'معروضة' },
+} satisfies Record<string, Text>

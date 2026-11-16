@@ -1,0 +1,19 @@
+.site-map-label {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--ink);
+  text-shadow:
+    0 0 3px #fff,
+    0 0 3px #fff,
+    0 0 6px #fff;
+  pointer-events: none;
+}
+
+.site-map .maplibregl-ctrl-attrib {
+  font-size: 10px;
+  background: rgb(255 255 255 / 0.7);
+}
+
+.site-map .maplibregl-marker {
+  will-change: transform;
+}
