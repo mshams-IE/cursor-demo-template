@@ -9,6 +9,8 @@ description: Look-and-feel rules for Cloudera executive demos, including the sta
 
 - **Executive overview:** key-figure tiles, a map shaded by the worst site status with a bubble per region counting sites that need attention, and priority incidents (hero first, chronic tagged).
 - **Today's report:** a full-width map above a filterable site table. The filters drive both, so they always agree.
+- **Without a map** (no `geo` in the spec), the map is replaced in both views by group tiles (`GroupGrid`). Each region gets one tile, shaded by its worst status, showing "N of M need attention" and listing up to three flagged sites. Clicking a tile filters just as clicking a map region does. Presenter beats can spotlight `group-grid` instead of `region-map`.
+- **Wording:** the spec's `vocabulary` renames "Site", "Region" and "Asset type" everywhere in the UI (column headers, filters, search, legend). Change wording there, never in components.
 - **Digital experts:** persona cards and a chat with starters, streamed answers, "Tell me more" follow-ups and refusals.
 - **Presenter:** a bottom bar with beats, spotlight and an assumptions note.
 
@@ -23,7 +25,7 @@ description: Look-and-feel rules for Cloudera executive demos, including the sta
 
 ## When someone asks for a visual change
 
-1. Check whether a pack setting covers it (title, subtitle, logo, accent, number of tiles, beats). If it does, change the spec.
+1. Check whether a pack setting covers it (title, subtitle, logo, accent, number of tiles, beats, `vocabulary`, `geo`). If it does, change the spec.
 2. If it needs a new component or layout, don't build it in the demo. Explain that it belongs in the kit, so every demo gets it, and suggest raising it with the template owner.
 
 ## Screenshot review
@@ -32,5 +34,6 @@ With `npm run dev` running, run `node scripts/shots.mjs`, then open `shots/*.png
 
 - the hero story is visible on the overview without scrolling;
 - no text is cut off or overlapping in either language, and Arabic mirrors right-to-left;
-- the map is zoomed to where the story happens, and the bubbles match the tiles;
+- the map is zoomed to where the story happens and the bubbles match the tiles, or, without a map, the group tiles match the tiles;
+- the UI uses the demo's own wording (for example "Branches", not "Sites") in both languages;
 - the numbers in the tiles, the report count and the expert answers agree.

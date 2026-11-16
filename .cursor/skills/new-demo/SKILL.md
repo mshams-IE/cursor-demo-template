@@ -13,7 +13,7 @@ You build a demo by filling `pack/demo-spec.json` (types in `kit/src/types.ts`) 
    - If `wizard.status` is `in-progress`, **resume** at `wizard.step`. Say "Resuming at step N of 9: <name>" and show one line per completed step. Do not re-read old chats.
    - If it holds a sample (`id` is `coastal-water` or `orbit-telecom`) or is already `built` and the person asked for a new demo, ask whether to start blank or from that demo. Blank: `npm run use-sample -- blank --force`.
    - "Start from <other repo or sample>": copy that spec in, set `wizard` to `{ "step": 1, "completed": [], "status": "in-progress" }`, and walk the steps as edits.
-2. Look up the industry starter in `kit/starters/index.ts` once step 1 tells you the industry. It backs every "You decide" answer.
+2. Look up the industry starter with `starterFor(industry)` in `kit/starters/index.ts` once step 1 tells you the industry. Any industry works: one without its own starter (for example `government`, `logistics` or `other`) gets the `generic` starter, so adapt its wording to the customer. The starter backs every "You decide" answer, and its `vocabulary` and `defaultGeo` set the defaults for step 3.
 
 ## How to ask
 
@@ -42,21 +42,26 @@ Fill the value with the best plausible guess from the starter, the customer's in
 
 Each step writes its part of the spec, then runs `npm run gates:spec -- --step N`. Fix every error before moving on, and mention warnings. Then add N to `wizard.completed` and set `wizard.step` to N+1. **Save after every step.**
 
-1. **Customer.** Customer name (English and Arabic), industry, languages (English only, or English and Arabic), audience, and the title and subtitle of the demo. Writes `id`, `industry`, `languages`, `customer`, `title`, `subtitle`, `audience`.
+1. **Customer.** Customer name (English and Arabic), industry (any: the starters cover power, water, telecom, aviation, banking, retail and healthcare, and anything else uses the generic starter), languages (English only, or English and Arabic), audience, and the title and subtitle of the demo. Writes `id`, `industry`, `languages`, `customer`, `title`, `subtitle`, `audience`.
 2. **Brand.** Keep the Cloudera theme (recommended), or co-brand with the customer's logo and one accent colour. For co-branding, save the logo under `public/brand/`, then set `customer.logo` (for example `./brand/logo.svg`), `customer.accent` and `brand.coBrand: true`. Take a screenshot of the top bar to confirm (`node scripts/shots.mjs` with `npm run dev` running).
-3. **Organisation.** The regions the demo covers. Give this template:
+3. **Organisation.** Three decisions, then the groups.
+   - **Wording.** What the demo calls its sites, its groups and its asset types, written to `vocabulary`. For example, a bank says "Branch" and "Business line", and a hospital group says "Facility" and "Cluster". Offer the starter's `vocabulary` first, or "Site and Region" (no `vocabulary`). Arabic forms take the definite article (`الفرع`, `الفروع`).
+   - **Map or tiles.** Does the organisation map to geography? If yes, set `geo` to a boundary set from `kit/src/geo.ts` (`BOUNDARIES`). Saudi Arabia is `sa-adm1`, the UAE `ae-adm1`, Qatar `qa-adm1`, Kuwait `kw-adm1`, Oman `om-adm1` and Bahrain `bh-adm1`. If no, for example when grouping by business line, product or department, leave `geo` out. The overview and report then show one tile per group instead of a map. Recommend the starter's `defaultGeo`.
+   - **Another country.** If it is a country with no boundary set, say that the template owner adds it with `node scripts/add-geo.mjs <ISO3>` and registers it in `kit/src/geo.ts`. Meanwhile, offer the tile layout.
 
-   | id | English name | Arabic name | boundary id |
+   Then the groups (regions):
+
+   | id | English name | Arabic name | boundary id (map only) |
    |---|---|---|---|
 
-   Boundary ids come from the boundary set. Saudi Arabia uses `sa-adm1`, with ids `eastern`, `riyadh`, `makkah`, `madinah`, `qassim`, `asir`, `tabuk`, `hail`, `northern`, `jazan`, `najran`, `bahah` and `jawf`. Another country needs its ADM1 GeoJSON added to `kit/` by the template owner, so say so. Spellings are final from here on: point out near-duplicates the gates flag.
+   Boundary ids are the feature `id`s in the boundary set's file in `kit/geo/`. For `sa-adm1` they are `eastern`, `riyadh`, `makkah`, `madinah`, `qassim`, `asir`, `tabuk`, `hail`, `northern`, `jazan`, `najran`, `bahah` and `jawf`. Without a map, drop the boundary column. Spellings are final from here on: point out near-duplicates the gates flag.
 4. **Assets and sites.** Asset types (tick from the starter or add your own), then the sites:
 
    | id | English name | Arabic name | region id | type | longitude | latitude | status | why (if not normal) |
    |---|---|---|---|---|---|---|---|---|
 
-   Aim for 12 to 30 sites with about a third not normal, clustered where the story happens. Status is `normal`, `watch` or `critical`.
-5. **Key figures.** Four tiles work best. Offer the starter's figures as ticks. Each figure needs a unit, and each count needs an "of N" basis. Prefer `derive` for counts of sites so the tile, the map and the report always agree:
+   Longitude and latitude are only for demos with a map; drop those columns otherwise. Aim for 12 to 30 sites with about a third not normal, clustered where the story happens. Status is `normal`, `watch` or `critical`.
+5. **Key figures.** Four tiles work best. Offer the starter's figures as ticks. Each figure needs a unit, and each count needs an "of N" basis. Prefer `derive` for counts of sites so the tile, the map (or tiles) and the report always agree:
 
    ```json
    "derive": { "count": { "status": ["watch", "critical"] }, "of": {} }
@@ -68,6 +73,7 @@ Each step writes its part of the spec, then runs `npm run gates:spec -- --step N
 8. **Presenter.** Five to seven beats following `.cursor/skills/demo-presenter/SKILL.md`, including at least one `ask` beat for the hero incident.
 9. **Review.** Show a one-page summary:
    - customer, industry, languages and brand;
+   - wording (`vocabulary`) and map (`geo`, or tiles);
    - counts of regions, sites (with how many need attention), key figures with values, incidents, experts and beats;
    - **Assumed values (N):** every `assumed` item with its reason. Get this list with `npm run gates`.
 

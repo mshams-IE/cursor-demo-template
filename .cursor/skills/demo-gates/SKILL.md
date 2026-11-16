@@ -22,6 +22,8 @@ CI (`.github/workflows/gates.yml`) runs all of these on every pull request and a
 |---|---|---|
 | Wizard steps complete | Steps not finished | Finish the wizard, or say which step is left |
 | Ids and references resolve | Unknown region, type or site; duplicate id | Fix the id in the spec. Renaming an id means updating every `{site.ID}` |
+| Ids and references resolve | Unknown boundary set; region has no geoId; site has no coordinates | With a map, fix `geo`, `geoId` or `coordinates`. For a demo without a map, remove `geo` |
+| Ids and references resolve | Vocabulary needs a term; type without typePlural | Fill all four of `entity`, `entityPlural`, `group` and `groupPlural`, and give `type` and `typePlural` together |
 | Every text is in every pack language | Missing Arabic for "…" | Add the `ar` text. Arabic is reviewed for meaning, not machine-translated word for word |
 | One spelling per name | Same name spelled differently; "X" should be spelled "Y" | Pick the spelling the customer uses, keep it once in the spec, and use `{site.ID}` in text |
 | Every key figure states its unit and basis | Count without an "of N" basis; no unit | Add `of`, or `derive` it from sites; add `unit` |
