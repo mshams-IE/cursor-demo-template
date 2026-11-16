@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import banking from '../../samples/banking/demo-spec.json'
+import power from '../../samples/power/demo-spec.json'
 import telecom from '../../samples/telecom/demo-spec.json'
 import water from '../../samples/water/demo-spec.json'
 import { ask } from '../src/engine'
@@ -25,6 +26,7 @@ describe('gates on the other samples', () => {
   it.each([
     ['telecom', telecom],
     ['banking (no map)', banking],
+    ['power (every v2 field)', power],
   ])('%s passes every gate', (_, spec) => {
     expect(checkSpec(spec).issues.filter((i) => i.level === 'error')).toEqual([])
   })
@@ -188,6 +190,157 @@ describe('gates catch seeded failures', () => {
     s.wizard.completed = [1, 2, 3]
     s.regions.push({ id: 'east2', geoId: 'eastern', name: { en: 'Eastern-Province', ar: 'المنطقة الشرقية 2' }, source: 'customer' })
     expect(errorsIn(s, 'names', { upToStep: 9 })[0].message).toContain('spelled differently')
+  })
+})
+
+describe('gates catch seeded failures in v2 fields', () => {
+  const v2 = (): DemoSpec => structuredClone(power) as DemoSpec
+  const hero = (s: DemoSpec) => s.incidents.find((i) => i.role === 'hero')!
+  const story = (s: DemoSpec) => s.presenter.stories![0]
+
+  it('lists the power assumptions with a reason', () => {
+    expect(checkSpec(power).assumptions.map((a) => a.path)).toEqual(['facts.demand8-restored', ...['transfer-118', 'transfer-305', 'mobile-substation', 'transfer-219', 'transfer-015'].map((id) => `planning.options.${id}`)])
+  })
+
+  it('structure: accepts a full local time for an incident that started yesterday', () => {
+    expect(power.incidents.some((i) => i.started.includes('T'))).toBe(true)
+    const s = v2()
+    hero(s).started = '1:05pm'
+    expect(errorsIn(s, 'structure').map((e) => e.path)).toEqual([`incidents.${hero(s).id}.started`])
+  })
+
+  it('structure: catches an incident resolved before it started', () => {
+    const s = v2()
+    const i = s.incidents.find((x) => x.resolved)!
+    i.resolved = i.started.includes('T') ? '2000-01-01T00:00' : '00:00'
+    expect(errorsIn(s, 'structure')[0].message).toBe('Resolved before it started')
+  })
+
+  it('structure: catches site timeline changes out of order', () => {
+    const s = v2()
+    const site = s.sites.find((x) => (x.timeline?.length ?? 0) > 1)!
+    site.timeline!.reverse()
+    expect(errorsIn(s, 'structure').some((e) => e.message === 'Timeline changes must be oldest first')).toBe(true)
+  })
+
+  it('status: catches a site that turns critical with no note in effect', () => {
+    const s = v2()
+    const site = s.sites.find((x) => x.status === 'normal' && x.timeline?.some((c) => c.status === 'critical'))!
+    for (const c of site.timeline!) delete c.note
+    expect(errorsIn(s, 'status')[0].message).toContain('turns critical')
+  })
+
+  it('structure: catches a metric series out of order', () => {
+    const s = v2()
+    s.sites[0].metrics![0].series!.reverse()
+    expect(errorsIn(s, 'structure')[0].message).toContain('must be oldest first')
+  })
+
+  it('structure: catches a report record for an unknown site or category', () => {
+    const s = v2()
+    s.report!.records[0] = { ...s.report!.records[0], siteId: 'nowhere', category: 'meteor' }
+    expect(errorsIn(s, 'structure').map((e) => e.message)).toEqual(['Unknown site "nowhere"', 'Unknown category "meteor"'])
+  })
+
+  it('structure: catches history that points at a missing KPI or expert', () => {
+    const s = v2()
+    s.history![0] = { ...s.history![0], todayFromKpi: 'gone', expertId: 'nobody', peakMonth: 13 }
+    expect(errorsIn(s, 'structure').map((e) => e.message)).toEqual(['Unknown KPI "gone"', 'Unknown expert "nobody"', 'peakMonth is a calendar month, 1 to 12'])
+  })
+
+  it('structure: catches an alert in an unknown region', () => {
+    const s = v2()
+    s.alerts![0].regionId = 'mars'
+    expect(errorsIn(s, 'structure')[0].message).toBe('Unknown region "mars"')
+  })
+
+  it('structure: catches broken planning references and ranges', () => {
+    const s = v2()
+    const plan = s.planning!
+    plan.incidentIds = ['gone']
+    plan.budget.default = plan.budget.max + 1
+    plan.options[0].hours = [5, 1]
+    expect(errorsIn(s, 'structure').map((e) => e.path)).toEqual(['planning.incidentIds', 'planning.budget.default', `planning.options.${plan.options[0].id}.hours`])
+  })
+
+  it('structure: catches unknown expert categories and specialists', () => {
+    const s = v2()
+    s.experts[0].category = 'astrology'
+    s.experts[0].team = ['ghost']
+    s.specialists![0].stage = 'dreaming' as never
+    expect(errorsIn(s, 'structure').map((e) => e.message)).toEqual([
+      expect.stringContaining('Unknown stage "dreaming"'),
+      'Unknown expert category "astrology"',
+      'Unknown specialist "ghost"',
+    ])
+  })
+
+  it('brand: a specialist colour must be a hex', () => {
+    const s = v2()
+    s.specialists![0].color = 'purple'
+    expect(errorsIn(s, 'brand')[0].path).toBe(`specialists.${s.specialists![0].id}.color`)
+  })
+
+  it('presenter: checks story beats too, and a page hidden by hidePages', () => {
+    const s = v2()
+    const b = story(s).beats[0]
+    b.siteId = 'nowhere'
+    b.page = 'planning'
+    s.hidePages = ['planning']
+    const at = `presenter.stories.${story(s).id}.beats.${b.id}`
+    expect(errorsIn(s, 'presenter').filter((e) => e.path.startsWith(at)).map((e) => e.path)).toEqual([`${at}.page`, `${at}.siteId`])
+  })
+
+  it('presenter: catches a story question that no longer reaches its answer', () => {
+    const s = v2()
+    const b = story(s).beats.find((x) => x.ask)!
+    b.ask!.question.en = 'Who won the football?'
+    expect(errorsIn(s, 'presenter')[0].path).toBe(`presenter.stories.${story(s).id}.beats.${b.id}.ask.en`)
+  })
+
+  it('presenter: an expert shown as on request cannot be asked', () => {
+    const s = v2()
+    const b = s.presenter.beats.find((x) => x.ask)!
+    s.experts.find((e) => e.id === b.ask!.expertId)!.available = false
+    expect(errorsIn(s, 'presenter')[0].message).toContain('only available on request')
+  })
+
+  it('languages: walks the v2 sections', () => {
+    const s = v2()
+    delete s.alerts![0].text.ar
+    delete s.planning!.options[0].title.ar
+    delete s.specialists![0].role.ar
+    delete s.report!.label.ar
+    expect(errorsIn(s, 'languages').map((e) => e.path)).toEqual(
+      expect.arrayContaining(['alerts[0].text', 'planning.options[0].title', 'specialists[0].role', 'report.label']),
+    )
+  })
+
+  it('sources: covers alerts and planning options', () => {
+    const s = v2()
+    s.alerts![0] = { ...s.alerts![0], source: 'assumed', why: '' }
+    delete (s.planning!.options[0] as { source?: string }).source
+    const paths = errorsIn(s, 'sources').map((e) => e.path)
+    expect(paths.some((p) => p.startsWith('alerts'))).toBe(true)
+    expect(paths.some((p) => p.startsWith('planning.options'))).toBe(true)
+  })
+
+  it('numbers: covers incident timelines, alerts, expert intros and story narration', () => {
+    const s = v2()
+    hero(s).timeline![0].text.en = 'About 13,000 connections lost.'
+    s.alerts![0].text.en = 'Demand is 220 MW high.'
+    s.experts[0].intro = { ...s.experts[0].intro, en: 'I watch 26 substations.' }
+    story(s).beats[0].narration.en = 'Some 18,000 are off.'
+    expect(errorsIn(s, 'numbers').map((e) => e.message.split('"')[1])).toEqual(['13,000', '220', '26', '18,000'])
+  })
+
+  it('numbers: a site name holding a number is taken out whole, even when it starts with a region name', () => {
+    const s = v2()
+    const site = s.sites.find((x) => /\d/.test(x.name.en))!
+    const region = s.regions.find((r) => site.name.en.startsWith(r.name.en))
+    expect(region).toBeDefined()
+    s.experts[0].answers[0].lead.en = `Crews are at ${site.name.en}.`
+    expect(errorsIn(s, 'numbers')).toEqual([])
   })
 })
 

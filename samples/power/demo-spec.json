@@ -1,0 +1,3155 @@
+{
+  "specVersion": 1,
+  "kitVersion": "0.2.0",
+  "wizard": {"step":10,"completed":[1,2,3,4,5,6,7,8,9],"status":"built"},
+  "id": "kingdom-grid",
+  "industry": "power",
+  "languages": ["en","ar"],
+  "customer": {"name":{"en":"Kingdom Grid Company","ar":"شركة شبكة المملكة"},"source":"starter"},
+  "title": {"en":"Executive Grid Intelligence","ar":"ذكاء الشبكة التنفيذي"},
+  "subtitle": {"en":"Grid & Operations Digital Experts","ar":"الخبراء الرقميون للشبكة والعمليات"},
+  "audience": {"en":"CEO and executive committee","ar":"الرئيس التنفيذي واللجنة التنفيذية"},
+  "brand": {"theme":"cloudera","coBrand":false},
+  "geo": "sa-adm1",
+  "vocabulary": {
+    "entity": {"en":"Substation","ar":"المحطة"},
+    "entityPlural": {"en":"Substations","ar":"المحطات"},
+    "group": {"en":"Region","ar":"المنطقة"},
+    "groupPlural": {"en":"Regions","ar":"المناطق"},
+    "type": {"en":"Asset type","ar":"نوع الأصل"},
+    "typePlural": {"en":"Asset types","ar":"أنواع الأصول"}
+  },
+  "clock": {
+    "observedAt": "2026-08-12T14:30",
+    "zone": {"en":"AST","ar":"بتوقيت الرياض"},
+    "utcOffsetMinutes": 180,
+    "replay": {"start":"2026-08-12T12:00","end":"2026-08-12T15:30"},
+    "snapshotLabel": {"en":"Operating snapshot","ar":"لقطة التشغيل"}
+  },
+  "org": {"en":"Grid & Operations","ar":"الشبكة والعمليات"},
+  "regions": [
+    {"id":"riyadh","geoId":"riyadh","name":{"en":"Riyadh","ar":"الرياض"},"source":"starter"},
+    {"id":"makkah","geoId":"makkah","name":{"en":"Makkah","ar":"مكة المكرمة"},"source":"starter"},
+    {"id":"madinah","geoId":"madinah","name":{"en":"Almadinah","ar":"المدينة المنورة"},"source":"starter"},
+    {"id":"eastern","geoId":"eastern","name":{"en":"Eastern Province","ar":"المنطقة الشرقية"},"source":"starter"},
+    {"id":"qassim","geoId":"qassim","name":{"en":"Qassim","ar":"القصيم"},"source":"starter"},
+    {"id":"hail","geoId":"hail","name":{"en":"Hail","ar":"حائل"},"source":"starter"},
+    {"id":"tabuk","geoId":"tabuk","name":{"en":"Tabuk","ar":"تبوك"},"source":"starter"},
+    {"id":"northern","geoId":"northern","name":{"en":"Northern Frontier","ar":"الحدود الشمالية"},"source":"starter"},
+    {"id":"jazan","geoId":"jazan","name":{"en":"Jazan","ar":"جازان"},"source":"starter"},
+    {"id":"najran","geoId":"najran","name":{"en":"Najran","ar":"نجران"},"source":"starter"},
+    {"id":"bahah","geoId":"bahah","name":{"en":"Albaha","ar":"الباحة"},"source":"starter"},
+    {"id":"jawf","geoId":"jawf","name":{"en":"Aljouf","ar":"الجوف"},"source":"starter"},
+    {"id":"asir","geoId":"asir","name":{"en":"Asir","ar":"عسير"},"source":"starter"}
+  ],
+  "assetTypes": [
+    {"id":"grid","name":{"en":"Grid substation","ar":"محطة تحويل"},"plural":{"en":"grid substations","ar":"محطات تحويل"},"source":"starter"},
+    {"id":"industrial","name":{"en":"Industrial substation","ar":"محطة صناعية"},"plural":{"en":"industrial substations","ar":"محطات صناعية"},"source":"starter"}
+  ],
+  "sites": [
+    {
+      "id": "SS-RYD-247",
+      "name": {"en":"Riyadh North 247","ar":"شمال الرياض 247"},
+      "regionId": "riyadh",
+      "type": "grid",
+      "coordinates": [46.627,24.808],
+      "status": "watch",
+      "note": {
+        "en": "Transformer A is loaded above the policy limit and carries an oil-test caution; transformer C is on planned maintenance.",
+        "ar": "المحول A محمّل فوق حد السياسة وعليه تحذير من تحليل الزيت؛ المحول C في صيانة مخططة."
+      },
+      "timeline": [
+        {
+          "at": "12:20",
+          "status": "watch",
+          "note": {"en":"Cooling fan group failed on transformer A; top-oil temperature rising.","ar":"تعطلت مجموعة مراوح التبريد على المحول A؛ حرارة الزيت العلوي ترتفع."}
+        },
+        {
+          "at": "12:30",
+          "status": "watch",
+          "note": {"en":"Top-oil temperature on transformer A above the {fact.top-oil-alarm} alarm setting.","ar":"حرارة الزيت العلوي في المحول A فوق حد الإنذار {fact.top-oil-alarm}."}
+        },
+        {
+          "at": "13:05",
+          "status": "critical",
+          "note": {
+            "en": "Transformer A tripped on overtemperature; {fact.hero-feeders-off.value} of {fact.hero-feeders-total} off supply.",
+            "ar": "فصل المحول A بسبب ارتفاع الحرارة؛ {fact.hero-feeders-off.value} من {fact.hero-feeders-total} خارج الخدمة."
+          }
+        },
+        {
+          "at": "13:35",
+          "status": "critical",
+          "note": {
+            "en": "Transformer A tripped; transformer B, the last unit in service, is now above its alarm temperature.",
+            "ar": "فصل المحول A؛ والمحول B، آخر وحدة عاملة، تجاوز الآن حرارة الإنذار."
+          }
+        }
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 90.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":73.6}, {"at":"06:30","value":75.1}, {"at":"07:00","value":76.5}, {"at":"07:30","value":78}, {"at":"08:00","value":79.5},
+            {"at":"08:30","value":80.9}, {"at":"09:00","value":82.4}, {"at":"09:30","value":84.2}, {"at":"10:00","value":86}, {"at":"10:30","value":87.8},
+            {"at":"11:00","value":89.6}, {"at":"11:30","value":91.4}, {"at":"12:00","value":93.2}, {"at":"12:30","value":94.2}, {"at":"13:00","value":95.2},
+            {"at":"13:30","value":88.3}, {"at":"14:00","value":89.2}, {"at":"14:30","value":90.1}, {"at":"15:00","value":90.7}, {"at":"15:30","value":91.3},
+            {"at":"16:00","value":91.9}, {"at":"16:30","value":91}, {"at":"17:00","value":90.1}, {"at":"17:30","value":89.2}
+          ]
+        },
+        {
+          "id": "health",
+          "label": {"en":"Health index","ar":"مؤشر الصحة"},
+          "unit": {"en":"/100","ar":"/100"},
+          "value": 42,
+          "worseWhenUp": false,
+          "series": [
+            {"at":"06:00","value":70}, {"at":"06:30","value":70}, {"at":"07:00","value":70}, {"at":"07:30","value":70}, {"at":"08:00","value":70}, {"at":"08:30","value":70},
+            {"at":"09:00","value":70}, {"at":"09:30","value":70}, {"at":"10:00","value":70}, {"at":"10:30","value":70}, {"at":"11:00","value":70}, {"at":"11:30","value":60},
+            {"at":"12:00","value":60}, {"at":"12:30","value":52}, {"at":"13:00","value":52}, {"at":"13:30","value":60}, {"at":"14:00","value":52}, {"at":"14:30","value":42},
+            {"at":"15:00","value":42}, {"at":"15:30","value":42}, {"at":"16:00","value":42}, {"at":"16:30","value":42}, {"at":"17:00","value":42}, {"at":"17:30","value":52}
+          ]
+        },
+        {
+          "id": "tx-a-loading",
+          "label": {"en":"Transformer A loading","ar":"تحميل المحول A"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 0,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":73.6}, {"at":"06:15","value":74.3}, {"at":"06:30","value":75.1}, {"at":"06:45","value":75.8}, {"at":"07:00","value":76.5},
+            {"at":"07:15","value":77.3}, {"at":"07:30","value":78}, {"at":"07:45","value":78.7}, {"at":"08:00","value":79.5}, {"at":"08:15","value":80.2},
+            {"at":"08:30","value":80.9}, {"at":"08:45","value":81.7}, {"at":"09:00","value":82.4}, {"at":"09:15","value":83.3}, {"at":"09:30","value":84.2},
+            {"at":"09:45","value":85.1}, {"at":"10:00","value":86}, {"at":"10:15","value":86.9}, {"at":"10:30","value":87.8}, {"at":"10:45","value":88.7},
+            {"at":"11:00","value":89.6}, {"at":"11:15","value":90.5}, {"at":"11:30","value":91.4}, {"at":"11:45","value":92.3}, {"at":"12:00","value":93.2},
+            {"at":"12:15","value":93.7}, {"at":"12:30","value":94.2}, {"at":"12:45","value":94.7}, {"at":"13:00","value":95.2}, {"at":"13:15","value":0}, {"at":"13:30","value":0},
+            {"at":"13:45","value":0}, {"at":"14:00","value":0}, {"at":"14:15","value":0}, {"at":"14:30","value":0}, {"at":"14:45","value":0}, {"at":"15:00","value":0},
+            {"at":"15:15","value":0}, {"at":"15:30","value":0}, {"at":"15:45","value":0}, {"at":"16:00","value":0}, {"at":"16:15","value":0}, {"at":"16:30","value":0},
+            {"at":"16:45","value":0}, {"at":"17:00","value":0}, {"at":"17:15","value":0}, {"at":"17:30","value":0}
+          ]
+        },
+        {
+          "id": "tx-a-top-oil",
+          "label": {"en":"Transformer A top-oil temperature","ar":"حرارة الزيت العلوي للمحول A"},
+          "unit": {"en":"°C","ar":"°م"},
+          "value": 54.9,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":60.5}, {"at":"06:15","value":60.7}, {"at":"06:30","value":61.2}, {"at":"06:45","value":61.7}, {"at":"07:00","value":62.5},
+            {"at":"07:15","value":63.2}, {"at":"07:30","value":64.1}, {"at":"07:45","value":64.9}, {"at":"08:00","value":65.8}, {"at":"08:15","value":66.7},
+            {"at":"08:30","value":67.6}, {"at":"08:45","value":68.5}, {"at":"09:00","value":69.4}, {"at":"09:15","value":70.3}, {"at":"09:30","value":71.3},
+            {"at":"09:45","value":72.3}, {"at":"10:00","value":73.3}, {"at":"10:15","value":74.4}, {"at":"10:30","value":75.4}, {"at":"10:45","value":76.4},
+            {"at":"11:00","value":77.5}, {"at":"11:15","value":78.6}, {"at":"11:30","value":79.6}, {"at":"11:45","value":80.7}, {"at":"12:00","value":81.7},
+            {"at":"12:15","value":82.7}, {"at":"12:30","value":91.5}, {"at":"12:45","value":99.8}, {"at":"13:00","value":105.5}, {"at":"13:15","value":91.2},
+            {"at":"13:30","value":76.6}, {"at":"13:45","value":67.2}, {"at":"14:00","value":61.2}, {"at":"14:15","value":57.3}, {"at":"14:30","value":54.9},
+            {"at":"14:45","value":53.4}, {"at":"15:00","value":52.5}, {"at":"15:15","value":52}, {"at":"15:30","value":51.5}, {"at":"15:45","value":51.2},
+            {"at":"16:00","value":50.9}, {"at":"16:15","value":50.7}, {"at":"16:30","value":50.5}, {"at":"16:45","value":50.3}, {"at":"17:00","value":50.1},
+            {"at":"17:15","value":49.9}, {"at":"17:30","value":49.7}
+          ]
+        },
+        {
+          "id": "tx-b-loading",
+          "label": {"en":"Transformer B loading","ar":"تحميل المحول B"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 90.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":67.6}, {"at":"06:15","value":68.3}, {"at":"06:30","value":68.9}, {"at":"06:45","value":69.6}, {"at":"07:00","value":70.3},
+            {"at":"07:15","value":71}, {"at":"07:30","value":71.6}, {"at":"07:45","value":72.3}, {"at":"08:00","value":73}, {"at":"08:15","value":73.7}, {"at":"08:30","value":74.3},
+            {"at":"08:45","value":75}, {"at":"09:00","value":75.7}, {"at":"09:15","value":76.5}, {"at":"09:30","value":77.3}, {"at":"09:45","value":78.2}, {"at":"10:00","value":79},
+            {"at":"10:15","value":79.8}, {"at":"10:30","value":80.6}, {"at":"10:45","value":81.5}, {"at":"11:00","value":82.3}, {"at":"11:15","value":83.1},
+            {"at":"11:30","value":83.9}, {"at":"11:45","value":84.8}, {"at":"12:00","value":85.6}, {"at":"12:15","value":86.1}, {"at":"12:30","value":86.5},
+            {"at":"12:45","value":87}, {"at":"13:00","value":87.4}, {"at":"13:15","value":87.9}, {"at":"13:30","value":88.3}, {"at":"13:45","value":88.8},
+            {"at":"14:00","value":89.2}, {"at":"14:15","value":89.7}, {"at":"14:30","value":90.1}, {"at":"14:45","value":90.4}, {"at":"15:00","value":90.7},
+            {"at":"15:15","value":91}, {"at":"15:30","value":91.3}, {"at":"15:45","value":91.6}, {"at":"16:00","value":91.9}, {"at":"16:15","value":91.5}, {"at":"16:30","value":91},
+            {"at":"16:45","value":90.6}, {"at":"17:00","value":90.1}, {"at":"17:15","value":89.7}, {"at":"17:30","value":89.2}
+          ]
+        },
+        {
+          "id": "tx-b-top-oil",
+          "label": {"en":"Transformer B top-oil temperature","ar":"حرارة الزيت العلوي للمحول B"},
+          "unit": {"en":"°C","ar":"°م"},
+          "value": 92.4,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":62.9}, {"at":"06:15","value":63.1}, {"at":"06:30","value":63.5}, {"at":"06:45","value":64.2}, {"at":"07:00","value":64.9},
+            {"at":"07:15","value":65.7}, {"at":"07:30","value":66.6}, {"at":"07:45","value":67.5}, {"at":"08:00","value":68.4}, {"at":"08:15","value":69.3},
+            {"at":"08:30","value":70.3}, {"at":"08:45","value":71.2}, {"at":"09:00","value":72.2}, {"at":"09:15","value":73.1}, {"at":"09:30","value":74.2},
+            {"at":"09:45","value":75.2}, {"at":"10:00","value":76.3}, {"at":"10:15","value":77.3}, {"at":"10:30","value":78.4}, {"at":"10:45","value":79.5},
+            {"at":"11:00","value":80.6}, {"at":"11:15","value":81.7}, {"at":"11:30","value":82.8}, {"at":"11:45","value":84}, {"at":"12:00","value":85.1},
+            {"at":"12:15","value":86.1}, {"at":"12:30","value":87}, {"at":"12:45","value":87.8}, {"at":"13:00","value":88.5}, {"at":"13:15","value":89.2},
+            {"at":"13:30","value":89.9}, {"at":"13:45","value":90.5}, {"at":"14:00","value":91.2}, {"at":"14:15","value":91.8}, {"at":"14:30","value":92.4},
+            {"at":"14:45","value":93.1}, {"at":"15:00","value":93.6}, {"at":"15:15","value":94.1}, {"at":"15:30","value":94.4}, {"at":"15:45","value":94.7},
+            {"at":"16:00","value":94.9}, {"at":"16:15","value":94.9}, {"at":"16:30","value":94.7}, {"at":"16:45","value":94.4}, {"at":"17:00","value":94},
+            {"at":"17:15","value":93.6}, {"at":"17:30","value":93.1}
+          ]
+        }
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"3 × 50 MVA (C on planned maintenance)","ar":"3 × 50 م.ف.أ (C في صيانة مخططة)"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"12","ar":"12"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"22,600","ar":"22,600"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"24 years","ar":"24 عاماً"}},
+        {"label":{"en":"Mobile substation laydown","ar":"موقع تركيب المحطة المتنقلة"},"value":{"en":"Declared","ar":"معلن"}},
+        {"label":{"en":"Latest oil test","ar":"آخر تحليل للزيت"},"value":{"en":"Caution on transformer A","ar":"تحذير على المحول A"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-RYD-118",
+      "name": {"en":"Olaya 118","ar":"العليا 118"},
+      "regionId": "riyadh",
+      "type": "grid",
+      "coordinates": [46.676,24.7],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 69.7,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":52.3}, {"at":"06:30","value":53.3}, {"at":"07:00","value":54.4}, {"at":"07:30","value":55.4}, {"at":"08:00","value":56.4},
+            {"at":"08:30","value":57.5}, {"at":"09:00","value":58.5}, {"at":"09:30","value":59.8}, {"at":"10:00","value":61.1}, {"at":"10:30","value":62.4},
+            {"at":"11:00","value":63.6}, {"at":"11:30","value":64.9}, {"at":"12:00","value":66.2}, {"at":"12:30","value":66.9}, {"at":"13:00","value":67.6},
+            {"at":"13:30","value":68.3}, {"at":"14:00","value":69}, {"at":"14:30","value":69.7}, {"at":"15:00","value":70.1}, {"at":"15:30","value":70.6},
+            {"at":"16:00","value":71.1}, {"at":"16:30","value":70.4}, {"at":"17:00","value":69.7}, {"at":"17:30","value":69}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"16,648","ar":"16,648"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"14 years","ar":"14 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-RYD-305",
+      "name": {"en":"Riyadh East 305","ar":"شرق الرياض 305"},
+      "regionId": "riyadh",
+      "type": "grid",
+      "coordinates": [46.778,24.734],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 72,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":54}, {"at":"06:30","value":55.1}, {"at":"07:00","value":56.2}, {"at":"07:30","value":57.2}, {"at":"08:00","value":58.3},
+            {"at":"08:30","value":59.4}, {"at":"09:00","value":60.5}, {"at":"09:30","value":61.8}, {"at":"10:00","value":63.1}, {"at":"10:30","value":64.4},
+            {"at":"11:00","value":65.8}, {"at":"11:30","value":67.1}, {"at":"12:00","value":68.4}, {"at":"12:30","value":69.1}, {"at":"13:00","value":69.8},
+            {"at":"13:30","value":70.6}, {"at":"14:00","value":71.3}, {"at":"14:30","value":72}, {"at":"15:00","value":72.5}, {"at":"15:30","value":73}, {"at":"16:00","value":73.4},
+            {"at":"16:30","value":72.7}, {"at":"17:00","value":72}, {"at":"17:30","value":71.3}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"17,702","ar":"17,702"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"11 years","ar":"11 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-RYD-412",
+      "name": {"en":"Riyadh South 412","ar":"جنوب الرياض 412"},
+      "regionId": "riyadh",
+      "type": "grid",
+      "coordinates": [46.734,24.586],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 62.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":46.6}, {"at":"06:30","value":47.5}, {"at":"07:00","value":48.4}, {"at":"07:30","value":49.4}, {"at":"08:00","value":50.3},
+            {"at":"08:30","value":51.2}, {"at":"09:00","value":52.2}, {"at":"09:30","value":53.3}, {"at":"10:00","value":54.4}, {"at":"10:30","value":55.6},
+            {"at":"11:00","value":56.7}, {"at":"11:30","value":57.9}, {"at":"12:00","value":59}, {"at":"12:30","value":59.6}, {"at":"13:00","value":60.2},
+            {"at":"13:30","value":60.9}, {"at":"14:00","value":61.5}, {"at":"14:30","value":62.1}, {"at":"15:00","value":62.5}, {"at":"15:30","value":62.9},
+            {"at":"16:00","value":63.3}, {"at":"16:30","value":62.7}, {"at":"17:00","value":62.1}, {"at":"17:30","value":61.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":98,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"15,915","ar":"15,915"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"18 years","ar":"18 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-KHJ-021",
+      "name": {"en":"Alkharj 021","ar":"الخرج 021"},
+      "regionId": "riyadh",
+      "type": "grid",
+      "coordinates": [47.305,24.152],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 57.9,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":43.4}, {"at":"06:30","value":44.3}, {"at":"07:00","value":45.2}, {"at":"07:30","value":46}, {"at":"08:00","value":46.9},
+            {"at":"08:30","value":47.8}, {"at":"09:00","value":48.6}, {"at":"09:30","value":49.7}, {"at":"10:00","value":50.8}, {"at":"10:30","value":51.8},
+            {"at":"11:00","value":52.9}, {"at":"11:30","value":53.9}, {"at":"12:00","value":55}, {"at":"12:30","value":55.6}, {"at":"13:00","value":56.2},
+            {"at":"13:30","value":56.7}, {"at":"14:00","value":57.3}, {"at":"14:30","value":57.9}, {"at":"15:00","value":58.3}, {"at":"15:30","value":58.7},
+            {"at":"16:00","value":59.1}, {"at":"16:30","value":58.5}, {"at":"17:00","value":57.9}, {"at":"17:30","value":57.3}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":95,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"10,629","ar":"10,629"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"21 years","ar":"21 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-JED-133",
+      "name": {"en":"Jeddah North 133","ar":"شمال جدة 133"},
+      "regionId": "makkah",
+      "type": "grid",
+      "coordinates": [39.152,21.628],
+      "status": "normal",
+      "timeline": [
+        {
+          "at": "11:40",
+          "status": "critical",
+          "note": {"en":"Underground cable fault on one feeder; the whole feeder is off supply.","ar":"عطل كابل أرضي على أحد المغذيات؛ المغذي بالكامل خارج الخدمة."}
+        },
+        {
+          "at": "12:35",
+          "status": "critical",
+          "note": {
+            "en": "Upstream section restored; {fact.jeddah-connections} still off pending the joint repair.",
+            "ar": "أعيد الجزء العلوي؛ {fact.jeddah-connections} ما زالت منقطعة بانتظار إصلاح الوصلة."
+          }
+        }
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 70.9,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":53.2}, {"at":"06:30","value":54.3}, {"at":"07:00","value":55.3}, {"at":"07:30","value":56.4}, {"at":"08:00","value":57.5},
+            {"at":"08:30","value":58.5}, {"at":"09:00","value":59.6}, {"at":"09:30","value":60.9}, {"at":"10:00","value":62.2}, {"at":"10:30","value":63.5},
+            {"at":"11:00","value":64.8}, {"at":"11:30","value":66.1}, {"at":"12:00","value":64.6}, {"at":"12:30","value":65.3}, {"at":"13:00","value":68.8},
+            {"at":"13:30","value":69.5}, {"at":"14:00","value":70.2}, {"at":"14:30","value":70.9}, {"at":"15:00","value":71.4}, {"at":"15:30","value":71.9},
+            {"at":"16:00","value":72.4}, {"at":"16:30","value":71.7}, {"at":"17:00","value":70.9}, {"at":"17:30","value":70.2}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":99,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"17,782","ar":"17,782"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"16 years","ar":"16 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-JED-219",
+      "name": {"en":"Jeddah Al-Safa 219","ar":"جدة الصفا 219"},
+      "regionId": "makkah",
+      "type": "grid",
+      "coordinates": [39.207,21.585],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 63.2,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":47.4}, {"at":"06:30","value":48.3}, {"at":"07:00","value":49.3}, {"at":"07:30","value":50.2}, {"at":"08:00","value":51.2},
+            {"at":"08:30","value":52.1}, {"at":"09:00","value":53.1}, {"at":"09:30","value":54.2}, {"at":"10:00","value":55.4}, {"at":"10:30","value":56.5},
+            {"at":"11:00","value":57.7}, {"at":"11:30","value":58.8}, {"at":"12:00","value":60}, {"at":"12:30","value":60.6}, {"at":"13:00","value":61.3},
+            {"at":"13:30","value":61.9}, {"at":"14:00","value":62.5}, {"at":"14:30","value":63.2}, {"at":"15:00","value":63.6}, {"at":"15:30","value":64},
+            {"at":"16:00","value":64.4}, {"at":"16:30","value":63.8}, {"at":"17:00","value":63.2}, {"at":"17:30","value":62.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"15,753","ar":"15,753"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"9 years","ar":"9 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-MKK-064",
+      "name": {"en":"Makkah Al-Aziziyah 064","ar":"مكة العزيزية 064"},
+      "regionId": "makkah",
+      "type": "grid",
+      "coordinates": [39.862,21.404],
+      "status": "normal",
+      "timeline": [
+        {
+          "at": "12:20",
+          "status": "watch",
+          "note": {"en":"Transformer loading above {fact.loading-watch} at the afternoon peak.","ar":"تحميل المحولات فوق {fact.loading-watch} في ذروة الظهيرة."}
+        }
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 84,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":63}, {"at":"06:30","value":64.3}, {"at":"07:00","value":65.5}, {"at":"07:30","value":66.8}, {"at":"08:00","value":68}, {"at":"08:30","value":69.3},
+            {"at":"09:00","value":70.6}, {"at":"09:30","value":72.1}, {"at":"10:00","value":73.6}, {"at":"10:30","value":75.2}, {"at":"11:00","value":76.7},
+            {"at":"11:30","value":78.3}, {"at":"12:00","value":79.8}, {"at":"12:30","value":80.6}, {"at":"13:00","value":81.5}, {"at":"13:30","value":82.3},
+            {"at":"14:00","value":83.2}, {"at":"14:30","value":84}, {"at":"15:00","value":84.6}, {"at":"15:30","value":85.1}, {"at":"16:00","value":85.7},
+            {"at":"16:30","value":84.8}, {"at":"17:00","value":84}, {"at":"17:30","value":83.2}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"18,108","ar":"18,108"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"13 years","ar":"13 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-TIF-038",
+      "name": {"en":"Taif 038","ar":"الطائف 038"},
+      "regionId": "makkah",
+      "type": "grid",
+      "coordinates": [40.415,21.27],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 57.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":42.8}, {"at":"06:30","value":43.7}, {"at":"07:00","value":44.5}, {"at":"07:30","value":45.4}, {"at":"08:00","value":46.3},
+            {"at":"08:30","value":47.1}, {"at":"09:00","value":48}, {"at":"09:30","value":49}, {"at":"10:00","value":50.1}, {"at":"10:30","value":51.1}, {"at":"11:00","value":52.2},
+            {"at":"11:30","value":53.2}, {"at":"12:00","value":54.3}, {"at":"12:30","value":54.8}, {"at":"13:00","value":55.4}, {"at":"13:30","value":56},
+            {"at":"14:00","value":56.5}, {"at":"14:30","value":57.1}, {"at":"15:00","value":57.5}, {"at":"15:30","value":57.9}, {"at":"16:00","value":58.2},
+            {"at":"16:30","value":57.7}, {"at":"17:00","value":57.1}, {"at":"17:30","value":56.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":97,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"11,186","ar":"11,186"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"19 years","ar":"19 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-DMM-077",
+      "name": {"en":"Ad Dammam 077","ar":"الدمام 077"},
+      "regionId": "eastern",
+      "type": "grid",
+      "coordinates": [50.103,26.42],
+      "status": "normal",
+      "timeline": [
+        {"at":"09:10","status":"critical","note":{"en":"Feeder protection operated; patrol under way.","ar":"عملت حماية أحد المغذيات؛ التفتيش جارٍ."}},
+        {"at":"09:52","status":"normal"}
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 69.3,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":51.9}, {"at":"06:30","value":53}, {"at":"07:00","value":54}, {"at":"07:30","value":55.1}, {"at":"08:00","value":56.1}, {"at":"08:30","value":57.1},
+            {"at":"09:00","value":58.2}, {"at":"09:30","value":59.5}, {"at":"10:00","value":60.7}, {"at":"10:30","value":62}, {"at":"11:00","value":63.3},
+            {"at":"11:30","value":64.5}, {"at":"12:00","value":65.8}, {"at":"12:30","value":66.5}, {"at":"13:00","value":67.2}, {"at":"13:30","value":67.9},
+            {"at":"14:00","value":68.6}, {"at":"14:30","value":69.3}, {"at":"15:00","value":69.7}, {"at":"15:30","value":70.2}, {"at":"16:00","value":70.6},
+            {"at":"16:30","value":70}, {"at":"17:00","value":69.3}, {"at":"17:30","value":68.6}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"18,189","ar":"18,189"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"12 years","ar":"12 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-KHB-052",
+      "name": {"en":"Al Khobar 052","ar":"الخبر 052"},
+      "regionId": "eastern",
+      "type": "grid",
+      "coordinates": [50.205,26.281],
+      "status": "normal",
+      "timeline": [
+        {
+          "at": "04:13",
+          "status": "watch",
+          "note": {"en":"Repeated feeder trips from insulator salt since before dawn, all restored.","ar":"فصل متكرر للمغذيات بسبب أملاح العوازل منذ ما قبل الفجر، أعيدت جميعها."}
+        }
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 65.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":48.8}, {"at":"06:30","value":49.8}, {"at":"07:00","value":50.7}, {"at":"07:30","value":51.7}, {"at":"08:00","value":52.7},
+            {"at":"08:30","value":53.7}, {"at":"09:00","value":54.6}, {"at":"09:30","value":55.8}, {"at":"10:00","value":57}, {"at":"10:30","value":58.2},
+            {"at":"11:00","value":59.4}, {"at":"11:30","value":60.6}, {"at":"12:00","value":61.8}, {"at":"12:30","value":62.5}, {"at":"13:00","value":63.1},
+            {"at":"13:30","value":63.8}, {"at":"14:00","value":64.4}, {"at":"14:30","value":65.1}, {"at":"15:00","value":65.5}, {"at":"15:30","value":65.9},
+            {"at":"16:00","value":66.4}, {"at":"16:30","value":65.7}, {"at":"17:00","value":65.1}, {"at":"17:30","value":64.4}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"16,890","ar":"16,890"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"10 years","ar":"10 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-JUB-019",
+      "name": {"en":"Jubail Industrial 019","ar":"الجبيل الصناعية 019"},
+      "regionId": "eastern",
+      "type": "industrial",
+      "coordinates": [49.63,27.005],
+      "status": "normal",
+      "timeline": [
+        {
+          "at": "11:30",
+          "status": "watch",
+          "note": {"en":"Transformer loading above {fact.loading-watch} with industrial demand at its peak.","ar":"تحميل المحولات فوق {fact.loading-watch} مع بلوغ الطلب الصناعي ذروته."}
+        }
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 85.9,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":64.5}, {"at":"06:30","value":65.7}, {"at":"07:00","value":67}, {"at":"07:30","value":68.3}, {"at":"08:00","value":69.6},
+            {"at":"08:30","value":70.9}, {"at":"09:00","value":72.2}, {"at":"09:30","value":73.8}, {"at":"10:00","value":75.3}, {"at":"10:30","value":76.9},
+            {"at":"11:00","value":78.5}, {"at":"11:30","value":80.1}, {"at":"12:00","value":81.6}, {"at":"12:30","value":82.5}, {"at":"13:00","value":83.4},
+            {"at":"13:30","value":84.2}, {"at":"14:00","value":85.1}, {"at":"14:30","value":85.9}, {"at":"15:00","value":86.5}, {"at":"15:30","value":87.1},
+            {"at":"16:00","value":87.7}, {"at":"16:30","value":86.8}, {"at":"17:00","value":85.9}, {"at":"17:30","value":85.1}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 67 MVA","ar":"2 × 67 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"1,949","ar":"1,949"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"15 years","ar":"15 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-HOF-045",
+      "name": {"en":"Alhufuf 045","ar":"الأحساء 045"},
+      "regionId": "eastern",
+      "type": "grid",
+      "coordinates": [49.59,25.382],
+      "status": "watch",
+      "note": {"en":"Oil-test caution on transformer A: elevated ethylene, monitored monthly.","ar":"تحذير تحليل الزيت على المحول A: ارتفاع الإيثيلين، مراقبة شهرية."},
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 68.2,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":51.1}, {"at":"06:30","value":52.1}, {"at":"07:00","value":53.2}, {"at":"07:30","value":54.2}, {"at":"08:00","value":55.2},
+            {"at":"08:30","value":56.2}, {"at":"09:00","value":57.3}, {"at":"09:30","value":58.5}, {"at":"10:00","value":59.8}, {"at":"10:30","value":61},
+            {"at":"11:00","value":62.3}, {"at":"11:30","value":63.5}, {"at":"12:00","value":64.8}, {"at":"12:30","value":65.4}, {"at":"13:00","value":66.1},
+            {"at":"13:30","value":66.8}, {"at":"14:00","value":67.5}, {"at":"14:30","value":68.2}, {"at":"15:00","value":68.6}, {"at":"15:30","value":69.1},
+            {"at":"16:00","value":69.5}, {"at":"16:30","value":68.8}, {"at":"17:00","value":68.2}, {"at":"17:30","value":67.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":78,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"11,680","ar":"11,680"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"27 years","ar":"27 عاماً"}},
+        {"label":{"en":"Latest oil test","ar":"آخر تحليل للزيت"},"value":{"en":"Caution on transformer A","ar":"تحذير على المحول A"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-MED-091",
+      "name": {"en":"Almadinah Central 091","ar":"وسط المدينة 091"},
+      "regionId": "madinah",
+      "type": "grid",
+      "coordinates": [39.611,24.468],
+      "status": "normal",
+      "timeline": [
+        {"at":"2026-08-11T22:20","status":"critical","note":{"en":"Breaker failed to close; one feeder off supply.","ar":"فشل إغلاق قاطع؛ مغذٍ واحد خارج الخدمة."}},
+        {"at":"2026-08-11T23:40","status":"normal"}
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 65.9,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":49.4}, {"at":"06:30","value":50.4}, {"at":"07:00","value":51.4}, {"at":"07:30","value":52.4}, {"at":"08:00","value":53.4},
+            {"at":"08:30","value":54.4}, {"at":"09:00","value":55.4}, {"at":"09:30","value":56.6}, {"at":"10:00","value":57.8}, {"at":"10:30","value":59},
+            {"at":"11:00","value":60.2}, {"at":"11:30","value":61.4}, {"at":"12:00","value":62.6}, {"at":"12:30","value":63.3}, {"at":"13:00","value":63.9},
+            {"at":"13:30","value":64.6}, {"at":"14:00","value":65.2}, {"at":"14:30","value":65.9}, {"at":"15:00","value":66.3}, {"at":"15:30","value":66.8},
+            {"at":"16:00","value":67.2}, {"at":"16:30","value":66.6}, {"at":"17:00","value":65.9}, {"at":"17:30","value":65.2}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 50 MVA","ar":"2 × 50 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"8","ar":"8"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"15,184","ar":"15,184"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"14 years","ar":"14 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-YNB-012",
+      "name": {"en":"Yanbu 012","ar":"ينبع 012"},
+      "regionId": "madinah",
+      "type": "grid",
+      "coordinates": [38.063,24.089],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 55.3,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":41.4}, {"at":"06:30","value":42.3}, {"at":"07:00","value":43.1}, {"at":"07:30","value":43.9}, {"at":"08:00","value":44.8},
+            {"at":"08:30","value":45.6}, {"at":"09:00","value":46.4}, {"at":"09:30","value":47.4}, {"at":"10:00","value":48.4}, {"at":"10:30","value":49.5},
+            {"at":"11:00","value":50.5}, {"at":"11:30","value":51.5}, {"at":"12:00","value":52.5}, {"at":"12:30","value":53.1}, {"at":"13:00","value":53.6},
+            {"at":"13:30","value":54.2}, {"at":"14:00","value":54.7}, {"at":"14:30","value":55.3}, {"at":"15:00","value":55.6}, {"at":"15:30","value":56},
+            {"at":"16:00","value":56.4}, {"at":"16:30","value":55.8}, {"at":"17:00","value":55.3}, {"at":"17:30","value":54.7}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":98,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"9,270","ar":"9,270"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"17 years","ar":"17 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-BRD-033",
+      "name": {"en":"Buraydah 033","ar":"بريدة 033"},
+      "regionId": "qassim",
+      "type": "grid",
+      "coordinates": [43.975,26.327],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 61.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":45.8}, {"at":"06:30","value":46.7}, {"at":"07:00","value":47.6}, {"at":"07:30","value":48.5}, {"at":"08:00","value":49.5},
+            {"at":"08:30","value":50.4}, {"at":"09:00","value":51.3}, {"at":"09:30","value":52.4}, {"at":"10:00","value":53.5}, {"at":"10:30","value":54.6},
+            {"at":"11:00","value":55.8}, {"at":"11:30","value":56.9}, {"at":"12:00","value":58}, {"at":"12:30","value":58.6}, {"at":"13:00","value":59.2},
+            {"at":"13:30","value":59.8}, {"at":"14:00","value":60.4}, {"at":"14:30","value":61.1}, {"at":"15:00","value":61.5}, {"at":"15:30","value":61.9},
+            {"at":"16:00","value":62.3}, {"at":"16:30","value":61.7}, {"at":"17:00","value":61.1}, {"at":"17:30","value":60.4}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"10,876","ar":"10,876"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"15 years","ar":"15 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-UNZ-008",
+      "name": {"en":"Unayzah 008","ar":"عنيزة 008"},
+      "regionId": "qassim",
+      "type": "grid",
+      "coordinates": [43.993,26.087],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 52.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":39.1}, {"at":"06:30","value":39.9}, {"at":"07:00","value":40.6}, {"at":"07:30","value":41.4}, {"at":"08:00","value":42.2},
+            {"at":"08:30","value":43}, {"at":"09:00","value":43.8}, {"at":"09:30","value":44.7}, {"at":"10:00","value":45.7}, {"at":"10:30","value":46.6},
+            {"at":"11:00","value":47.6}, {"at":"11:30","value":48.5}, {"at":"12:00","value":49.5}, {"at":"12:30","value":50}, {"at":"13:00","value":50.5},
+            {"at":"13:30","value":51.1}, {"at":"14:00","value":51.6}, {"at":"14:30","value":52.1}, {"at":"15:00","value":52.5}, {"at":"15:30","value":52.8},
+            {"at":"16:00","value":53.1}, {"at":"16:30","value":52.6}, {"at":"17:00","value":52.1}, {"at":"17:30","value":51.6}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":96,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"8,838","ar":"8,838"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"20 years","ar":"20 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-ABH-027",
+      "name": {"en":"Abha 027","ar":"أبها 027"},
+      "regionId": "asir",
+      "type": "grid",
+      "coordinates": [42.505,18.217],
+      "status": "normal",
+      "timeline": [
+        {
+          "at": "13:48",
+          "status": "critical",
+          "note": {"en":"Overhead feeders tripped in the dust storm, one of them serving the hospital annex.","ar":"فصلت مغذيات هوائية أثناء العاصفة الترابية، أحدها يغذي ملحق المستشفى."}
+        }
+      ],
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 57.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":45}, {"at":"06:30","value":45.9}, {"at":"07:00","value":46.8}, {"at":"07:30","value":47.7}, {"at":"08:00","value":48.6},
+            {"at":"08:30","value":49.5}, {"at":"09:00","value":50.4}, {"at":"09:30","value":51.5}, {"at":"10:00","value":52.6}, {"at":"10:30","value":53.7},
+            {"at":"11:00","value":54.8}, {"at":"11:30","value":55.9}, {"at":"12:00","value":57}, {"at":"12:30","value":57.6}, {"at":"13:00","value":58.2},
+            {"at":"13:30","value":58.8}, {"at":"14:00","value":56.5}, {"at":"14:30","value":57.1}, {"at":"15:00","value":57.5}, {"at":"15:30","value":57.9},
+            {"at":"16:00","value":58.2}, {"at":"16:30","value":57.7}, {"at":"17:00","value":57.1}, {"at":"17:30","value":56.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":94,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"10,507","ar":"10,507"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"22 years","ar":"22 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-KMS-015",
+      "name": {"en":"Khamis Mushayt 015","ar":"خميس مشيط 015"},
+      "regionId": "asir",
+      "type": "grid",
+      "coordinates": [42.729,18.3],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 57.9,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":43.4}, {"at":"06:30","value":44.3}, {"at":"07:00","value":45.2}, {"at":"07:30","value":46}, {"at":"08:00","value":46.9},
+            {"at":"08:30","value":47.8}, {"at":"09:00","value":48.6}, {"at":"09:30","value":49.7}, {"at":"10:00","value":50.8}, {"at":"10:30","value":51.8},
+            {"at":"11:00","value":52.9}, {"at":"11:30","value":53.9}, {"at":"12:00","value":55}, {"at":"12:30","value":55.6}, {"at":"13:00","value":56.2},
+            {"at":"13:30","value":56.7}, {"at":"14:00","value":57.3}, {"at":"14:30","value":57.9}, {"at":"15:00","value":58.3}, {"at":"15:30","value":58.7},
+            {"at":"16:00","value":59.1}, {"at":"16:30","value":58.5}, {"at":"17:00","value":57.9}, {"at":"17:30","value":57.3}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":99,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"10,198","ar":"10,198"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"16 years","ar":"16 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-TBK-024",
+      "name": {"en":"Tabuk 024","ar":"تبوك 024"},
+      "regionId": "tabuk",
+      "type": "grid",
+      "coordinates": [36.566,28.383],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 56.1,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":42}, {"at":"06:30","value":42.9}, {"at":"07:00","value":43.7}, {"at":"07:30","value":44.6}, {"at":"08:00","value":45.4},
+            {"at":"08:30","value":46.2}, {"at":"09:00","value":47.1}, {"at":"09:30","value":48.1}, {"at":"10:00","value":49.1}, {"at":"10:30","value":50.2},
+            {"at":"11:00","value":51.2}, {"at":"11:30","value":52.2}, {"at":"12:00","value":53.3}, {"at":"12:30","value":53.8}, {"at":"13:00","value":54.4},
+            {"at":"13:30","value":54.9}, {"at":"14:00","value":55.5}, {"at":"14:30","value":56.1}, {"at":"15:00","value":56.4}, {"at":"15:30","value":56.8},
+            {"at":"16:00","value":57.2}, {"at":"16:30","value":56.6}, {"at":"17:00","value":56.1}, {"at":"17:30","value":55.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":98,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"10,011","ar":"10,011"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"18 years","ar":"18 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-HAL-017",
+      "name": {"en":"Hail 017","ar":"حائل 017"},
+      "regionId": "hail",
+      "type": "grid",
+      "coordinates": [41.69,27.521],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 53.7,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":40.3}, {"at":"06:30","value":41.1}, {"at":"07:00","value":41.9}, {"at":"07:30","value":42.7}, {"at":"08:00","value":43.5},
+            {"at":"08:30","value":44.3}, {"at":"09:00","value":45.1}, {"at":"09:30","value":46.1}, {"at":"10:00","value":47.1}, {"at":"10:30","value":48}, {"at":"11:00","value":49},
+            {"at":"11:30","value":50}, {"at":"12:00","value":51}, {"at":"12:30","value":51.5}, {"at":"13:00","value":52.1}, {"at":"13:30","value":52.6}, {"at":"14:00","value":53.1},
+            {"at":"14:30","value":53.7}, {"at":"15:00","value":54}, {"at":"15:30","value":54.4}, {"at":"16:00","value":54.8}, {"at":"16:30","value":54.2},
+            {"at":"17:00","value":53.7}, {"at":"17:30","value":53.1}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":97,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"9,765","ar":"9,765"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"19 years","ar":"19 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-ARR-006",
+      "name": {"en":"Arar 006","ar":"عرعر 006"},
+      "regionId": "northern",
+      "type": "grid",
+      "coordinates": [41.038,30.975],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 50.5,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":37.9}, {"at":"06:30","value":38.7}, {"at":"07:00","value":39.4}, {"at":"07:30","value":40.2}, {"at":"08:00","value":40.9},
+            {"at":"08:30","value":41.7}, {"at":"09:00","value":42.4}, {"at":"09:30","value":43.4}, {"at":"10:00","value":44.3}, {"at":"10:30","value":45.2},
+            {"at":"11:00","value":46.1}, {"at":"11:30","value":47.1}, {"at":"12:00","value":48}, {"at":"12:30","value":48.5}, {"at":"13:00","value":49}, {"at":"13:30","value":49.5},
+            {"at":"14:00","value":50}, {"at":"14:30","value":50.5}, {"at":"15:00","value":50.9}, {"at":"15:30","value":51.2}, {"at":"16:00","value":51.5}, {"at":"16:30","value":51},
+            {"at":"17:00","value":50.5}, {"at":"17:30","value":50}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":94,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 25 MVA","ar":"2 × 25 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"7,478","ar":"7,478"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"23 years","ar":"23 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-JZN-029",
+      "name": {"en":"Jazan 029","ar":"جازان 029"},
+      "regionId": "jazan",
+      "type": "grid",
+      "coordinates": [42.551,16.889],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 63.2,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":47.4}, {"at":"06:30","value":48.3}, {"at":"07:00","value":49.3}, {"at":"07:30","value":50.2}, {"at":"08:00","value":51.2},
+            {"at":"08:30","value":52.1}, {"at":"09:00","value":53.1}, {"at":"09:30","value":54.2}, {"at":"10:00","value":55.4}, {"at":"10:30","value":56.5},
+            {"at":"11:00","value":57.7}, {"at":"11:30","value":58.8}, {"at":"12:00","value":60}, {"at":"12:30","value":60.6}, {"at":"13:00","value":61.3},
+            {"at":"13:30","value":61.9}, {"at":"14:00","value":62.5}, {"at":"14:30","value":63.2}, {"at":"15:00","value":63.6}, {"at":"15:30","value":64},
+            {"at":"16:00","value":64.4}, {"at":"16:30","value":63.8}, {"at":"17:00","value":63.2}, {"at":"17:30","value":62.5}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":100,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 40 MVA","ar":"2 × 40 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"10,444","ar":"10,444"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"12 years","ar":"12 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-NJR-011",
+      "name": {"en":"Najran 011","ar":"نجران 011"},
+      "regionId": "najran",
+      "type": "grid",
+      "coordinates": [44.127,17.493],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 55.2,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":41.4}, {"at":"06:30","value":42.2}, {"at":"07:00","value":43}, {"at":"07:30","value":43.9}, {"at":"08:00","value":44.7},
+            {"at":"08:30","value":45.5}, {"at":"09:00","value":46.3}, {"at":"09:30","value":47.3}, {"at":"10:00","value":48.4}, {"at":"10:30","value":49.4},
+            {"at":"11:00","value":50.4}, {"at":"11:30","value":51.4}, {"at":"12:00","value":52.4}, {"at":"12:30","value":53}, {"at":"13:00","value":53.5},
+            {"at":"13:30","value":54.1}, {"at":"14:00","value":54.6}, {"at":"14:30","value":55.2}, {"at":"15:00","value":55.5}, {"at":"15:30","value":55.9},
+            {"at":"16:00","value":56.3}, {"at":"16:30","value":55.7}, {"at":"17:00","value":55.2}, {"at":"17:30","value":54.6}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":96,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 25 MVA","ar":"2 × 25 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"8,282","ar":"8,282"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"20 years","ar":"20 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-BAH-005",
+      "name": {"en":"Albaha 005","ar":"الباحة 005"},
+      "regionId": "bahah",
+      "type": "grid",
+      "coordinates": [41.468,20.012],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 49.3,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":36.9}, {"at":"06:30","value":37.7}, {"at":"07:00","value":38.4}, {"at":"07:30","value":39.2}, {"at":"08:00","value":39.9},
+            {"at":"08:30","value":40.6}, {"at":"09:00","value":41.4}, {"at":"09:30","value":42.3}, {"at":"10:00","value":43.2}, {"at":"10:30","value":44.1},
+            {"at":"11:00","value":45}, {"at":"11:30","value":45.9}, {"at":"12:00","value":46.8}, {"at":"12:30","value":47.3}, {"at":"13:00","value":47.8},
+            {"at":"13:30","value":48.3}, {"at":"14:00","value":48.8}, {"at":"14:30","value":49.3}, {"at":"15:00","value":49.6}, {"at":"15:30","value":49.9},
+            {"at":"16:00","value":50.2}, {"at":"16:30","value":49.8}, {"at":"17:00","value":49.3}, {"at":"17:30","value":48.8}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":93,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 25 MVA","ar":"2 × 25 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"6,798","ar":"6,798"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"24 years","ar":"24 عاماً"}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "SS-SKK-009",
+      "name": {"en":"Sakaka 009","ar":"سكاكا 009"},
+      "regionId": "jawf",
+      "type": "grid",
+      "coordinates": [40.206,29.97],
+      "status": "normal",
+      "metrics": [
+        {
+          "id": "loading",
+          "label": {"en":"Peak transformer loading","ar":"ذروة تحميل المحولات"},
+          "unit": {"en":"%","ar":"%"},
+          "value": 51.8,
+          "decimals": 1,
+          "limit": 90,
+          "series": [
+            {"at":"06:00","value":38.8}, {"at":"06:30","value":39.6}, {"at":"07:00","value":40.4}, {"at":"07:30","value":41.2}, {"at":"08:00","value":41.9},
+            {"at":"08:30","value":42.7}, {"at":"09:00","value":43.5}, {"at":"09:30","value":44.5}, {"at":"10:00","value":45.4}, {"at":"10:30","value":46.4},
+            {"at":"11:00","value":47.3}, {"at":"11:30","value":48.3}, {"at":"12:00","value":49.2}, {"at":"12:30","value":49.7}, {"at":"13:00","value":50.2},
+            {"at":"13:30","value":50.8}, {"at":"14:00","value":51.3}, {"at":"14:30","value":51.8}, {"at":"15:00","value":52.1}, {"at":"15:30","value":52.5},
+            {"at":"16:00","value":52.8}, {"at":"16:30","value":52.3}, {"at":"17:00","value":51.8}, {"at":"17:30","value":51.3}
+          ]
+        },
+        {"id":"health","label":{"en":"Health index","ar":"مؤشر الصحة"},"unit":{"en":"/100","ar":"/100"},"value":95,"worseWhenUp":false}
+      ],
+      "details": [
+        {"label":{"en":"Transformers","ar":"المحولات"},"value":{"en":"2 × 25 MVA","ar":"2 × 25 م.ف.أ"}},
+        {"label":{"en":"Voltage","ar":"الجهد"},"value":{"en":"132/13.8 kV","ar":"132/13.8 ك.ف"}},
+        {"label":{"en":"Feeders","ar":"المغذيات"},"value":{"en":"6","ar":"6"}},
+        {"label":{"en":"Connections served","ar":"التوصيلات المخدومة"},"value":{"en":"7,293","ar":"7,293"}},
+        {"label":{"en":"Transformer age","ar":"عمر المحولات"},"value":{"en":"21 years","ar":"21 عاماً"}}
+      ],
+      "source": "starter"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "active-incidents",
+      "kind": "measure",
+      "icon": "Activity",
+      "label": {"en":"Active incidents","ar":"الحوادث النشطة"},
+      "value": 3,
+      "unit": {"en":"open incidents","ar":"حوادث مفتوحة"},
+      "series": [
+        {"at":"00:00","value":0}, {"at":"06:00","value":0}, {"at":"06:30","value":0}, {"at":"07:00","value":0}, {"at":"07:30","value":0}, {"at":"08:00","value":0},
+        {"at":"08:30","value":0}, {"at":"09:00","value":0}, {"at":"09:10","value":1}, {"at":"09:30","value":1}, {"at":"09:52","value":0}, {"at":"10:00","value":0},
+        {"at":"10:30","value":0}, {"at":"11:00","value":0}, {"at":"11:30","value":0}, {"at":"11:40","value":1}, {"at":"12:00","value":1}, {"at":"12:30","value":1},
+        {"at":"12:35","value":1}, {"at":"13:00","value":1}, {"at":"13:05","value":2}, {"at":"13:30","value":2}, {"at":"13:48","value":3}, {"at":"14:00","value":3},
+        {"at":"14:30","value":3}, {"at":"15:00","value":3}, {"at":"15:30","value":3}, {"at":"16:00","value":3}, {"at":"16:30","value":3}, {"at":"17:00","value":3}
+      ],
+      "definition": {
+        "en": "Grid incidents with customers still off supply at the clock, from the outage management records.",
+        "ar": "حوادث الشبكة التي ما زال فيها عملاء خارج الخدمة عند الوقت المعروض، من سجلات إدارة الانقطاعات."
+      },
+      "source": "starter"
+    },
+    {
+      "id": "interrupted-customers",
+      "kind": "measure",
+      "icon": "Users",
+      "label": {"en":"Interrupted customers","ar":"العملاء المنقطعون"},
+      "value": 18047,
+      "unit": {"en":"connections","ar":"توصيلة"},
+      "series": [
+        {"at":"00:00","value":0}, {"at":"06:00","value":0}, {"at":"06:30","value":0}, {"at":"07:00","value":0}, {"at":"07:30","value":0}, {"at":"08:00","value":0},
+        {"at":"08:30","value":0}, {"at":"09:00","value":0}, {"at":"09:10","value":2106}, {"at":"09:30","value":2106}, {"at":"09:52","value":0}, {"at":"10:00","value":0},
+        {"at":"10:30","value":0}, {"at":"11:00","value":0}, {"at":"11:30","value":0}, {"at":"11:40","value":3652}, {"at":"12:00","value":3652}, {"at":"12:30","value":3652},
+        {"at":"12:35","value":1461}, {"at":"13:00","value":1461}, {"at":"13:05","value":14493}, {"at":"13:30","value":14493}, {"at":"13:48","value":18047},
+        {"at":"14:00","value":18047}, {"at":"14:30","value":18047}, {"at":"15:00","value":18047}, {"at":"15:30","value":18047}, {"at":"16:00","value":18047},
+        {"at":"16:30","value":18047}, {"at":"17:00","value":18047}
+      ],
+      "definition": {
+        "en": "Customer connections off supply at the clock, counted once per customer group across all active incidents.",
+        "ar": "توصيلات العملاء خارج الخدمة عند الوقت المعروض، تُحتسب مرة واحدة لكل مجموعة عملاء عبر كل الحوادث النشطة."
+      },
+      "source": "starter"
+    },
+    {
+      "id": "substations-attention",
+      "kind": "count",
+      "icon": "Gauge",
+      "label": {"en":"Grid substations requiring attention","ar":"محطات الشبكة التي تتطلب الانتباه"},
+      "unit": {"en":"monitored substations","ar":"محطة مراقبة"},
+      "derive": {"count":{"status":["watch","critical"]},"of":{}},
+      "definition": {
+        "en": "Monitored grid substations with customers off supply, a tripped or constrained transformer, loading above the watch level, an oil-test caution or repeated trips today. Counted from the same register as the map.",
+        "ar": "محطات الشبكة المراقبة التي فيها عملاء خارج الخدمة أو محول مفصول أو مقيد أو تحميل فوق مستوى المراقبة أو تحذير تحليل الزيت أو فصل متكرر اليوم، محتسبة من السجل نفسه المستخدم في الخريطة."
+      },
+      "source": "starter"
+    },
+    {
+      "id": "restoration-progress",
+      "kind": "percent",
+      "icon": "TrendingUp",
+      "label": {"en":"Restoration progress","ar":"تقدم الاستعادة"},
+      "value": 19.2,
+      "decimals": 0,
+      "unit": {"en":"of connections interrupted today restored","ar":"من التوصيلات المنقطعة اليوم أعيدت"},
+      "series": [
+        {"at":"00:00","value":0}, {"at":"06:00","value":0}, {"at":"06:30","value":0}, {"at":"07:00","value":0}, {"at":"07:30","value":0}, {"at":"08:00","value":0},
+        {"at":"08:30","value":0}, {"at":"09:00","value":0}, {"at":"09:10","value":0}, {"at":"09:30","value":0}, {"at":"09:52","value":100}, {"at":"10:00","value":100},
+        {"at":"10:30","value":100}, {"at":"11:00","value":100}, {"at":"11:30","value":100}, {"at":"11:40","value":36.6}, {"at":"12:00","value":36.6}, {"at":"12:30","value":36.6},
+        {"at":"12:35","value":74.6}, {"at":"13:00","value":74.6}, {"at":"13:05","value":22.9}, {"at":"13:30","value":22.9}, {"at":"13:48","value":19.2}, {"at":"14:00","value":19.2},
+        {"at":"14:30","value":19.2}, {"at":"15:00","value":19.2}, {"at":"15:30","value":19.2}, {"at":"16:00","value":19.2}, {"at":"16:30","value":19.2}, {"at":"17:00","value":19.2}
+      ],
+      "definition": {"en":"Connections restored as a share of all connections interrupted since midnight.","ar":"التوصيلات المستعادة كنسبة من كل التوصيلات المنقطعة منذ منتصف الليل."},
+      "source": "starter"
+    }
+  ],
+  "facts": [
+    {"id":"hero-connections","value":13032,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"hero-feeders-off","value":6,"unit":{"en":"feeders","ar":"مغذيات"},"source":"starter"},
+    {"id":"hero-feeders-total","value":12,"unit":{"en":"feeders","ar":"مغذياً"},"source":"starter"},
+    {"id":"jeddah-connections","value":1461,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"jeddah-restored","value":2191,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"abha-connections","value":3554,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"abha-feeders-off","value":2,"unit":{"en":"feeders","ar":"مغذيات"},"source":"starter"},
+    {"id":"abha-feeders-total","value":6,"unit":{"en":"feeders","ar":"مغذيات"},"source":"starter"},
+    {"id":"dammam-connections","value":2106,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"affected-today","value":22344,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"restored-today","value":4297,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"critical-off","value":4,"unit":{"en":"critical facilities","ar":"منشآت حرجة"},"source":"starter"},
+    {"id":"critical-declared","value":5,"unit":{"en":"declared critical facilities","ar":"منشآت حرجة معلنة"},"source":"starter"},
+    {"id":"hospital-backup","value":24,"unit":{"en":"hours of backup","ar":"ساعة من التغذية الاحتياطية"},"source":"starter"},
+    {"id":"civil-backup","value":12,"unit":{"en":"hours of backup","ar":"ساعة من التغذية الاحتياطية"},"source":"starter"},
+    {"id":"water-backup","value":6,"unit":{"en":"hours of backup","ar":"ساعات من التغذية الاحتياطية"},"source":"starter"},
+    {"id":"demand-above-forecast","value":220,"unit":{"en":"MW","ar":"ميجاواط"},"source":"starter"},
+    {"id":"capacity-reduction","value":380,"unit":{"en":"MW","ar":"ميجاواط"},"source":"starter"},
+    {"id":"ambient-peak","value":47,"unit":{"en":"°C","ar":"°م"},"source":"starter"},
+    {"id":"riyadh-reserve","value":620,"unit":{"en":"MW","ar":"ميجاواط"},"source":"starter"},
+    {"id":"riyadh-reserve-pct","value":2.8,"unit":{"en":"per cent of capacity","ar":"بالمئة من السعة"},"decimals":1,"source":"starter"},
+    {"id":"top-oil-alarm","value":90,"unit":{"en":"°C","ar":"°م"},"source":"starter"},
+    {"id":"top-oil-trip","value":105,"unit":{"en":"°C","ar":"°م"},"source":"starter"},
+    {"id":"policy-limit","value":90,"unit":{"en":"per cent of rating","ar":"بالمئة من القدرة الاسمية"},"source":"starter"},
+    {"id":"loading-watch","value":80,"unit":{"en":"per cent of rating","ar":"بالمئة من القدرة الاسمية"},"source":"starter"},
+    {"id":"tx-a-loading-pre-trip","value":95.2,"unit":{"en":"per cent of rating","ar":"بالمئة من القدرة الاسمية"},"decimals":1,"source":"starter"},
+    {"id":"tx-b-loading","value":90.1,"unit":{"en":"per cent of rating","ar":"بالمئة من القدرة الاسمية"},"decimals":1,"source":"starter"},
+    {"id":"tx-b-top-oil","value":92.4,"unit":{"en":"°C","ar":"°م"},"decimals":1,"source":"starter"},
+    {"id":"fan-overdue","value":41,"unit":{"en":"days overdue","ar":"يوماً من التأخير"},"source":"starter"},
+    {"id":"tx-a-age","value":24,"unit":{"en":"years in service","ar":"عاماً في الخدمة"},"source":"starter"},
+    {"id":"hi-247","value":42,"unit":{"en":"out of 100","ar":"من 100"},"source":"starter"},
+    {"id":"hi-hof","value":78,"unit":{"en":"out of 100","ar":"من 100"},"source":"starter"},
+    {"id":"second-trip-connections","value":9567,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"second-trip-total","value":22599,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"plan-budget","value":5,"unit":{"en":"SAR million","ar":"مليون ريال"},"source":"starter"},
+    {"id":"plan-cost","value":4.8,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"plan-window","value":12,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"budget-higher","value":7,"unit":{"en":"SAR million","ar":"مليون ريال"},"source":"starter"},
+    {"id":"plan7-cost","value":6.8,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"budget-lower","value":3,"unit":{"en":"SAR million","ar":"مليون ريال"},"source":"starter"},
+    {"id":"plan3-restored","value":4391,"unit":{"en":"connections","ar":"توصيلة"},"source":"starter"},
+    {"id":"plan3-cost","value":0.9,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"transfer-cost","value":0.45,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":2,"source":"starter"},
+    {"id":"transfer-hours","value":3,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"mss-cost","value":3.9,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"mss-capacity","value":40,"unit":{"en":"MVA","ar":"م.ف.أ"},"source":"starter"},
+    {"id":"mss-hours-low","value":8,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"mss-hours-high","value":11,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"txc-cost","value":1.4,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"txc-hours-low","value":18,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"txc-hours-high","value":30,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"dr-cost","value":0.35,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":2,"source":"starter"},
+    {"id":"dr-reduction","value":4.2,"unit":{"en":"MW","ar":"ميجاواط"},"decimals":1,"source":"starter"},
+    {"id":"dr-hours","value":6,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"insp-cost","value":0.25,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":2,"source":"starter"},
+    {"id":"proc-cost","value":6.8,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"proc-weeks-low","value":10,"unit":{"en":"weeks","ar":"أسابيع"},"source":"starter"},
+    {"id":"proc-weeks-high","value":14,"unit":{"en":"weeks","ar":"أسبوعاً"},"source":"starter"},
+    {"id":"demand-scenario","value":8,"unit":{"en":"per cent above forecast","ar":"بالمئة فوق التوقع"},"source":"starter"},
+    {
+      "id": "demand8-restored",
+      "value": 7604,
+      "unit": {"en":"connections","ar":"توصيلة"},
+      "source": "assumed",
+      "why": "Indicative planner result with the assumed demand sensitivities on the transfer and mobile substation options."
+    },
+    {"id":"hero-restore-low","value":36,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"hero-restore-high","value":60,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"jeddah-restore-low","value":24,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"jeddah-restore-high","value":36,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"jeddah-transfer-cost","value":0.2,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":1,"source":"starter"},
+    {"id":"jeddah-transfer-hours","value":2,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"abha-restore-low","value":12,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"abha-restore-high","value":20,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"abha-plan-cost","value":0.33,"unit":{"en":"SAR million","ar":"مليون ريال"},"decimals":2,"source":"starter"},
+    {"id":"abha-plan-hours","value":6,"unit":{"en":"hours","ar":"ساعة"},"source":"starter"},
+    {"id":"khobar-trips","value":17,"unit":{"en":"feeder trips since midnight","ar":"فصلاً للمغذيات منذ منتصف الليل"},"source":"starter"},
+    {"id":"feeder-outages-today","value":52,"unit":{"en":"feeder outages","ar":"انقطاعاً للمغذيات"},"source":"starter"},
+    {"id":"feeder-outages-yesterday","value":49,"unit":{"en":"feeder outages","ar":"انقطاعاً للمغذيات"},"source":"starter"}
+  ],
+  "incidents": [
+    {
+      "id": "riyadh-trip",
+      "role": "hero",
+      "title": {"en":"Transformer overtemperature trip — Riyadh North 247","ar":"فصل المحول بسبب ارتفاع الحرارة — شمال الرياض 247"},
+      "siteId": "SS-RYD-247",
+      "severity": "critical",
+      "started": "13:05",
+      "impact": {
+        "en": "{fact.hero-connections} off supply on {fact.hero-feeders-off.value} of {fact.hero-feeders-total}, including the North District Hospital on backup generation.",
+        "ar": "{fact.hero-connections} خارج الخدمة على {fact.hero-feeders-off.value} من {fact.hero-feeders-total}، منها مستشفى الحي الشمالي الذي يعمل على التوليد الاحتياطي."
+      },
+      "affected": {"value":13032,"unit":{"en":"connections","ar":"توصيلة"}},
+      "cause": {
+        "en": "Thermal overload of transformer A at peak demand while transformer C is on planned maintenance, made worse by a cooling fan group failure.",
+        "ar": "حمل حراري زائد على المحول A في ذروة الطلب أثناء الصيانة المخططة للمحول C، تفاقم بعطل مجموعة مراوح التبريد."
+      },
+      "causeConfirmed": false,
+      "evidence": [
+        {"en":"Cooling fan group failure alarm at 12:20.","ar":"إنذار عطل مجموعة مراوح التبريد الساعة 12:20."},
+        {
+          "en": "Top-oil temperature passed the {fact.top-oil-alarm} alarm at 12:30 and reached the {fact.top-oil-trip} trip setting at 13:00.",
+          "ar": "تجاوزت حرارة الزيت العلوي حد الإنذار {fact.top-oil-alarm} الساعة 12:30 ووصلت إلى حد الفصل {fact.top-oil-trip} الساعة 13:00."
+        },
+        {
+          "en": "Loading at {fact.tx-a-loading-pre-trip} before the trip, with no spare transformer to take the load.",
+          "ar": "التحميل {fact.tx-a-loading-pre-trip} قبل الفصل، دون محول احتياطي يستوعب الحمل."
+        },
+        {"en":"The latest oil test shows a rising acetylene trend (caution).","ar":"آخر تحليل للزيت يُظهر اتجاهاً متصاعداً للأسيتيلين (تحذير)."}
+      ],
+      "restoreHours": [36,60],
+      "timeline": [
+        {"at":"12:20","kind":"observation","text":{"en":"Cooling fan group failure on transformer A.","ar":"عطل مجموعة مراوح التبريد على المحول A."}},
+        {"at":"12:30","kind":"observation","text":{"en":"Top-oil temperature above the {fact.top-oil-alarm} alarm.","ar":"حرارة الزيت العلوي فوق حد الإنذار {fact.top-oil-alarm}."}},
+        {
+          "at": "13:05",
+          "kind": "observation",
+          "text": {"en":"Overtemperature protection tripped transformer A; bus A de-energised.","ar":"حماية الحرارة فصلت المحول A؛ انقطاع القضيب A."}
+        },
+        {
+          "at": "13:07",
+          "kind": "detection",
+          "text": {
+            "en": "Incident registered by the control centre; {fact.hero-feeders-off.value} of {fact.hero-feeders-total} interrupted.",
+            "ar": "تسجيل الحادث في مركز التحكم؛ انقطاع {fact.hero-feeders-off.value} من {fact.hero-feeders-total}."
+          }
+        },
+        {
+          "at": "13:12",
+          "kind": "investigation",
+          "text": {
+            "en": "Operations team investigation started: topology, asset diagnostics and customer impact in parallel.",
+            "ar": "بدء تحقيق فريق العمليات: الطوبولوجيا وتشخيص الأصول وأثر العملاء بالتوازي."
+          }
+        },
+        {
+          "at": "13:25",
+          "kind": "recommendation",
+          "text": {
+            "en": "Recommended: prepare load transfers to {site.SS-RYD-118} and {site.SS-RYD-305} and deploy the mobile substation.",
+            "ar": "التوصية: تحضير نقل الأحمال إلى {site.SS-RYD-118} و{site.SS-RYD-305} ونشر المحطة المتنقلة."
+          }
+        },
+        {"at":"13:40","kind":"response","text":{"en":"North District Hospital confirmed on backup generation.","ar":"تأكيد تشغيل مستشفى الحي الشمالي على التوليد الاحتياطي."}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "jeddah-cable",
+      "role": "chronic",
+      "title": {"en":"Underground cable fault — Jeddah North 133","ar":"عطل كابل أرضي — شمال جدة 133"},
+      "siteId": "SS-JED-133",
+      "severity": "watch",
+      "started": "11:40",
+      "impact": {
+        "en": "{fact.jeddah-connections} still off after the upstream section was restored at 12:35, including the North Jeddah Primary Clinic.",
+        "ar": "{fact.jeddah-connections} ما زالت منقطعة بعد إعادة الجزء العلوي الساعة 12:35، ومنها مركز الرعاية الأولية شمال جدة."
+      },
+      "affected": {"value":1461,"unit":{"en":"connections","ar":"توصيلة"}},
+      "cause": {"en":"Cable joint failure on one feeder; the upstream section was restored after sectionalising.","ar":"عطل في وصلة كابل على أحد المغذيات؛ أعيد الجزء العلوي بعد العزل."},
+      "causeConfirmed": true,
+      "evidence": [
+        {"en":"Fault locator confirmed the failed joint.","ar":"جهاز تحديد الأعطال أكد الوصلة المعطلة."},
+        {"en":"The same joint was repaired after a failure in 2025.","ar":"أُصلحت الوصلة نفسها بعد عطل في 2025."}
+      ],
+      "restoreHours": [24,36],
+      "timeline": [
+        {"at":"11:40","kind":"observation","text":{"en":"Feeder protection operated.","ar":"عملت حماية المغذي."}},
+        {"at":"11:43","kind":"detection","text":{"en":"Incident registered.","ar":"تسجيل الحادث."}},
+        {
+          "at": "12:35",
+          "kind": "response",
+          "text": {
+            "en": "Upstream section re-energised after sectionalising; {fact.jeddah-restored} back on supply.",
+            "ar": "إعادة تغذية الجزء العلوي بعد العزل؛ عودة {fact.jeddah-restored}."
+          }
+        }
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "abha-storm",
+      "title": {"en":"Overhead line faults after dust storm — Abha 027","ar":"أعطال خطوط هوائية بعد عاصفة ترابية — أبها 027"},
+      "siteId": "SS-ABH-027",
+      "severity": "watch",
+      "started": "13:48",
+      "impact": {
+        "en": "{fact.abha-connections} off on {fact.abha-feeders-off.value} of {fact.abha-feeders-total}, including the Abha Regional Hospital Annex on backup.",
+        "ar": "{fact.abha-connections} منقطعة على {fact.abha-feeders-off.value} من {fact.abha-feeders-total}، منها ملحق مستشفى أبها الإقليمي على التغذية الاحتياطية."
+      },
+      "affected": {"value":3554,"unit":{"en":"connections","ar":"توصيلة"}},
+      "cause": {
+        "en": "Flashover on contaminated insulators on the overhead feeders during the dust storm.",
+        "ar": "تفريغ كهربائي على العوازل الملوثة في المغذيات الهوائية أثناء العاصفة الترابية."
+      },
+      "causeConfirmed": false,
+      "evidence": [
+        {"en":"Regional weather advisory for a dust storm from 13:30 to 15:00.","ar":"تنبيه طقس إقليمي لعاصفة ترابية من 13:30 إلى 15:00."},
+        {"en":"Line patrol has not yet confirmed the fault locations.","ar":"لم يؤكد فريق التفتيش مواقع الأعطال بعد."}
+      ],
+      "restoreHours": [12,20],
+      "timeline": [
+        {"at":"13:48","kind":"observation","text":{"en":"Feeder breakers tripped during the dust storm.","ar":"فصل قواطع المغذيات أثناء العاصفة الترابية."}},
+        {"at":"13:50","kind":"detection","text":{"en":"Incident registered.","ar":"تسجيل الحادث."}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "dammam-feeder",
+      "title": {"en":"Feeder protection operation — Ad Dammam 077","ar":"عمل حماية مغذٍ — الدمام 077"},
+      "siteId": "SS-DMM-077",
+      "severity": "watch",
+      "started": "09:10",
+      "resolved": "09:52",
+      "impact": {"en":"{fact.dammam-connections} off for under an hour; restored after patrol.","ar":"{fact.dammam-connections} انقطعت لأقل من ساعة؛ أعيدت بعد التفتيش."},
+      "affected": {"value":2106,"unit":{"en":"connections","ar":"توصيلة"}},
+      "cause": {"en":"Transient fault, cleared; feeder restored after patrol.","ar":"عطل عابر زال؛ أعيدت تغذية المغذي بعد التفتيش."},
+      "causeConfirmed": true,
+      "evidence": [{"en":"Patrol found no permanent damage.","ar":"لم يجد التفتيش أضراراً دائمة."}],
+      "timeline": [
+        {"at":"09:10","kind":"observation","text":{"en":"Feeder protection operated.","ar":"عملت حماية المغذي."}},
+        {"at":"09:11","kind":"detection","text":{"en":"Incident registered.","ar":"تسجيل الحادث."}},
+        {"at":"09:52","kind":"response","text":{"en":"Feeder restored.","ar":"استعادة المغذي."}}
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "madinah-breaker",
+      "title": {"en":"Breaker failure — Almadinah Central 091","ar":"عطل قاطع — وسط المدينة 091"},
+      "siteId": "SS-MED-091",
+      "severity": "watch",
+      "started": "2026-08-11T22:20",
+      "resolved": "2026-08-11T23:40",
+      "impact": {"en":"Load restored by bus transfer; the breaker has been replaced.","ar":"أعيد الحمل بتحويل القضيب؛ استُبدل القاطع."},
+      "affected": {"value":1814,"unit":{"en":"connections","ar":"توصيلة"}},
+      "cause": {"en":"Breaker mechanism failure; load restored by bus transfer.","ar":"عطل في آلية القاطع؛ أعيد الحمل بتحويل القضيب."},
+      "causeConfirmed": true,
+      "evidence": [{"en":"Breaker replaced.","ar":"تم استبدال القاطع."}],
+      "timeline": [
+        {"at":"2026-08-11T22:20","kind":"observation","text":{"en":"Breaker failed to close.","ar":"فشل إغلاق القاطع."}},
+        {"at":"2026-08-11T22:22","kind":"detection","text":{"en":"Incident registered.","ar":"تسجيل الحادث."}},
+        {"at":"2026-08-11T23:40","kind":"response","text":{"en":"Load restored.","ar":"استعادة الحمل."}}
+      ],
+      "source": "starter"
+    }
+  ],
+  "alerts": [
+    {
+      "id": "riyadh-demand",
+      "regionId": "riyadh",
+      "from": "12:30",
+      "severity": "watch",
+      "title": {"en":"Riyadh: demand above forecast","ar":"الرياض: الطلب أعلى من التوقع"},
+      "text": {
+        "en": "Regional demand {fact.demand-above-forecast} above forecast at {fact.ambient-peak}, and {fact.capacity-reduction} less available regional capacity (upstream generation derating).",
+        "ar": "الطلب الإقليمي أعلى من التوقع بـ{fact.demand-above-forecast} عند {fact.ambient-peak}، والسعة الإقليمية المتاحة أقل بـ{fact.capacity-reduction} (تخفيض توليد)."
+      },
+      "source": "starter"
+    },
+    {
+      "id": "asir-dust",
+      "regionId": "asir",
+      "from": "13:30",
+      "to": "15:00",
+      "severity": "watch",
+      "title": {"en":"Asir: dust storm advisory","ar":"عسير: تنبيه عاصفة ترابية"},
+      "text": {
+        "en": "Regional weather advisory for a dust storm over {region.asir} from 13:30 to 15:00; overhead lines are exposed.",
+        "ar": "تنبيه طقس إقليمي لعاصفة ترابية فوق {region.asir} من 13:30 إلى 15:00؛ الخطوط الهوائية معرضة."
+      },
+      "source": "starter"
+    }
+  ],
+  "experts": [
+    {
+      "id": "grid",
+      "name": {"en":"Faisal","ar":"فيصل"},
+      "role": {"en":"Grid Operations Expert","ar":"خبير عمليات الشبكة"},
+      "focus": {"en":"Outages, substations, customer impact and restoration plans across the Kingdom.","ar":"الانقطاعات والمحطات وأثر العملاء وخطط الاستعادة على مستوى المملكة."},
+      "portrait": "kit:man-1",
+      "available": true,
+      "category": "operations",
+      "tags": [{"en":"outages","ar":"الانقطاعات"},{"en":"substations","ar":"المحطات"},{"en":"customers","ar":"العملاء"},{"en":"restoration","ar":"الاستعادة"},{"en":"brief","ar":"الملخص"}],
+      "intro": {
+        "en": "Your lead expert for grid operations. Ask anything about outages, substations, customers or restoration, and I bring in the right specialists from my team to work it out with you.",
+        "ar": "خبيرك الرئيسي لعمليات الشبكة. اسأل عن الانقطاعات أو المحطات أو العملاء أو الاستعادة، وسأستدعي المختصين المناسبين من فريقي للعمل عليها معك."
+      },
+      "greeting": {"en":"Good afternoon. I am following the national network. What would you like to know?","ar":"مساء الخير. أتابع الشبكة الوطنية. ماذا تود أن تعرف؟"},
+      "team": ["orchestrator","topology","diagnostics","customer","planning","validation","briefing"],
+      "topics": ["grid","outage","outages","situation","network","الشبكة","انقطاع","الوضع"],
+      "answers": [
+        {
+          "id": "now",
+          "questions": [
+            "What should I be concerned about right now?", "What needs my attention right now?", "What is happening on the grid?", "Give me the situation",
+            "بماذا يجب أن أقلق الآن؟", "ما الذي يتطلب انتباهي الآن؟", "ما وضع الشبكة؟"
+          ],
+          "lead": {
+            "en": "The transformer trip at {site.SS-RYD-247} is the priority: {fact.hero-connections} are off supply and the remaining transformer is above its alarm temperature.",
+            "ar": "الأولوية لفصل المحول في {site.SS-RYD-247}: {fact.hero-connections} خارج الخدمة والمحول المتبقي فوق حرارة الإنذار."
+          },
+          "points": [
+            {
+              "en": "{kpi.interrupted-customers} are off supply across the Kingdom, in {kpi.active-incidents}.",
+              "ar": "{kpi.interrupted-customers} خارج الخدمة في المملكة، ضمن {kpi.active-incidents}."
+            },
+            {
+              "en": "{region.riyadh} demand is {fact.demand-above-forecast} above forecast with {fact.capacity-reduction} less capacity, leaving a reserve of only {fact.riyadh-reserve}.",
+              "ar": "الطلب في {region.riyadh} أعلى من التوقع بـ{fact.demand-above-forecast} مع سعة أقل بـ{fact.capacity-reduction}، فلا يتبقى سوى احتياطي {fact.riyadh-reserve}."
+            },
+            {
+              "en": "{kpi.substations-attention} need attention, including {site.SS-JED-133} (cable fault) and {site.SS-ABH-027} (dust storm).",
+              "ar": "{kpi.substations-attention} تتطلب الانتباه، منها {site.SS-JED-133} (عطل كابل) و{site.SS-ABH-027} (عاصفة ترابية)."
+            },
+            {
+              "en": "{fact.critical-off.value} of {fact.critical-declared} are on interrupted feeders; both hospitals are on backup generation.",
+              "ar": "{fact.critical-off.value} من {fact.critical-declared} على مغذيات منقطعة؛ والمستشفيان يعملان على التوليد الاحتياطي."
+            }
+          ],
+          "followUps": ["why-trip","customers","recommend"]
+        },
+        {
+          "id": "why-trip",
+          "questions": ["Why did the transformer trip?","What caused the trip?","Why did Riyadh North 247 trip?","لماذا فصل المحول؟","ما سبب الفصل؟","لماذا فصلت محطة شمال الرياض 247؟"],
+          "lead": {
+            "en": "The suspected driver is thermal overload of transformer A at the peak while transformer C was on planned maintenance, made worse by a cooling fan failure. It is not yet confirmed.",
+            "ar": "السبب المشتبه به حمل حراري زائد على المحول A في الذروة أثناء الصيانة المخططة للمحول C، تفاقم بعطل مراوح التبريد. لم يتأكد بعد."
+          },
+          "points": [
+            {
+              "en": "A cooling fan group failed at 12:20; top-oil passed the {fact.top-oil-alarm} alarm at 12:30 and reached the {fact.top-oil-trip} trip setting at 13:00.",
+              "ar": "تعطلت مجموعة مراوح التبريد الساعة 12:20؛ تجاوزت حرارة الزيت العلوي حد الإنذار {fact.top-oil-alarm} الساعة 12:30 ووصلت إلى حد الفصل {fact.top-oil-trip} الساعة 13:00."
+            },
+            {
+              "en": "Loading was {fact.tx-a-loading-pre-trip} just before the trip, above the {fact.policy-limit} policy limit, with no spare transformer to take load.",
+              "ar": "كان التحميل {fact.tx-a-loading-pre-trip} قبيل الفصل، فوق حد السياسة {fact.policy-limit}، دون محول احتياطي يستوعب الحمل."
+            },
+            {
+              "en": "The fan maintenance was {fact.fan-overdue}, and the latest oil test shows a rising acetylene trend.",
+              "ar": "كانت صيانة المراوح متأخرة {fact.fan-overdue}، وآخر تحليل للزيت يُظهر اتجاهاً متصاعداً للأسيتيلين."
+            },
+            {
+              "en": "An internal winding fault is not excluded until inspection and a fresh oil test are complete.",
+              "ar": "لا يمكن استبعاد عطل داخلي في الملفات حتى يكتمل الفحص وتحليل جديد للزيت."
+            }
+          ],
+          "followUps": ["recommend","customers"]
+        },
+        {
+          "id": "customers",
+          "questions": ["Which customers are affected?","Who is affected?","How many customers are off supply?","من هم العملاء المتأثرون؟","كم عدد العملاء المنقطعين؟"],
+          "lead": {
+            "en": "{kpi.interrupted-customers} are off supply now, {fact.hero-connections} of them at {site.SS-RYD-247}.",
+            "ar": "{kpi.interrupted-customers} خارج الخدمة الآن، منها {fact.hero-connections} في {site.SS-RYD-247}."
+          },
+          "points": [
+            {
+              "en": "{site.SS-ABH-027}: {fact.abha-connections} since the dust storm, including the hospital annex feeder.",
+              "ar": "{site.SS-ABH-027}: {fact.abha-connections} منذ العاصفة الترابية، منها مغذي ملحق المستشفى."
+            },
+            {
+              "en": "{site.SS-JED-133}: {fact.jeddah-connections} still off; {fact.jeddah-restored} were restored at 12:35.",
+              "ar": "{site.SS-JED-133}: {fact.jeddah-connections} ما زالت منقطعة؛ وأعيدت {fact.jeddah-restored} الساعة 12:35."
+            },
+            {
+              "en": "{fact.critical-off.value} of {fact.critical-declared} are on interrupted feeders: the North District Hospital, the North Civil Defence Station, the North Jeddah Primary Clinic and the Abha Regional Hospital Annex.",
+              "ar": "{fact.critical-off.value} من {fact.critical-declared} على مغذيات منقطعة: مستشفى الحي الشمالي ومركز الدفاع المدني الشمالي ومركز الرعاية الأولية شمال جدة وملحق مستشفى أبها الإقليمي."
+            }
+          ],
+          "followUps": ["now","recommend"]
+        },
+        {
+          "id": "options",
+          "questions": ["Compare options within SAR 5 million","What are the restoration options?","Compare the options","قارن الخيارات ضمن 5 مليون ريال","ما خيارات الاستعادة؟"],
+          "lead": {
+            "en": "Within {fact.plan-budget}, two load transfers and the mobile substation restore all {fact.hero-connections} at {site.SS-RYD-247} within {fact.plan-window}, for {fact.plan-cost}.",
+            "ar": "ضمن {fact.plan-budget}، يعيد نقلا الحمل والمحطة المتنقلة كل {fact.hero-connections} في {site.SS-RYD-247} خلال {fact.plan-window}، بتكلفة {fact.plan-cost}."
+          },
+          "points": [
+            {
+              "en": "Transfers to {site.SS-RYD-118} and {site.SS-RYD-305} bring back the hospital feeders within {fact.transfer-hours}, at {fact.transfer-cost} each.",
+              "ar": "يعيد النقل إلى {site.SS-RYD-118} و{site.SS-RYD-305} مغذيي المستشفى خلال {fact.transfer-hours}، بتكلفة {fact.transfer-cost} لكل منهما."
+            },
+            {
+              "en": "The mobile substation from the Alkharj depot restores the remaining feeders in {fact.mss-hours-low.value}–{fact.mss-hours-high}, for {fact.mss-cost}.",
+              "ar": "تعيد المحطة المتنقلة من مستودع الخرج بقية المغذيات خلال {fact.mss-hours-low.value}–{fact.mss-hours-high}، بتكلفة {fact.mss-cost}."
+            },
+            {
+              "en": "Expediting transformer C ({fact.txc-cost}) only helps after {fact.txc-hours-low.value}–{fact.txc-hours-high}, outside the window.",
+              "ar": "تسريع عودة المحول C ({fact.txc-cost}) لا يفيد إلا بعد {fact.txc-hours-low.value}–{fact.txc-hours-high}، خارج النافذة."
+            },
+            {
+              "en": "Every option needs operational review before any switching; this is an indicative calculation.",
+              "ar": "يتطلب كل خيار مراجعة تشغيلية قبل أي تحويل؛ هذا حساب استرشادي."
+            }
+          ],
+          "followUps": ["recommend"]
+        },
+        {
+          "id": "recommend",
+          "questions": ["What should we do next?","What do you recommend?","What is the recommendation?","ماذا يجب أن نفعل؟","ما توصيتك؟"],
+          "lead": {
+            "en": "Prepare both load transfers now, move the mobile substation to {site.SS-RYD-247}, and relieve transformer B with demand response.",
+            "ar": "حضّر نقلي الحمل الآن، وانقل المحطة المتنقلة إلى {site.SS-RYD-247}، وخفف الحمل عن المحول B بالاستجابة للطلب."
+          },
+          "points": [
+            {"en":"The transfers restore the hospital feeders first, within {fact.transfer-hours}.","ar":"يعيد النقل مغذيي المستشفى أولاً، خلال {fact.transfer-hours}."},
+            {
+              "en": "The mobile substation restores the rest within {fact.mss-hours-high}; together that is {fact.plan-cost} of the {fact.plan-budget} budget.",
+              "ar": "تعيد المحطة المتنقلة البقية خلال {fact.mss-hours-high}؛ والمجموع {fact.plan-cost} من ميزانية {fact.plan-budget}."
+            },
+            {
+              "en": "Transformer B is at {fact.tx-b-loading}; demand response for {fact.dr-cost} takes about {fact.dr-reduction} off it.",
+              "ar": "المحول B عند {fact.tx-b-loading}؛ والاستجابة للطلب بتكلفة {fact.dr-cost} تخفف عنه نحو {fact.dr-reduction}."
+            },
+            {"en":"Run the targeted inspection of transformer A before any decision to re-energise it.","ar":"أجرِ الفحص المستهدف للمحول A قبل أي قرار بإعادة تشغيله."}
+          ],
+          "followUps": ["options","brief"]
+        },
+        {
+          "id": "brief",
+          "questions": ["Prepare my executive brief","Give me the executive brief","Summarise this for the CEO","أعد ملخصي التنفيذي","أعطني الملخص التنفيذي"],
+          "lead": {
+            "en": "Executive brief at 14:30: one critical transformer trip in {region.riyadh}, {kpi.interrupted-customers} off supply across the Kingdom, and a plan within budget to restore the {region.riyadh} customers within {fact.plan-window}.",
+            "ar": "الملخص التنفيذي الساعة 14:30: فصل محول حرج في {region.riyadh}، و{kpi.interrupted-customers} خارج الخدمة في المملكة، وخطة ضمن الميزانية لإعادة عملاء {region.riyadh} خلال {fact.plan-window}."
+          },
+          "points": [
+            {
+              "en": "Situation: transformer A at {site.SS-RYD-247} tripped at 13:05; {fact.hero-connections} off, hospitals on backup.",
+              "ar": "الوضع: فصل المحول A في {site.SS-RYD-247} الساعة 13:05؛ {fact.hero-connections} منقطعة والمستشفيات على التغذية الاحتياطية."
+            },
+            {"en":"Cause: suspected thermal overload with a cooling failure; not yet confirmed.","ar":"السبب: حمل حراري زائد مشتبه به مع عطل في التبريد؛ لم يتأكد بعد."},
+            {
+              "en": "Plan: two load transfers plus the mobile substation, {fact.plan-cost}, restoring all {fact.hero-connections} within {fact.plan-window}.",
+              "ar": "الخطة: نقلا حمل والمحطة المتنقلة بتكلفة {fact.plan-cost}، لإعادة كل {fact.hero-connections} خلال {fact.plan-window}."
+            },
+            {
+              "en": "Risk: if transformer B also trips, another {fact.second-trip-connections} lose supply, including the North Water Pumping Station.",
+              "ar": "الخطر: إذا فصل المحول B أيضاً تنقطع {fact.second-trip-connections} أخرى، منها محطة ضخ المياه الشمالية."
+            },
+            {"en":"Decision needed: approve the plan for operational review.","ar":"القرار المطلوب: اعتماد الخطة للمراجعة التشغيلية."}
+          ],
+          "followUps": ["recommend"]
+        },
+        {
+          "id": "regions",
+          "questions": ["Which region is under most pressure?","How is demand in Riyadh?","What is the regional reserve?","أي منطقة تحت أكبر ضغط؟","ما وضع الطلب في الرياض؟"],
+          "lead": {
+            "en": "{region.riyadh} is under the most pressure: demand is {fact.demand-above-forecast} above forecast at {fact.ambient-peak}, and available capacity is {fact.capacity-reduction} lower.",
+            "ar": "{region.riyadh} تحت أكبر ضغط: الطلب أعلى من التوقع بـ{fact.demand-above-forecast} عند {fact.ambient-peak}، والسعة المتاحة أقل بـ{fact.capacity-reduction}."
+          },
+          "points": [
+            {
+              "en": "That leaves a regional reserve of {fact.riyadh-reserve}, about {fact.riyadh-reserve-pct}.",
+              "ar": "يترك ذلك احتياطياً إقليمياً قدره {fact.riyadh-reserve}، أي نحو {fact.riyadh-reserve-pct}."
+            },
+            {
+              "en": "In {region.makkah}, {site.SS-JED-133} is restoring a cable fault and {site.SS-MKK-064} is running above {fact.loading-watch}.",
+              "ar": "في {region.makkah}، تستعيد {site.SS-JED-133} عطل كابل وتعمل {site.SS-MKK-064} فوق {fact.loading-watch}."
+            },
+            {
+              "en": "{region.eastern} has no customers off supply, but {site.SS-KHB-052}, {site.SS-JUB-019} and {site.SS-HOF-045} are on watch.",
+              "ar": "لا يوجد في {region.eastern} عملاء خارج الخدمة، لكن {site.SS-KHB-052} و{site.SS-JUB-019} و{site.SS-HOF-045} تحت المراقبة."
+            }
+          ],
+          "followUps": ["now"]
+        },
+        {
+          "id": "jeddah",
+          "questions": ["What is happening in Jeddah?","Tell me about the Jeddah cable fault","What happened in Jeddah?","ما الوضع في جدة؟","ما قصة عطل كابل جدة؟"],
+          "lead": {
+            "en": "{site.SS-JED-133} lost a feeder to an underground cable fault at 11:40; {fact.jeddah-connections} are still off, including the North Jeddah Primary Clinic.",
+            "ar": "فقدت {site.SS-JED-133} مغذياً بسبب عطل كابل أرضي الساعة 11:40؛ و{fact.jeddah-connections} ما زالت منقطعة، منها مركز الرعاية الأولية شمال جدة."
+          },
+          "points": [
+            {
+              "en": "The upstream section was restored at 12:35 after sectionalising, bringing back {fact.jeddah-restored}.",
+              "ar": "أعيد الجزء العلوي الساعة 12:35 بعد العزل، فعادت {fact.jeddah-restored}."
+            },
+            {"en":"The failed joint was repaired once before, in 2025, so this is a repeat failure.","ar":"أُصلحت الوصلة المعطلة من قبل في 2025، فهذا عطل متكرر."},
+            {
+              "en": "A transfer to {site.SS-JED-219} could restore the rest within {fact.jeddah-transfer-hours}, for {fact.jeddah-transfer-cost}; the joint repair itself needs an excavation permit and {fact.jeddah-restore-low.value}–{fact.jeddah-restore-high}.",
+              "ar": "يمكن للنقل إلى {site.SS-JED-219} إعادة البقية خلال {fact.jeddah-transfer-hours} بتكلفة {fact.jeddah-transfer-cost}؛ أما إصلاح الوصلة فيحتاج تصريح حفر و{fact.jeddah-restore-low.value}–{fact.jeddah-restore-high}."
+            }
+          ],
+          "followUps": ["customers"]
+        },
+        {
+          "id": "abha",
+          "questions": ["Why did the feeders trip?","Why did the feeders trip in Abha?","What happened in Abha?","لماذا فصلت المغذيات؟","ما الذي حدث في أبها؟"],
+          "lead": {
+            "en": "{fact.abha-feeders-off.value} of {fact.abha-feeders-total} at {site.SS-ABH-027} tripped at 13:48 during the dust storm; the suspected cause is flashover on contaminated insulators.",
+            "ar": "فصل {fact.abha-feeders-off.value} من {fact.abha-feeders-total} في {site.SS-ABH-027} الساعة 13:48 أثناء العاصفة الترابية؛ والسبب المشتبه به تفريغ كهربائي على العوازل الملوثة."
+          },
+          "points": [
+            {
+              "en": "The regional weather advisory covers the storm from 13:30 to 15:00; line patrols have not yet confirmed the fault locations.",
+              "ar": "يغطي تنبيه الطقس الإقليمي العاصفة من 13:30 إلى 15:00؛ ولم تؤكد فرق التفتيش مواقع الأعطال بعد."
+            },
+            {
+              "en": "{fact.abha-connections} are off, including the Abha Regional Hospital Annex, which is on backup.",
+              "ar": "{fact.abha-connections} منقطعة، منها ملحق مستشفى أبها الإقليمي الذي يعمل على التغذية الاحتياطية."
+            },
+            {
+              "en": "A patrol and repair plus a transfer to {site.SS-KMS-015} would restore everyone within {fact.abha-plan-hours}, for {fact.abha-plan-cost}.",
+              "ar": "التفتيش والإصلاح مع النقل إلى {site.SS-KMS-015} يعيدان الجميع خلال {fact.abha-plan-hours}، بتكلفة {fact.abha-plan-cost}."
+            }
+          ],
+          "followUps": ["customers"]
+        },
+        {
+          "id": "restoration",
+          "questions": ["How is restoration going?","What is the restoration progress?","كيف تسير الاستعادة؟","ما تقدم الاستعادة؟"],
+          "lead": {
+            "en": "Restoration stands at {kpi.restoration-progress}: {fact.restored-today.value} of {fact.affected-today} interrupted since midnight are back.",
+            "ar": "الاستعادة عند {kpi.restoration-progress}: عادت {fact.restored-today.value} من {fact.affected-today} انقطعت منذ منتصف الليل."
+          },
+          "points": [
+            {
+              "en": "{site.SS-DMM-077} was restored at 09:52 after a transient fault, and part of {site.SS-JED-133} at 12:35.",
+              "ar": "أعيدت {site.SS-DMM-077} الساعة 09:52 بعد عطل عابر، وجزء من {site.SS-JED-133} الساعة 12:35."
+            },
+            {
+              "en": "The trip at {site.SS-RYD-247} at 13:05 pulled the figure down; it recovers as the transfers and the mobile substation come in.",
+              "ar": "خفض فصل {site.SS-RYD-247} الساعة 13:05 النسبة؛ وستتحسن مع دخول النقل والمحطة المتنقلة."
+            }
+          ],
+          "followUps": ["customers"]
+        }
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "asset",
+      "name": {"en":"Noura","ar":"نورة"},
+      "role": {"en":"Asset Health Expert","ar":"خبيرة صحة الأصول"},
+      "focus": {"en":"Transformer condition, suspected causes and second-trip exposure.","ar":"حالة المحولات والأسباب المشتبه بها وخطر الفصل الثاني."},
+      "portrait": "kit:woman-1",
+      "available": true,
+      "category": "assets",
+      "tags": [{"en":"transformers","ar":"المحولات"},{"en":"condition","ar":"الحالة"},{"en":"health index","ar":"مؤشر الصحة"},{"en":"second trip","ar":"الفصل الثاني"}],
+      "intro": {
+        "en": "I focus on the condition of transformers and substations: loading, temperatures, health index and what could trip next.",
+        "ar": "أركز على حالة المحولات والمحطات: التحميل ودرجات الحرارة ومؤشر الصحة وما قد يفصل لاحقاً."
+      },
+      "greeting": {"en":"Hello. Which asset would you like me to look at?","ar":"مرحباً. أي أصل تود أن أفحصه؟"},
+      "team": ["orchestrator","diagnostics","topology"],
+      "topics": ["transformer","asset","condition","health","temperature","trip","المحول","الأصول","الحالة","الحرارة","فصل"],
+      "answers": [
+        {
+          "id": "attention",
+          "questions": ["Which substations need attention?","Which substations are at risk?","أي المحطات تحتاج انتباهاً؟","ما المحطات المعرضة للخطر؟"],
+          "lead": {
+            "en": "{kpi.substations-attention} need attention; {site.SS-RYD-247}, {site.SS-JED-133} and {site.SS-ABH-027} have customers off supply.",
+            "ar": "{kpi.substations-attention} تتطلب الانتباه؛ وفي {site.SS-RYD-247} و{site.SS-JED-133} و{site.SS-ABH-027} عملاء خارج الخدمة."
+          },
+          "points": [
+            {
+              "en": "{site.SS-MKK-064} and {site.SS-JUB-019} are loaded above {fact.loading-watch} at the afternoon peak.",
+              "ar": "{site.SS-MKK-064} و{site.SS-JUB-019} محمّلتان فوق {fact.loading-watch} في ذروة الظهيرة."
+            },
+            {
+              "en": "{site.SS-KHB-052} has had {fact.khobar-trips}, almost all from insulator salt and all restored.",
+              "ar": "سجلت {site.SS-KHB-052} {fact.khobar-trips}، معظمها بسبب أملاح العوازل وأعيدت جميعها."
+            },
+            {
+              "en": "{site.SS-HOF-045} carries an oil-test caution on transformer A, with a health index of {fact.hi-hof}.",
+              "ar": "على المحول A في {site.SS-HOF-045} تحذير من تحليل الزيت، ومؤشر صحته {fact.hi-hof}."
+            }
+          ],
+          "followUps": ["second-trip","health"]
+        },
+        {
+          "id": "why-trip",
+          "questions": ["Why did the transformer trip?","What caused the trip?","Why did Riyadh North 247 trip?","لماذا فصل المحول؟","ما سبب الفصل؟","لماذا فصلت محطة شمال الرياض 247؟"],
+          "lead": {
+            "en": "The suspected driver is thermal overload of transformer A at the peak while transformer C was on planned maintenance, made worse by a cooling fan failure. It is not yet confirmed.",
+            "ar": "السبب المشتبه به حمل حراري زائد على المحول A في الذروة أثناء الصيانة المخططة للمحول C، تفاقم بعطل مراوح التبريد. لم يتأكد بعد."
+          },
+          "points": [
+            {
+              "en": "A cooling fan group failed at 12:20; top-oil passed the {fact.top-oil-alarm} alarm at 12:30 and reached the {fact.top-oil-trip} trip setting at 13:00.",
+              "ar": "تعطلت مجموعة مراوح التبريد الساعة 12:20؛ تجاوزت حرارة الزيت العلوي حد الإنذار {fact.top-oil-alarm} الساعة 12:30 ووصلت إلى حد الفصل {fact.top-oil-trip} الساعة 13:00."
+            },
+            {
+              "en": "Loading was {fact.tx-a-loading-pre-trip} just before the trip, above the {fact.policy-limit} policy limit, with no spare transformer to take load.",
+              "ar": "كان التحميل {fact.tx-a-loading-pre-trip} قبيل الفصل، فوق حد السياسة {fact.policy-limit}، دون محول احتياطي يستوعب الحمل."
+            },
+            {
+              "en": "The fan maintenance was {fact.fan-overdue}, and the latest oil test shows a rising acetylene trend.",
+              "ar": "كانت صيانة المراوح متأخرة {fact.fan-overdue}، وآخر تحليل للزيت يُظهر اتجاهاً متصاعداً للأسيتيلين."
+            },
+            {
+              "en": "An internal winding fault is not excluded until inspection and a fresh oil test are complete.",
+              "ar": "لا يمكن استبعاد عطل داخلي في الملفات حتى يكتمل الفحص وتحليل جديد للزيت."
+            }
+          ],
+          "followUps": ["second-trip","substation"]
+        },
+        {
+          "id": "second-trip",
+          "questions": ["What is the risk of a second trip?","What if transformer B trips?","What if the second transformer trips?","ما خطر حدوث فصل ثانٍ؟","ماذا لو فصل المحول الثاني؟"],
+          "lead": {
+            "en": "Transformer B is the last unit in service at {site.SS-RYD-247}: it runs at {fact.tx-b-loading} with top-oil at {fact.tx-b-top-oil}, above the {fact.top-oil-alarm} alarm.",
+            "ar": "المحول B آخر وحدة عاملة في {site.SS-RYD-247}: يعمل عند {fact.tx-b-loading} وحرارة زيته العلوي {fact.tx-b-top-oil}، فوق حد الإنذار {fact.top-oil-alarm}."
+          },
+          "points": [
+            {
+              "en": "If it trips, another {fact.second-trip-connections} lose supply, including the North Water Pumping Station with {fact.water-backup}, taking the outage to {fact.second-trip-total}.",
+              "ar": "إذا فصل تنقطع {fact.second-trip-connections} أخرى، منها محطة ضخ المياه الشمالية ولديها {fact.water-backup}، فيصل الانقطاع إلى {fact.second-trip-total}."
+            },
+            {
+              "en": "Its trip setting is {fact.top-oil-trip}; hotter afternoon air pushes it closer, as the what-if on Response Planning shows.",
+              "ar": "حد فصله {fact.top-oil-trip}؛ والهواء الأشد حرارة بعد الظهر يقربه منه، كما يُظهر تحليل ماذا لو في تخطيط الاستجابة."
+            },
+            {
+              "en": "Demand response for {fact.dr-cost} brings it back under the limit; expediting transformer C restores a second unit after {fact.txc-hours-low.value}–{fact.txc-hours-high}.",
+              "ar": "الاستجابة للطلب بتكلفة {fact.dr-cost} تعيده تحت الحد؛ وتسريع عودة المحول C يعيد وحدة ثانية بعد {fact.txc-hours-low.value}–{fact.txc-hours-high}."
+            }
+          ],
+          "followUps": ["why-trip"]
+        },
+        {
+          "id": "substation",
+          "questions": ["What happened at this substation?","What happened at Riyadh North 247?","Show me the substation timeline","ما الذي حدث في هذه المحطة؟","ما الجدول الزمني للمحطة؟"],
+          "lead": {
+            "en": "{site.SS-RYD-247} lost transformer A at 13:05; it now runs on transformer B alone, with transformer C on planned maintenance.",
+            "ar": "فقدت {site.SS-RYD-247} المحول A الساعة 13:05؛ وتعمل الآن على المحول B وحده، والمحول C في صيانة مخططة."
+          },
+          "points": [
+            {"en":"12:20: cooling fan group failure on transformer A.","ar":"12:20: عطل مجموعة مراوح التبريد على المحول A."},
+            {"en":"12:30: top-oil above the {fact.top-oil-alarm} alarm.","ar":"12:30: حرارة الزيت العلوي فوق حد الإنذار {fact.top-oil-alarm}."},
+            {
+              "en": "13:05: overtemperature trip; {fact.hero-feeders-off.value} of {fact.hero-feeders-total} lost supply.",
+              "ar": "13:05: فصل بسبب ارتفاع الحرارة؛ انقطاع {fact.hero-feeders-off.value} من {fact.hero-feeders-total}."
+            },
+            {
+              "en": "13:35: transformer B passed its alarm temperature as the afternoon load rose. The health index has fallen to {fact.hi-247}.",
+              "ar": "13:35: تجاوز المحول B حرارة الإنذار مع ارتفاع حمل الظهيرة. وانخفض مؤشر الصحة إلى {fact.hi-247}."
+            }
+          ],
+          "followUps": ["second-trip"]
+        },
+        {
+          "id": "health",
+          "questions": ["Which transformers are in the worst condition?","What is the condition of our assets?","Asset health","ما حالة المحولات؟","أي المحولات في أسوأ حالة؟"],
+          "lead": {
+            "en": "Transformer A at {site.SS-RYD-247} is in the worst condition: {fact.tx-a-age}, overdue cooling maintenance and an oil-test caution.",
+            "ar": "المحول A في {site.SS-RYD-247} في أسوأ حالة: {fact.tx-a-age}، وصيانة تبريد متأخرة، وتحذير من تحليل الزيت."
+          },
+          "points": [
+            {
+              "en": "{site.SS-RYD-247} scores {fact.hi-247} on the health index; the next lowest is {site.SS-HOF-045} at {fact.hi-hof}.",
+              "ar": "تسجل {site.SS-RYD-247} {fact.hi-247} على مؤشر الصحة؛ وتليها {site.SS-HOF-045} عند {fact.hi-hof}."
+            },
+            {
+              "en": "Transformer A at {site.SS-HOF-045} shows elevated ethylene and is tested monthly.",
+              "ar": "يُظهر المحول A في {site.SS-HOF-045} ارتفاعاً في الإيثيلين ويُفحص شهرياً."
+            },
+            {
+              "en": "The index is a documented heuristic from age, oil tests and overdue work, not a failure probability.",
+              "ar": "المؤشر تقدير موثق من العمر وتحاليل الزيت والأعمال المتأخرة، وليس احتمالاً للعطل."
+            }
+          ],
+          "followUps": ["attention"]
+        },
+        {
+          "id": "repeats",
+          "questions": ["Why does Al Khobar keep tripping?","What are the repeat problems?","Which substations keep tripping?","لماذا تتكرر الأعطال في الخبر؟","ما المشكلات المتكررة؟"],
+          "lead": {
+            "en": "{site.SS-KHB-052} is the repeat problem today: {fact.khobar-trips}, almost all salt flashovers on coastal insulators.",
+            "ar": "{site.SS-KHB-052} هي المشكلة المتكررة اليوم: {fact.khobar-trips}، معظمها تفريغ بسبب الأملاح على العوازل الساحلية."
+          },
+          "points": [
+            {
+              "en": "They started before dawn, when humidity builds salt on the insulators, and each cleared after a patrol.",
+              "ar": "بدأت قبل الفجر حين تراكم الرطوبة الأملاح على العوازل، وزال كل منها بعد التفتيش."
+            },
+            {"en":"Washing or coating the insulators on the worst feeders would remove most of the repeats.","ar":"غسل العوازل أو طلاؤها على أسوأ المغذيات يزيل معظم التكرار."},
+            {
+              "en": "{site.SS-JED-133} is the other repeat: its failed cable joint was repaired once before, in 2025.",
+              "ar": "{site.SS-JED-133} هي الحالة المتكررة الأخرى: أُصلحت وصلة الكابل المعطلة فيها من قبل في 2025."
+            }
+          ],
+          "followUps": ["attention"]
+        },
+        {
+          "id": "seasonal",
+          "questions": [
+            "How often do transformers overheat in summer?", "Show me feeder outages over the year", "What is the outage trend this year?", "كم مرة ترتفع حرارة المحولات في الصيف؟",
+            "ما اتجاه الانقطاعات هذا العام؟"
+          ],
+          "lead": {
+            "en": "Outages and transformer overtemperature trips peak from June to September, when afternoon temperatures approach {fact.ambient-peak}.",
+            "ar": "تبلغ الانقطاعات وفصل المحولات بسبب الحرارة ذروتها من يونيو إلى سبتمبر، حين تقترب حرارة الظهيرة من {fact.ambient-peak}."
+          },
+          "points": [
+            {
+              "en": "The history chart splits feeder outages by cause; transformer trips and overloads rise sharply in summer.",
+              "ar": "يقسم الرسم التاريخي انقطاعات المغذيات حسب السبب؛ ويرتفع فصل المحولات والأحمال الزائدة بحدة في الصيف."
+            },
+            {
+              "en": "Insulator salt peaks in the humid coastal summer, which is why {site.SS-KHB-052} trips so often now.",
+              "ar": "تبلغ أملاح العوازل ذروتها في صيف الساحل الرطب، ولهذا تتكرر الأعطال في {site.SS-KHB-052} الآن."
+            }
+          ],
+          "followUps": ["health"]
+        }
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "customer",
+      "name": {"en":"Omar","ar":"عمر"},
+      "role": {"en":"Customer Impact Expert","ar":"خبير أثر العملاء"},
+      "focus": {"en":"Interrupted customers, critical facilities and restoration timing.","ar":"العملاء المنقطعون والمنشآت الحرجة وتوقيت الاستعادة."},
+      "portrait": "kit:man-2",
+      "available": true,
+      "category": "customers",
+      "tags": [{"en":"customers","ar":"العملاء"},{"en":"critical facilities","ar":"المنشآت الحرجة"},{"en":"restoration time","ar":"زمن الاستعادة"},{"en":"regions","ar":"المناطق"}],
+      "intro": {
+        "en": "I track who is affected: interrupted connections, hospitals and other critical facilities, and when supply is expected back.",
+        "ar": "أتابع من تأثر: التوصيلات المنقطعة والمستشفيات والمنشآت الحرجة الأخرى، ومتى يُتوقع عودة التغذية."
+      },
+      "greeting": {"en":"Hello. Shall we look at who is affected right now?","ar":"مرحباً. هل نبدأ بمن تأثر الآن؟"},
+      "team": ["orchestrator","customer","topology"],
+      "topics": ["customers","hospital","critical","restored","affected","العملاء","المستشفى","المنشآت","المتأثرون"],
+      "answers": [
+        {
+          "id": "customers",
+          "questions": ["Which customers are affected?","Who is affected?","How many customers are off supply?","من هم العملاء المتأثرون؟","كم عدد العملاء المنقطعين؟"],
+          "lead": {
+            "en": "{kpi.interrupted-customers} are off supply now, {fact.hero-connections} of them at {site.SS-RYD-247}.",
+            "ar": "{kpi.interrupted-customers} خارج الخدمة الآن، منها {fact.hero-connections} في {site.SS-RYD-247}."
+          },
+          "points": [
+            {
+              "en": "{site.SS-ABH-027}: {fact.abha-connections} since the dust storm, including the hospital annex feeder.",
+              "ar": "{site.SS-ABH-027}: {fact.abha-connections} منذ العاصفة الترابية، منها مغذي ملحق المستشفى."
+            },
+            {
+              "en": "{site.SS-JED-133}: {fact.jeddah-connections} still off; {fact.jeddah-restored} were restored at 12:35.",
+              "ar": "{site.SS-JED-133}: {fact.jeddah-connections} ما زالت منقطعة؛ وأعيدت {fact.jeddah-restored} الساعة 12:35."
+            },
+            {
+              "en": "{fact.critical-off.value} of {fact.critical-declared} are on interrupted feeders: the North District Hospital, the North Civil Defence Station, the North Jeddah Primary Clinic and the Abha Regional Hospital Annex.",
+              "ar": "{fact.critical-off.value} من {fact.critical-declared} على مغذيات منقطعة: مستشفى الحي الشمالي ومركز الدفاع المدني الشمالي ومركز الرعاية الأولية شمال جدة وملحق مستشفى أبها الإقليمي."
+            }
+          ],
+          "followUps": ["hospital","eta"]
+        },
+        {
+          "id": "hospital",
+          "questions": ["Is the hospital supplied?","Are the hospitals on supply?","هل المستشفى مغذى بالكهرباء؟","هل المستشفيات تعمل؟"],
+          "lead": {
+            "en": "The North District Hospital is on backup generation: both of its feeders from {site.SS-RYD-247} are off.",
+            "ar": "مستشفى الحي الشمالي يعمل على التوليد الاحتياطي: مغذياه من {site.SS-RYD-247} منقطعان."
+          },
+          "points": [
+            {"en":"It confirmed backup at 13:40 and has {fact.hospital-backup}.","ar":"أكد التشغيل الاحتياطي الساعة 13:40 ولديه {fact.hospital-backup}."},
+            {
+              "en": "The transfers to {site.SS-RYD-118} and {site.SS-RYD-305} restore its feeders first, within {fact.transfer-hours}.",
+              "ar": "يعيد النقل إلى {site.SS-RYD-118} و{site.SS-RYD-305} مغذييه أولاً، خلال {fact.transfer-hours}."
+            },
+            {
+              "en": "The Abha Regional Hospital Annex is also on backup after the dust storm at {site.SS-ABH-027}.",
+              "ar": "ملحق مستشفى أبها الإقليمي أيضاً على التغذية الاحتياطية بعد العاصفة الترابية في {site.SS-ABH-027}."
+            },
+            {
+              "en": "The North Water Pumping Station is still supplied from transformer B, with {fact.water-backup} if it trips.",
+              "ar": "محطة ضخ المياه الشمالية ما زالت مغذاة من المحول B، ولديها {fact.water-backup} إذا فصل."
+            }
+          ],
+          "followUps": ["critical","eta"]
+        },
+        {
+          "id": "region-impact",
+          "questions": ["Which region has the greatest outage impact?","Which region is worst affected?","أي منطقة لديها أكبر أثر للانقطاع؟","أي منطقة الأكثر تأثراً؟"],
+          "lead": {
+            "en": "{region.riyadh} has the greatest impact: {fact.hero-connections} off supply at {site.SS-RYD-247}.",
+            "ar": "{region.riyadh} لديها أكبر أثر: {fact.hero-connections} خارج الخدمة في {site.SS-RYD-247}."
+          },
+          "points": [
+            {
+              "en": "{region.asir}: {fact.abha-connections} at {site.SS-ABH-027} since the dust storm.",
+              "ar": "{region.asir}: {fact.abha-connections} في {site.SS-ABH-027} منذ العاصفة الترابية."
+            },
+            {"en":"{region.makkah}: {fact.jeddah-connections} at {site.SS-JED-133}.","ar":"{region.makkah}: {fact.jeddah-connections} في {site.SS-JED-133}."},
+            {"en":"Every other region has all its customers on supply.","ar":"كل المناطق الأخرى عملاؤها جميعاً في الخدمة."}
+          ],
+          "followUps": ["eta"]
+        },
+        {
+          "id": "eta",
+          "questions": ["When will customers be restored?","When will supply be back?","متى تعود الخدمة للعملاء؟","متى تعود الكهرباء؟"],
+          "lead": {
+            "en": "With the recommended plan, every interrupted customer at {site.SS-RYD-247} is back within {fact.plan-window}; without intervention it would take {fact.hero-restore-low.value}–{fact.hero-restore-high}.",
+            "ar": "مع الخطة الموصى بها يعود كل العملاء المنقطعين في {site.SS-RYD-247} خلال {fact.plan-window}؛ ودون تدخل يستغرق ذلك {fact.hero-restore-low.value}–{fact.hero-restore-high}."
+          },
+          "points": [
+            {"en":"Hospital feeders first, within {fact.transfer-hours}, through the load transfers.","ar":"مغذيا المستشفى أولاً، خلال {fact.transfer-hours}، عبر نقل الأحمال."},
+            {"en":"The rest by the mobile substation within {fact.mss-hours-high}.","ar":"والبقية عبر المحطة المتنقلة خلال {fact.mss-hours-high}."},
+            {
+              "en": "{site.SS-ABH-027}: within {fact.abha-plan-hours} with patrol and transfer; otherwise {fact.abha-restore-low.value}–{fact.abha-restore-high}.",
+              "ar": "{site.SS-ABH-027}: خلال {fact.abha-plan-hours} بالتفتيش والنقل؛ وإلا {fact.abha-restore-low.value}–{fact.abha-restore-high}."
+            },
+            {
+              "en": "{site.SS-JED-133}: within {fact.jeddah-transfer-hours} by transfer; the joint repair takes {fact.jeddah-restore-low.value}–{fact.jeddah-restore-high}.",
+              "ar": "{site.SS-JED-133}: خلال {fact.jeddah-transfer-hours} بالنقل؛ ويستغرق إصلاح الوصلة {fact.jeddah-restore-low.value}–{fact.jeddah-restore-high}."
+            }
+          ],
+          "followUps": ["customers"]
+        },
+        {
+          "id": "critical",
+          "questions": ["Which critical facilities are affected?","Are any critical facilities off supply?","ما المنشآت الحرجة المتأثرة؟","هل هناك منشآت حرجة منقطعة؟"],
+          "lead": {
+            "en": "{fact.critical-off.value} of {fact.critical-declared} are on interrupted feeders, all on backup or with backup available.",
+            "ar": "{fact.critical-off.value} من {fact.critical-declared} على مغذيات منقطعة، وكلها على التغذية الاحتياطية أو لديها احتياطي."
+          },
+          "points": [
+            {
+              "en": "North District Hospital, at {site.SS-RYD-247}: on backup with {fact.hospital-backup}.",
+              "ar": "مستشفى الحي الشمالي في {site.SS-RYD-247}: على الاحتياطي ولديه {fact.hospital-backup}."
+            },
+            {"en":"North Civil Defence Station, at {site.SS-RYD-247}: {fact.civil-backup}.","ar":"مركز الدفاع المدني الشمالي في {site.SS-RYD-247}: {fact.civil-backup}."},
+            {
+              "en": "North Jeddah Primary Clinic, at {site.SS-JED-133}, and Abha Regional Hospital Annex, at {site.SS-ABH-027}.",
+              "ar": "مركز الرعاية الأولية شمال جدة في {site.SS-JED-133}، وملحق مستشفى أبها الإقليمي في {site.SS-ABH-027}."
+            }
+          ],
+          "followUps": ["hospital"]
+        },
+        {
+          "id": "today",
+          "questions": ["How many customers lost supply today?","How many were interrupted since midnight?","كم عدد العملاء الذين انقطعت عنهم الكهرباء اليوم؟","كم انقطع منذ منتصف الليل؟"],
+          "lead": {
+            "en": "{fact.affected-today} have lost supply since midnight; {fact.restored-today.value} are back, so restoration stands at {kpi.restoration-progress}.",
+            "ar": "انقطعت {fact.affected-today} منذ منتصف الليل؛ عادت منها {fact.restored-today.value}، فالاستعادة عند {kpi.restoration-progress}."
+          },
+          "points": [
+            {"en":"{site.SS-DMM-077}: {fact.dammam-connections}, restored at 09:52.","ar":"{site.SS-DMM-077}: {fact.dammam-connections}، أعيدت الساعة 09:52."},
+            {
+              "en": "{site.SS-JED-133}: {fact.jeddah-restored} back at 12:35, {fact.jeddah-connections} still off.",
+              "ar": "{site.SS-JED-133}: عادت {fact.jeddah-restored} الساعة 12:35، وما زالت {fact.jeddah-connections} منقطعة."
+            },
+            {
+              "en": "Today's report counts {fact.feeder-outages-today} so far, against {fact.feeder-outages-yesterday} yesterday.",
+              "ar": "يسجل تقرير اليوم {fact.feeder-outages-today} حتى الآن، مقابل {fact.feeder-outages-yesterday} أمس."
+            }
+          ],
+          "followUps": ["eta"]
+        }
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "planning",
+      "name": {"en":"Sarah","ar":"سارة"},
+      "role": {"en":"Restoration Planning Expert","ar":"خبيرة تخطيط الاستعادة"},
+      "focus": {"en":"Restoration options within budget, demand scenarios and the executive brief.","ar":"خيارات الاستعادة ضمن الميزانية وسيناريوهات الطلب والملخص التنفيذي."},
+      "portrait": "kit:woman-2",
+      "available": true,
+      "category": "planning",
+      "tags": [{"en":"options","ar":"الخيارات"},{"en":"budget","ar":"الميزانية"},{"en":"demand","ar":"الطلب"},{"en":"brief","ar":"الملخص"}],
+      "intro": {
+        "en": "I compare restoration options within your budget and time window, test demand scenarios, and prepare a validated brief.",
+        "ar": "أقارن خيارات الاستعادة ضمن ميزانيتك ونافذتك الزمنية، وأختبر سيناريوهات الطلب، وأعد ملخصاً تم التحقق منه."
+      },
+      "greeting": {"en":"Hello. What budget and time window are we working with?","ar":"مرحباً. ما الميزانية والنافذة الزمنية التي نعمل بها؟"},
+      "team": ["orchestrator","planning","validation","briefing"],
+      "topics": ["budget","cost","option","options","plan","brief","demand","million","ميزانية","تكلفة","الخيارات","الخطة","الملخص","مليون"],
+      "answers": [
+        {
+          "id": "options",
+          "questions": ["Compare options within SAR 5 million","What are the restoration options?","Compare the options","قارن الخيارات ضمن 5 مليون ريال","ما خيارات الاستعادة؟"],
+          "lead": {
+            "en": "Within {fact.plan-budget}, two load transfers and the mobile substation restore all {fact.hero-connections} at {site.SS-RYD-247} within {fact.plan-window}, for {fact.plan-cost}.",
+            "ar": "ضمن {fact.plan-budget}، يعيد نقلا الحمل والمحطة المتنقلة كل {fact.hero-connections} في {site.SS-RYD-247} خلال {fact.plan-window}، بتكلفة {fact.plan-cost}."
+          },
+          "points": [
+            {
+              "en": "Transfers to {site.SS-RYD-118} and {site.SS-RYD-305} bring back the hospital feeders within {fact.transfer-hours}, at {fact.transfer-cost} each.",
+              "ar": "يعيد النقل إلى {site.SS-RYD-118} و{site.SS-RYD-305} مغذيي المستشفى خلال {fact.transfer-hours}، بتكلفة {fact.transfer-cost} لكل منهما."
+            },
+            {
+              "en": "The mobile substation from the Alkharj depot restores the remaining feeders in {fact.mss-hours-low.value}–{fact.mss-hours-high}, for {fact.mss-cost}.",
+              "ar": "تعيد المحطة المتنقلة من مستودع الخرج بقية المغذيات خلال {fact.mss-hours-low.value}–{fact.mss-hours-high}، بتكلفة {fact.mss-cost}."
+            },
+            {
+              "en": "Expediting transformer C ({fact.txc-cost}) only helps after {fact.txc-hours-low.value}–{fact.txc-hours-high}, outside the window.",
+              "ar": "تسريع عودة المحول C ({fact.txc-cost}) لا يفيد إلا بعد {fact.txc-hours-low.value}–{fact.txc-hours-high}، خارج النافذة."
+            },
+            {
+              "en": "Every option needs operational review before any switching; this is an indicative calculation.",
+              "ar": "يتطلب كل خيار مراجعة تشغيلية قبل أي تحويل؛ هذا حساب استرشادي."
+            }
+          ],
+          "followUps": ["budget-higher","demand"]
+        },
+        {
+          "id": "budget-higher",
+          "questions": ["What changes with SAR 7 million?","What if the budget is SAR 7 million?","What does more budget buy?","ما الذي يتغير مع 7 مليون ريال؟","ماذا لو زادت الميزانية؟"],
+          "lead": {
+            "en": "With {fact.budget-higher}, no more customers are restored, since {fact.plan-budget} already restores all {fact.hero-connections}, but the extra removes the second-trip exposure.",
+            "ar": "مع {fact.budget-higher} لا يُستعاد عملاء أكثر، لأن {fact.plan-budget} تعيد بالفعل كل {fact.hero-connections}، لكن الزيادة تزيل خطر الفصل الثاني."
+          },
+          "points": [
+            {
+              "en": "It adds demand response on transformer B ({fact.dr-cost}), the targeted inspection of transformer A ({fact.insp-cost}) and expediting transformer C ({fact.txc-cost}).",
+              "ar": "تضيف الاستجابة للطلب على المحول B ({fact.dr-cost})، والفحص المستهدف للمحول A ({fact.insp-cost})، وتسريع عودة المحول C ({fact.txc-cost})."
+            },
+            {
+              "en": "The total is {fact.plan7-cost}; transformer B drops back under its {fact.policy-limit} limit.",
+              "ar": "المجموع {fact.plan7-cost}؛ ويعود المحول B تحت حده البالغ {fact.policy-limit}."
+            },
+            {"en":"Exposure to a second trip falls from {fact.second-trip-connections} to none.","ar":"ينخفض التعرض لفصل ثانٍ من {fact.second-trip-connections} إلى لا شيء."}
+          ],
+          "followUps": ["protect-b"]
+        },
+        {
+          "id": "demand",
+          "questions": ["What if demand rises by 8%?","What if demand is higher than forecast?","ماذا لو ارتفع الطلب 8%؟","ماذا لو زاد الطلب عن التوقع؟"],
+          "lead": {
+            "en": "At {fact.demand-scenario}, the receiving substations lose the headroom for the load transfers, so only the mobile substation restores customers: {fact.demand8-restored} of {fact.hero-connections} within {fact.plan-window}.",
+            "ar": "عند {fact.demand-scenario} تفقد المحطات المستقبلة هامش نقل الأحمال، فتعيد المحطة المتنقلة وحدها العملاء: {fact.demand8-restored} من {fact.hero-connections} خلال {fact.plan-window}."
+          },
+          "points": [
+            {
+              "en": "The mobile substation's usable capacity is limited to {fact.policy-limit} of its {fact.mss-capacity} rating.",
+              "ar": "السعة القابلة للاستخدام للمحطة المتنقلة محدودة بـ{fact.policy-limit} من قدرتها {fact.mss-capacity}."
+            },
+            {"en":"Demand response becomes more valuable, to keep transformer B under its limit.","ar":"تزداد قيمة الاستجابة للطلب للإبقاء على المحول B تحت حده."},
+            {"en":"Move the demand slider on Response Planning to see the plan change.","ar":"حرّك مؤشر الطلب في تخطيط الاستجابة لترى تغير الخطة."}
+          ],
+          "followUps": ["protect-b"]
+        },
+        {
+          "id": "budget-lower",
+          "questions": ["What can we do with SAR 3 million?","What if the budget is cut to SAR 3 million?","ماذا يمكننا أن نفعل بـ 3 مليون ريال؟","ماذا لو خُفضت الميزانية؟"],
+          "lead": {
+            "en": "With {fact.budget-lower}, only the load transfers fit within the window: {fact.plan3-restored} of {fact.hero-connections} restored within {fact.transfer-hours}, for {fact.plan3-cost}.",
+            "ar": "مع {fact.budget-lower} لا يتسع ضمن النافذة إلا نقل الأحمال: {fact.plan3-restored} من {fact.hero-connections} تعود خلال {fact.transfer-hours} بتكلفة {fact.plan3-cost}."
+          },
+          "points": [
+            {"en":"The mobile substation, at {fact.mss-cost}, no longer fits.","ar":"المحطة المتنقلة بتكلفة {fact.mss-cost} لم تعد ضمن الميزانية."},
+            {
+              "en": "The remaining feeders wait for transformer C or the repair, {fact.hero-restore-low.value}–{fact.hero-restore-high}.",
+              "ar": "تنتظر بقية المغذيات المحول C أو الإصلاح، {fact.hero-restore-low.value}–{fact.hero-restore-high}."
+            }
+          ],
+          "followUps": ["options"]
+        },
+        {
+          "id": "protect-b",
+          "questions": ["How do we protect transformer B?","How do we reduce the second-trip risk?","كيف نحمي المحول B؟","كيف نقلل خطر الفصل الثاني؟"],
+          "lead": {
+            "en": "Activate demand response on bus B: about {fact.dr-reduction} comes off transformer B within the hour, for {fact.dr-cost}.",
+            "ar": "فعّل الاستجابة للطلب على القضيب B: يُخفف عن المحول B نحو {fact.dr-reduction} خلال ساعة، بتكلفة {fact.dr-cost}."
+          },
+          "points": [
+            {
+              "en": "Industrial curtailment and commercial pre-cooling, sustained for up to {fact.dr-hours}.",
+              "ar": "خفض الحمل الصناعي والتبريد المسبق التجاري، لمدة تصل إلى {fact.dr-hours}."
+            },
+            {
+              "en": "Expediting transformer C restores a second unit after {fact.txc-hours-low.value}–{fact.txc-hours-high}, for {fact.txc-cost}.",
+              "ar": "تسريع عودة المحول C يعيد وحدة ثانية بعد {fact.txc-hours-low.value}–{fact.txc-hours-high}، بتكلفة {fact.txc-cost}."
+            },
+            {"en":"Keep transformer B under the {fact.policy-limit} policy limit until then.","ar":"أبقِ المحول B تحت حد السياسة {fact.policy-limit} حتى ذلك الحين."}
+          ],
+          "followUps": ["budget-higher"]
+        },
+        {
+          "id": "procurement",
+          "questions": ["Should we buy a new transformer?","What about a replacement transformer?","هل نشتري محولاً جديداً؟","ماذا عن محول بديل؟"],
+          "lead": {
+            "en": "Start planning a replacement, but it does not help today: the lead time is {fact.proc-weeks-low.value}–{fact.proc-weeks-high}, for {fact.proc-cost}.",
+            "ar": "ابدأ التخطيط لمحول بديل، لكنه لا يفيد اليوم: مدة التوريد {fact.proc-weeks-low.value}–{fact.proc-weeks-high}، بتكلفة {fact.proc-cost}."
+          },
+          "points": [
+            {
+              "en": "Reserve a strategic spare now in case the inspection finds an internal fault.",
+              "ar": "احجز محولاً احتياطياً استراتيجياً الآن تحسباً لأن يكشف الفحص عطلاً داخلياً."
+            },
+            {"en":"It sits outside every restoration window, so the planner leaves it out.","ar":"يقع خارج كل نوافذ الاستعادة، لذا يستبعده المخطط."}
+          ],
+          "followUps": ["options"]
+        },
+        {
+          "id": "brief",
+          "questions": ["Prepare my executive brief","Give me the executive brief","Summarise this for the CEO","أعد ملخصي التنفيذي","أعطني الملخص التنفيذي"],
+          "lead": {
+            "en": "Executive brief at 14:30: one critical transformer trip in {region.riyadh}, {kpi.interrupted-customers} off supply across the Kingdom, and a plan within budget to restore the {region.riyadh} customers within {fact.plan-window}.",
+            "ar": "الملخص التنفيذي الساعة 14:30: فصل محول حرج في {region.riyadh}، و{kpi.interrupted-customers} خارج الخدمة في المملكة، وخطة ضمن الميزانية لإعادة عملاء {region.riyadh} خلال {fact.plan-window}."
+          },
+          "points": [
+            {
+              "en": "Situation: transformer A at {site.SS-RYD-247} tripped at 13:05; {fact.hero-connections} off, hospitals on backup.",
+              "ar": "الوضع: فصل المحول A في {site.SS-RYD-247} الساعة 13:05؛ {fact.hero-connections} منقطعة والمستشفيات على التغذية الاحتياطية."
+            },
+            {"en":"Cause: suspected thermal overload with a cooling failure; not yet confirmed.","ar":"السبب: حمل حراري زائد مشتبه به مع عطل في التبريد؛ لم يتأكد بعد."},
+            {
+              "en": "Plan: two load transfers plus the mobile substation, {fact.plan-cost}, restoring all {fact.hero-connections} within {fact.plan-window}.",
+              "ar": "الخطة: نقلا حمل والمحطة المتنقلة بتكلفة {fact.plan-cost}، لإعادة كل {fact.hero-connections} خلال {fact.plan-window}."
+            },
+            {
+              "en": "Risk: if transformer B also trips, another {fact.second-trip-connections} lose supply, including the North Water Pumping Station.",
+              "ar": "الخطر: إذا فصل المحول B أيضاً تنقطع {fact.second-trip-connections} أخرى، منها محطة ضخ المياه الشمالية."
+            },
+            {"en":"Decision needed: approve the plan for operational review.","ar":"القرار المطلوب: اعتماد الخطة للمراجعة التشغيلية."}
+          ],
+          "followUps": ["options"]
+        }
+      ],
+      "source": "starter"
+    },
+    {
+      "id": "field",
+      "name": {"en":"Khalid","ar":"خالد"},
+      "role": {"en":"Field Operations Expert","ar":"خبير العمليات الميدانية"},
+      "focus": {"en":"Crew coordination and work-order follow-up.","ar":"تنسيق الفرق ومتابعة أوامر العمل."},
+      "portrait": "kit:man-3",
+      "available": false,
+      "category": "operations",
+      "tags": [{"en":"crews","ar":"الفرق"},{"en":"work orders","ar":"أوامر العمل"}],
+      "intro": {"en":"Available on request.","ar":"متاح عند الطلب."},
+      "answers": [],
+      "source": "starter"
+    },
+    {
+      "id": "forecast",
+      "name": {"en":"Mei","ar":"مي"},
+      "role": {"en":"Demand Forecasting Expert","ar":"خبيرة توقع الطلب"},
+      "focus": {"en":"Regional demand outlook and peak preparation.","ar":"توقعات الطلب الإقليمي والاستعداد للذروة."},
+      "portrait": "kit:woman-3",
+      "available": false,
+      "category": "planning",
+      "tags": [{"en":"demand","ar":"الطلب"},{"en":"peak","ar":"الذروة"},{"en":"forecast","ar":"التوقع"}],
+      "intro": {"en":"Available on request.","ar":"متاحة عند الطلب."},
+      "answers": [],
+      "source": "starter"
+    }
+  ],
+  "expertCategories": [
+    {"id":"operations","label":{"en":"Operations","ar":"العمليات"}},
+    {"id":"assets","label":{"en":"Assets","ar":"الأصول"}},
+    {"id":"customers","label":{"en":"Customers","ar":"العملاء"}},
+    {"id":"planning","label":{"en":"Planning","ar":"التخطيط"}}
+  ],
+  "specialists": [
+    {
+      "id": "orchestrator",
+      "name": {"en":"Orchestrator","ar":"المنسق"},
+      "role": {"en":"Reads the incident and scope, then dispatches the specialists.","ar":"يقرأ الحادث والنطاق ثم يوزع المهام على المختصين."},
+      "stage": "lead",
+      "color": "#120046",
+      "activities": [
+        {"en":"Reading the incident record and scope","ar":"قراءة سجل الحادث والنطاق"},
+        {"en":"Locating the substation in the register","ar":"تحديد المحطة في السجل"},
+        {"en":"Dispatching the analysis specialists","ar":"توزيع المهام على مختصي التحليل"}
+      ]
+    },
+    {
+      "id": "topology",
+      "name": {"en":"Network Topology","ar":"طوبولوجيا الشبكة"},
+      "role": {"en":"Traces affected feeders and declared ties for load transfer.","ar":"يتتبع المغذيات المتأثرة والروابط المعلنة لنقل الأحمال."},
+      "stage": "analysis",
+      "color": "#413cc3",
+      "activities": [
+        {"en":"Reading feeder states","ar":"قراءة حالة المغذيات"},
+        {"en":"Tracing downstream feeders","ar":"تتبع المغذيات اللاحقة"},
+        {"en":"Checking declared ties for transfer headroom","ar":"فحص الروابط المعلنة وهامش النقل"}
+      ]
+    },
+    {
+      "id": "diagnostics",
+      "name": {"en":"Asset Diagnostics","ar":"تشخيص الأصول"},
+      "role": {"en":"Compares loading and temperatures with ratings, alarms and trip settings.","ar":"يقارن التحميل والحرارة بالقدرات الاسمية وحدود الإنذار والفصل."},
+      "stage": "analysis",
+      "color": "#00a3af",
+      "activities": [
+        {"en":"Reading transformer loading against rating","ar":"مقارنة تحميل المحولات بالقدرة الاسمية"},
+        {"en":"Comparing top-oil with alarm and trip settings","ar":"مقارنة حرارة الزيت بحدود الإنذار والفصل"},
+        {"en":"Scoring the health index","ar":"احتساب مؤشر الصحة"},
+        {"en":"Checking firm capacity with one transformer out","ar":"فحص السعة المؤكدة مع خروج محول"}
+      ]
+    },
+    {
+      "id": "customer",
+      "name": {"en":"Customer Impact","ar":"أثر العملاء"},
+      "role": {"en":"Counts interrupted connections once and flags critical facilities.","ar":"يحصي التوصيلات المنقطعة مرة واحدة ويحدد المنشآت الحرجة."},
+      "stage": "analysis",
+      "color": "#5555f9",
+      "activities": [
+        {"en":"Matching feeders to customer groups","ar":"ربط المغذيات بمجموعات العملاء"},
+        {"en":"De-duplicating customer groups","ar":"إزالة تكرار مجموعات العملاء"},
+        {"en":"Flagging critical facilities on backup","ar":"تحديد المنشآت الحرجة على الاحتياطي"}
+      ]
+    },
+    {
+      "id": "planning",
+      "name": {"en":"Restoration Planning","ar":"تخطيط الاستعادة"},
+      "role": {"en":"Tests restoration options within the budget and time window.","ar":"يختبر خيارات الاستعادة ضمن الميزانية والنافذة الزمنية."},
+      "stage": "planning",
+      "color": "#00828c",
+      "activities": [
+        {"en":"Listing restoration options in scope","ar":"حصر خيارات الاستعادة ضمن النطاق"},
+        {"en":"Testing combinations within the budget","ar":"اختبار التركيبات ضمن الميزانية"},
+        {"en":"Ranking by connections restored in the window","ar":"الترتيب حسب التوصيلات المستعادة خلال النافذة"}
+      ]
+    },
+    {
+      "id": "validation",
+      "name": {"en":"Recommendation Validation","ar":"التحقق من التوصية"},
+      "role": {"en":"Checks the plan against limits and critical-facility coverage.","ar":"يتحقق من الخطة مقابل الحدود وتغطية المنشآت الحرجة."},
+      "stage": "validation",
+      "color": "#00a7e1",
+      "activities": [
+        {"en":"Checking transfer limits and power factor","ar":"فحص حدود النقل ومعامل القدرة"},
+        {"en":"Confirming critical facilities are covered","ar":"التأكد من تغطية المنشآت الحرجة"},
+        {"en":"Recording warnings for the brief","ar":"تسجيل التنبيهات للملخص"}
+      ]
+    },
+    {
+      "id": "briefing",
+      "name": {"en":"Executive Briefing","ar":"الإحاطة التنفيذية"},
+      "role": {"en":"Drafts the bilingual brief with evidence references.","ar":"يصوغ الملخص ثنائي اللغة مع مراجع الأدلة."},
+      "stage": "briefing",
+      "color": "#ff550d",
+      "activities": [
+        {"en":"Drafting the Arabic brief","ar":"صياغة الملخص بالعربية"},
+        {"en":"Drafting the English brief","ar":"صياغة الملخص بالإنجليزية"},
+        {"en":"Attaching evidence references","ar":"إرفاق مراجع الأدلة"}
+      ]
+    }
+  ],
+  "planning": {
+    "incidentIds": ["riyadh-trip"],
+    "budget": {"unit":{"en":"SAR M","ar":"مليون ريال"},"min":2,"max":10,"step":0.5,"default":5,"presets":[3,5,7],"decimals":1},
+    "windows": [12,24,48],
+    "scenario": {"label":{"en":"Demand above forecast","ar":"الطلب فوق التوقع"},"unit":{"en":"%","ar":"%"},"min":0,"max":15,"step":1,"presets":[0,4,8,15]},
+    "benefit": {"label":{"en":"Connections restored","ar":"التوصيلات المستعادة"},"unit":{"en":"connections","ar":"توصيلة"}},
+    "note": {
+      "en": "Indicative calculation using the forecast peak load. Not an AC power-flow study or an authorised switching plan; every option needs operational review.",
+      "ar": "حساب استرشادي على أساس ذروة الحمل المتوقعة. ليس دراسة تدفق أحمال ولا خطة تحويل معتمدة؛ ويتطلب كل خيار مراجعة تشغيلية."
+    },
+    "options": [
+      {
+        "requiresReview": true,
+        "source": "assumed",
+        "id": "transfer-118",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Prepare load transfer to Olaya 118","ar":"تحضير نقل الحمل إلى العليا 118"},
+        "measures": [
+          {"en":"Field verification of the normally-open point on the declared tie","ar":"التحقق الميداني من نقطة الفتح الطبيعي على الربط المعلن"},
+          {"en":"Switching crew standby for operational review","ar":"جاهزية فريق التحويل للمراجعة التشغيلية"}
+        ],
+        "constraints": [
+          {"en":"Receiving transformer headroom within the policy limit","ar":"هامش المحول المستقبل ضمن حد السياسة"},
+          {"en":"Indicative calculation — not an AC power-flow study or authorised switching plan","ar":"حساب استرشادي — ليس دراسة تدفق أحمال ولا خطة تحويل معتمدة"}
+        ],
+        "cost": 0.45,
+        "benefit": 1981,
+        "hours": [1.5,3],
+        "sensitivity": 0.125,
+        "why": "Demand sensitivity is a planning assumption: transfers lose receiving headroom quickly as demand rises."
+      },
+      {
+        "requiresReview": true,
+        "source": "assumed",
+        "id": "transfer-305",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Prepare load transfer to Riyadh East 305","ar":"تحضير نقل الحمل إلى شرق الرياض 305"},
+        "measures": [{"en":"Field verification of the declared tie and protection settings","ar":"التحقق الميداني من الربط المعلن وإعدادات الحماية"}],
+        "constraints": [
+          {"en":"Receiving transformer headroom within the policy limit","ar":"هامش المحول المستقبل ضمن حد السياسة"},
+          {"en":"Indicative calculation — not an AC power-flow study or authorised switching plan","ar":"حساب استرشادي — ليس دراسة تدفق أحمال ولا خطة تحويل معتمدة"}
+        ],
+        "cost": 0.45,
+        "benefit": 2410,
+        "hours": [1.5,3],
+        "sensitivity": 0.125,
+        "why": "Demand sensitivity is a planning assumption: transfers lose receiving headroom quickly as demand rises."
+      },
+      {
+        "requiresReview": true,
+        "source": "assumed",
+        "id": "mobile-substation",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Deploy the mobile substation to Riyadh North 247","ar":"نشر المحطة المتنقلة إلى شمال الرياض 247"},
+        "measures": [
+          {"en":"Transport the mobile substation from the Alkharj depot to the declared laydown area","ar":"نقل المحطة المتنقلة من مستودع الخرج إلى منطقة التركيب المعلنة"},
+          {"en":"Connect to bus A and re-energise the prioritised feeders","ar":"التوصيل بالقضيب A وإعادة تغذية المغذيات ذات الأولوية"}
+        ],
+        "constraints": [{"en":"Usable capacity limited to the policy share of its rating","ar":"السعة القابلة للاستخدام محدودة بنسبة السياسة من قدرتها"}],
+        "cost": 3.9,
+        "benefit": 8641,
+        "hours": [8,11],
+        "sensitivity": 0.015,
+        "why": "Demand sensitivity is a planning assumption: transfers lose receiving headroom quickly as demand rises."
+      },
+      {
+        "requiresReview": true,
+        "source": "starter",
+        "id": "expedite-c",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Expedite transformer C from planned maintenance","ar":"تسريع عودة المحول C من الصيانة المخططة"},
+        "measures": [{"en":"Additional shifts for oil processing and pre-energisation tests","ar":"ورديات إضافية لمعالجة الزيت واختبارات ما قبل التشغيل"}],
+        "constraints": [{"en":"Restores a second transformer, not immediate supply","ar":"يعيد محولاً ثانياً وليس التغذية الفورية"}],
+        "cost": 1.4,
+        "benefit": 13032,
+        "hours": [18,30]
+      },
+      {
+        "requiresReview": true,
+        "source": "starter",
+        "id": "inspection",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Targeted inspection and oil re-test of transformer A","ar":"فحص مستهدف وإعادة تحليل الزيت للمحول A"},
+        "measures": [{"en":"Thermal imaging, oil re-test and winding resistance test","ar":"تصوير حراري وإعادة تحليل الزيت واختبار مقاومة الملفات"}],
+        "constraints": [{"en":"Confirms or excludes an internal fault; does not restore supply by itself","ar":"يؤكد أو يستبعد العطل الداخلي؛ لا يعيد التغذية بمفرده"}],
+        "cost": 0.25,
+        "benefit": 0,
+        "hours": [3,5]
+      },
+      {
+        "requiresReview": true,
+        "source": "starter",
+        "id": "demand-response",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Activate demand response on bus B","ar":"تفعيل الاستجابة للطلب على القضيب B"},
+        "measures": [{"en":"Industrial curtailment and commercial pre-cooling on bus B feeders","ar":"خفض الحمل الصناعي والتبريد المسبق التجاري على مغذيات القضيب B"}],
+        "constraints": [{"en":"Protects transformer B; restores no customers","ar":"يحمي المحول B؛ لا يعيد عملاء"}],
+        "cost": 0.35,
+        "benefit": 0,
+        "hours": [0.5,1]
+      },
+      {
+        "requiresReview": true,
+        "source": "starter",
+        "id": "procurement",
+        "incidentId": "riyadh-trip",
+        "title": {"en":"Replacement transformer procurement planning","ar":"تخطيط شراء محول بديل"},
+        "measures": [{"en":"Reserve a strategic spare and start procurement","ar":"حجز محول احتياطي استراتيجي وبدء الشراء"}],
+        "constraints": [{"en":"Lead time of several months; no benefit within any restoration window","ar":"مدة توريد لعدة أشهر؛ لا فائدة ضمن أي نافذة استعادة"}],
+        "cost": 6.8,
+        "benefit": 0,
+        "hours": [1680,2352]
+      },
+      {
+        "requiresReview": true,
+        "source": "assumed",
+        "id": "transfer-219",
+        "incidentId": "jeddah-cable",
+        "title": {"en":"Prepare load transfer to Jeddah Al-Safa 219","ar":"تحضير نقل الحمل إلى جدة الصفا 219"},
+        "measures": [{"en":"Verify downstream isolation and the declared tie","ar":"التحقق من عزل الجزء السفلي والربط المعلن"}],
+        "constraints": [{"en":"Indicative calculation — not an AC power-flow study or authorised switching plan","ar":"حساب استرشادي — ليس دراسة تدفق أحمال ولا خطة تحويل معتمدة"}],
+        "cost": 0.2,
+        "benefit": 1461,
+        "hours": [1,2],
+        "sensitivity": 0.125,
+        "why": "Demand sensitivity is a planning assumption: transfers lose receiving headroom quickly as demand rises."
+      },
+      {
+        "requiresReview": true,
+        "source": "starter",
+        "id": "jointing-crew",
+        "incidentId": "jeddah-cable",
+        "title": {"en":"Cable jointing crew for the failed joint","ar":"فريق وصل الكابلات للوصلة المعطلة"},
+        "measures": [{"en":"Excavation, joint replacement and cable testing","ar":"الحفر واستبدال الوصلة واختبار الكابل"}],
+        "constraints": [{"en":"Permit timing may extend the duration","ar":"توقيت التصريح قد يطيل المدة"}],
+        "cost": 0.32,
+        "benefit": 1461,
+        "hours": [5,8]
+      },
+      {
+        "requiresReview": true,
+        "source": "starter",
+        "id": "line-patrol",
+        "incidentId": "abha-storm",
+        "title": {"en":"Line patrol and repair on the hospital feeder","ar":"تفتيش وإصلاح الخط على مغذي المستشفى"},
+        "measures": [{"en":"Patrol, insulator washing and repair","ar":"التفتيش وغسل العوازل والإصلاح"}],
+        "constraints": [{"en":"Depends on visibility after the storm","ar":"يعتمد على الرؤية بعد العاصفة"}],
+        "cost": 0.18,
+        "benefit": 1905,
+        "hours": [3,6]
+      },
+      {
+        "requiresReview": true,
+        "source": "assumed",
+        "id": "transfer-015",
+        "incidentId": "abha-storm",
+        "title": {"en":"Prepare load transfer to Khamis Mushayt 015","ar":"تحضير نقل الحمل إلى خميس مشيط 015"},
+        "measures": [{"en":"Verify the declared tie after fault isolation","ar":"التحقق من الربط المعلن بعد عزل العطل"}],
+        "constraints": [{"en":"Only valid once the faulted section is isolated","ar":"صالح فقط بعد عزل الجزء المعطل"}],
+        "cost": 0.15,
+        "benefit": 1649,
+        "hours": [1.5,2.5],
+        "sensitivity": 0.125,
+        "why": "Demand sensitivity is a planning assumption: transfers lose receiving headroom quickly as demand rises."
+      }
+    ],
+    "whatIf": {
+      "title": {"en":"What if transformer B trips?","ar":"ماذا لو فصل المحول B؟"},
+      "description": {
+        "en": "Transformer B at Riyadh North 247 is the last unit in service. Raise the afternoon temperature and watch its loading and top-oil approach the trip setting.",
+        "ar": "المحول B في شمال الرياض 247 آخر وحدة عاملة. ارفع حرارة الظهيرة وشاهد تحميله وحرارة زيته تقترب من حد الفصل."
+      },
+      "trigger": {"en":"Second transformer trip at Riyadh North 247","ar":"فصل المحول الثاني في شمال الرياض 247"},
+      "input": {"label":{"en":"Ambient above today's peak","ar":"الحرارة فوق ذروة اليوم"},"unit":{"en":"°C","ar":"°م"},"min":0,"max":12,"step":1},
+      "readings": [
+        {"label":{"en":"Transformer B top-oil","ar":"حرارة الزيت العلوي للمحول B"},"unit":{"en":"°C","ar":"°م"},"base":92.4,"perUnit":1.05,"limit":90,"trip":105,"decimals":1},
+        {"label":{"en":"Transformer B loading","ar":"تحميل المحول B"},"unit":{"en":"%","ar":"%"},"base":90.1,"perUnit":0.6,"limit":90,"decimals":1}
+      ],
+      "impact": {
+        "label": {"en":"Connections off supply as transformer B nears its trip","ar":"التوصيلات المنقطعة مع اقتراب المحول B من الفصل"},
+        "unit": {"en":"connections","ar":"توصيلة"},
+        "current": 13032,
+        "after": 22599
+      }
+    }
+  },
+  "history": [
+    {
+      "id": "feeder-outages",
+      "label": {"en":"Feeder outages","ar":"انقطاعات المغذيات"},
+      "unit": {"en":"outages a day","ar":"انقطاعاً يومياً"},
+      "expertId": "grid",
+      "base": 31,
+      "seasonal": 0.27,
+      "peakMonth": 8,
+      "noise": 0.2,
+      "breakdown": {
+        "label": {"en":"By cause","ar":"حسب السبب"},
+        "parts": [
+          {"id":"salt","label":{"en":"Insulator salt","ar":"أملاح العوازل"},"weight":0.2},
+          {"id":"cable","label":{"en":"Underground cable","ar":"الكابلات الأرضية"},"weight":0.18},
+          {"id":"overload","label":{"en":"Feeder overload","ar":"الحمل الزائد على المغذي"},"weight":0.14},
+          {"id":"transformer","label":{"en":"Transformer trip","ar":"فصل المحولات"},"weight":0.05},
+          {"id":"equipment","label":{"en":"Switchgear or equipment","ar":"المعدات والمفاتيح"},"weight":0.16},
+          {"id":"animal","label":{"en":"Animal or bird contact","ar":"تلامس الطيور والحيوانات"},"weight":0.08},
+          {"id":"thirdParty","label":{"en":"Third-party damage","ar":"أضرار الطرف الثالث"},"weight":0.09},
+          {"id":"weather","label":{"en":"Dust, wind or rain","ar":"الغبار والرياح والأمطار"},"weight":0.1}
+        ]
+      },
+      "keywords": ["outages","feeder outages","trips","faults","انقطاعات","انقطاع","المغذيات","أعطال"]
+    },
+    {
+      "id": "interrupted-peak",
+      "label": {"en":"Peak interrupted connections","ar":"ذروة التوصيلات المنقطعة"},
+      "unit": {"en":"connections","ar":"توصيلة"},
+      "expertId": "customer",
+      "base": 9000,
+      "seasonal": 0.35,
+      "peakMonth": 8,
+      "noise": 0.45,
+      "todayFromKpi": "interrupted-customers",
+      "breakdown": {
+        "label": {"en":"By region","ar":"حسب المنطقة"},
+        "parts": [
+          {"id":"riyadh","label":{"en":"Riyadh","ar":"الرياض"},"weight":0.3},
+          {"id":"makkah","label":{"en":"Makkah","ar":"مكة المكرمة"},"weight":0.22},
+          {"id":"eastern","label":{"en":"Eastern Province","ar":"المنطقة الشرقية"},"weight":0.2},
+          {"id":"madinah","label":{"en":"Almadinah","ar":"المدينة المنورة"},"weight":0.07},
+          {"id":"asir","label":{"en":"Asir","ar":"عسير"},"weight":0.06},
+          {"id":"qassim","label":{"en":"Qassim","ar":"القصيم"},"weight":0.05},
+          {"id":"jazan","label":{"en":"Jazan","ar":"جازان"},"weight":0.03},
+          {"id":"tabuk","label":{"en":"Tabuk","ar":"تبوك"},"weight":0.02},
+          {"id":"hail","label":{"en":"Hail","ar":"حائل"},"weight":0.02},
+          {"id":"najran","label":{"en":"Najran","ar":"نجران"},"weight":0.01},
+          {"id":"bahah","label":{"en":"Albaha","ar":"الباحة"},"weight":0.01},
+          {"id":"jawf","label":{"en":"Aljouf","ar":"الجوف"},"weight":0.005},
+          {"id":"northern","label":{"en":"Northern Frontier","ar":"الحدود الشمالية"},"weight":0.005}
+        ]
+      },
+      "keywords": ["customers","interrupted","connections","customer impact","العملاء","التوصيلات","المنقطعة","المنقطعين"]
+    },
+    {
+      "id": "peak-demand",
+      "label": {"en":"National peak demand","ar":"ذروة الطلب الوطني"},
+      "unit": {"en":"MW","ar":"ميجاواط"},
+      "expertId": "planning",
+      "base": 55000,
+      "seasonal": 0.27,
+      "peakMonth": 8,
+      "noise": 0.03,
+      "breakdown": {
+        "label": {"en":"By region","ar":"حسب المنطقة"},
+        "parts": [
+          {"id":"riyadh","label":{"en":"Riyadh","ar":"الرياض"},"weight":0.301},
+          {"id":"eastern","label":{"en":"Eastern Province","ar":"المنطقة الشرقية"},"weight":0.253},
+          {"id":"makkah","label":{"en":"Makkah","ar":"مكة المكرمة"},"weight":0.198},
+          {"id":"madinah","label":{"en":"Almadinah","ar":"المدينة المنورة"},"weight":0.067},
+          {"id":"qassim","label":{"en":"Qassim","ar":"القصيم"},"weight":0.044},
+          {"id":"asir","label":{"en":"Asir","ar":"عسير"},"weight":0.037},
+          {"id":"jazan","label":{"en":"Jazan","ar":"جازان"},"weight":0.024},
+          {"id":"tabuk","label":{"en":"Tabuk","ar":"تبوك"},"weight":0.019},
+          {"id":"hail","label":{"en":"Hail","ar":"حائل"},"weight":0.017},
+          {"id":"najran","label":{"en":"Najran","ar":"نجران"},"weight":0.013},
+          {"id":"jawf","label":{"en":"Aljouf","ar":"الجوف"},"weight":0.011},
+          {"id":"northern","label":{"en":"Northern Frontier","ar":"الحدود الشمالية"},"weight":0.009},
+          {"id":"bahah","label":{"en":"Albaha","ar":"الباحة"},"weight":0.007}
+        ]
+      },
+      "keywords": ["demand","peak demand","load","megawatts","الطلب","الذروة","الأحمال","ميجاواط"]
+    },
+    {
+      "id": "restoration-spend",
+      "label": {"en":"Restoration spend","ar":"إنفاق الاستعادة"},
+      "unit": {"en":"SAR million","ar":"مليون ريال"},
+      "expertId": "planning",
+      "base": 0.8,
+      "seasonal": 0.4,
+      "peakMonth": 8,
+      "noise": 0.5,
+      "decimals": 2,
+      "breakdown": {
+        "label": {"en":"By cause","ar":"حسب السبب"},
+        "parts": [
+          {"id":"overtemperature","label":{"en":"Transformer overtemperature","ar":"ارتفاع حرارة المحولات"},"weight":0.3},
+          {"id":"cable","label":{"en":"Underground cable","ar":"الكابلات الأرضية"},"weight":0.25},
+          {"id":"overhead","label":{"en":"Overhead line and dust","ar":"الخطوط الهوائية والغبار"},"weight":0.2},
+          {"id":"protection","label":{"en":"Protection and breakers","ar":"الحماية والقواطع"},"weight":0.15},
+          {"id":"rain","label":{"en":"Rain and flash floods","ar":"الأمطار والسيول"},"weight":0.1}
+        ]
+      },
+      "keywords": ["spend","spending","cost","budget","restoration cost","الإنفاق","التكلفة","الميزانية"]
+    },
+    {
+      "id": "health-index",
+      "label": {"en":"Average transformer health index","ar":"متوسط مؤشر صحة المحولات"},
+      "unit": {"en":"/100","ar":"/100"},
+      "expertId": "asset",
+      "base": 92,
+      "seasonal": 0.03,
+      "peakMonth": 2,
+      "noise": 0.01,
+      "decimals": 1,
+      "keywords": ["health index","condition","asset health","مؤشر الصحة","الحالة","صحة الأصول"]
+    }
+  ],
+  "report": {
+    "label": {"en":"Feeder outage","ar":"انقطاع مغذٍ"},
+    "plural": {"en":"Feeder outages","ar":"انقطاعات المغذيات"},
+    "categories": [
+      {"id":"salt","label":{"en":"Insulator salt","ar":"أملاح العوازل"}},
+      {"id":"cable","label":{"en":"Underground cable","ar":"الكابلات الأرضية"}},
+      {"id":"overload","label":{"en":"Feeder overload","ar":"الحمل الزائد على المغذي"}},
+      {"id":"transformer","label":{"en":"Transformer trip","ar":"فصل المحولات"}},
+      {"id":"equipment","label":{"en":"Switchgear or equipment","ar":"المعدات والمفاتيح"}},
+      {"id":"animal","label":{"en":"Animal or bird contact","ar":"تلامس الطيور والحيوانات"}},
+      {"id":"thirdParty","label":{"en":"Third-party damage","ar":"أضرار الطرف الثالث"}},
+      {"id":"weather","label":{"en":"Dust, wind or rain","ar":"الغبار والرياح والأمطار"}}
+    ],
+    "records": [
+      {"siteId":"SS-UNZ-008","at":"2026-08-11T00:28","category":"equipment"},
+      {"siteId":"SS-MED-091","at":"2026-08-11T01:35","category":"equipment"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T01:51","category":"thirdParty"},
+      {"siteId":"SS-RYD-305","at":"2026-08-11T01:57","category":"animal"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T03:02","category":"cable"},
+      {"siteId":"SS-RYD-412","at":"2026-08-11T03:15","category":"equipment"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T03:34","category":"salt"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T03:38","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-11T03:41","category":"salt"},
+      {"siteId":"SS-JED-219","at":"2026-08-11T04:10","category":"salt"},
+      {"siteId":"SS-MED-091","at":"2026-08-11T04:16","category":"animal"},
+      {"siteId":"SS-JED-219","at":"2026-08-11T04:55","category":"salt"},
+      {"siteId":"SS-DMM-077","at":"2026-08-11T05:16","category":"salt"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T05:42","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-11T05:45","category":"salt"},
+      {"siteId":"SS-YNB-012","at":"2026-08-11T05:57","category":"equipment"},
+      {"siteId":"SS-DMM-077","at":"2026-08-11T07:50","category":"salt"},
+      {"siteId":"SS-DMM-077","at":"2026-08-11T07:57","category":"salt"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T08:11","category":"cable"},
+      {"siteId":"SS-KHB-052","at":"2026-08-11T08:18","category":"cable"},
+      {"siteId":"SS-MKK-064","at":"2026-08-11T10:04","category":"animal"},
+      {"siteId":"SS-KHJ-021","at":"2026-08-11T10:16","category":"cable"},
+      {"siteId":"SS-HOF-045","at":"2026-08-11T10:38","category":"weather"},
+      {"siteId":"SS-MKK-064","at":"2026-08-11T12:12","category":"overload"},
+      {"siteId":"SS-UNZ-008","at":"2026-08-11T12:30","category":"overload"},
+      {"siteId":"SS-KHJ-021","at":"2026-08-11T12:30","category":"transformer"},
+      {"siteId":"SS-JUB-019","at":"2026-08-11T13:37","category":"overload"},
+      {"siteId":"SS-RYD-412","at":"2026-08-11T14:08","category":"overload"},
+      {"siteId":"SS-JUB-019","at":"2026-08-11T14:16","category":"overload"},
+      {"siteId":"SS-DMM-077","at":"2026-08-11T14:24","category":"overload"},
+      {"siteId":"SS-JED-219","at":"2026-08-11T14:35","category":"transformer"},
+      {"siteId":"SS-KMS-015","at":"2026-08-11T14:40","category":"equipment"},
+      {"siteId":"SS-DMM-077","at":"2026-08-11T15:13","category":"overload"},
+      {"siteId":"SS-JED-219","at":"2026-08-11T15:54","category":"overload"},
+      {"siteId":"SS-NJR-011","at":"2026-08-11T16:04","category":"transformer"},
+      {"siteId":"SS-JED-133","at":"2026-08-11T16:04","category":"transformer"},
+      {"siteId":"SS-RYD-118","at":"2026-08-11T16:50","category":"overload"},
+      {"siteId":"SS-RYD-247","at":"2026-08-11T16:51","category":"overload"},
+      {"siteId":"SS-KMS-015","at":"2026-08-11T17:47","category":"animal"},
+      {"siteId":"SS-JED-219","at":"2026-08-11T17:59","category":"cable"},
+      {"siteId":"SS-RYD-412","at":"2026-08-11T18:27","category":"equipment"},
+      {"siteId":"SS-MKK-064","at":"2026-08-11T18:32","category":"animal"},
+      {"siteId":"SS-KHB-052","at":"2026-08-11T18:39","category":"cable"},
+      {"siteId":"SS-BRD-033","at":"2026-08-11T18:58","category":"cable"},
+      {"siteId":"SS-ARR-006","at":"2026-08-11T21:00","category":"cable"},
+      {"siteId":"SS-JED-219","at":"2026-08-11T21:48","category":"equipment"},
+      {"siteId":"SS-MED-091","at":"2026-08-11T22:20","category":"equipment"},
+      {"siteId":"SS-MKK-064","at":"2026-08-11T23:39","category":"cable"},
+      {"siteId":"SS-MED-091","at":"2026-08-11T23:40","category":"cable"},
+      {"siteId":"SS-BRD-033","at":"2026-08-12T00:34","category":"equipment"},
+      {"siteId":"SS-MED-091","at":"2026-08-12T01:40","category":"cable"},
+      {"siteId":"SS-KMS-015","at":"2026-08-12T02:51","category":"cable"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T03:06","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T03:27","category":"salt"},
+      {"siteId":"SS-HAL-017","at":"2026-08-12T03:32","category":"cable"},
+      {"siteId":"SS-MED-091","at":"2026-08-12T03:34","category":"equipment"},
+      {"siteId":"SS-DMM-077","at":"2026-08-12T03:36","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T03:39","category":"salt"},
+      {"siteId":"SS-JED-219","at":"2026-08-12T04:02","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T04:04","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T04:13","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T04:30","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T04:50","category":"salt"},
+      {"siteId":"SS-JUB-019","at":"2026-08-12T04:56","category":"salt"},
+      {"siteId":"SS-DMM-077","at":"2026-08-12T05:11","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T05:11","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T05:25","category":"salt"},
+      {"siteId":"SS-MKK-064","at":"2026-08-12T05:30","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T05:38","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T05:57","category":"salt"},
+      {"siteId":"SS-MKK-064","at":"2026-08-12T06:10","category":"equipment"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T06:14","category":"salt"},
+      {"siteId":"SS-MED-091","at":"2026-08-12T06:20","category":"cable"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T06:31","category":"salt"},
+      {"siteId":"SS-DMM-077","at":"2026-08-12T06:35","category":"salt"},
+      {"siteId":"SS-JUB-019","at":"2026-08-12T06:37","category":"salt"},
+      {"siteId":"SS-NJR-011","at":"2026-08-12T06:48","category":"animal"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T06:54","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T07:03","category":"salt"},
+      {"siteId":"SS-JUB-019","at":"2026-08-12T07:52","category":"salt"},
+      {"siteId":"SS-JED-219","at":"2026-08-12T07:58","category":"salt"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T08:25","category":"salt"},
+      {"siteId":"SS-SKK-009","at":"2026-08-12T08:39","category":"cable"},
+      {"siteId":"SS-MKK-064","at":"2026-08-12T08:43","category":"equipment"},
+      {"siteId":"SS-KHB-052","at":"2026-08-12T08:50","category":"salt"},
+      {"siteId":"SS-DMM-077","at":"2026-08-12T09:10","category":"equipment"},
+      {"siteId":"SS-SKK-009","at":"2026-08-12T09:42","category":"thirdParty"},
+      {"siteId":"SS-DMM-077","at":"2026-08-12T10:36","category":"equipment"},
+      {"siteId":"SS-KHJ-021","at":"2026-08-12T11:01","category":"weather"},
+      {"siteId":"SS-JED-133","at":"2026-08-12T11:40","category":"cable"},
+      {"siteId":"SS-KHJ-021","at":"2026-08-12T11:47","category":"overload"},
+      {"siteId":"SS-TBK-024","at":"2026-08-12T11:50","category":"animal"},
+      {"siteId":"SS-NJR-011","at":"2026-08-12T13:02","category":"overload"},
+      {"siteId":"SS-RYD-247","at":"2026-08-12T13:05","category":"transformer"},
+      {"siteId":"SS-RYD-247","at":"2026-08-12T13:05","category":"transformer"},
+      {"siteId":"SS-RYD-247","at":"2026-08-12T13:05","category":"transformer"},
+      {"siteId":"SS-RYD-247","at":"2026-08-12T13:05","category":"transformer"},
+      {"siteId":"SS-RYD-247","at":"2026-08-12T13:05","category":"transformer"},
+      {"siteId":"SS-RYD-247","at":"2026-08-12T13:05","category":"transformer"},
+      {"siteId":"SS-ABH-027","at":"2026-08-12T13:48","category":"weather"},
+      {"siteId":"SS-ABH-027","at":"2026-08-12T13:48","category":"weather"}
+    ]
+  },
+  "architecture": {
+    "sources": [
+      {"id":"scada","label":{"en":"SCADA / EMS","ar":"سكادا / إدارة الطاقة"},"kind":"stream","icon":"Radio"},
+      {"id":"adms","label":{"en":"ADMS distribution control","ar":"نظام إدارة التوزيع"},"kind":"stream","icon":"Activity"},
+      {"id":"oms","label":{"en":"Outage management","ar":"إدارة الانقطاعات"},"kind":"events","icon":"Zap"},
+      {"id":"gis","label":{"en":"GIS network model","ar":"نموذج الشبكة الجغرافي"},"kind":"reference","icon":"Map"},
+      {"id":"ami","label":{"en":"Smart meters (AMI)","ar":"العدادات الذكية"},"kind":"events","icon":"Gauge"},
+      {"id":"crm","label":{"en":"Customer and critical-facility register","ar":"سجل العملاء والمنشآت الحرجة"},"kind":"reference","icon":"Users"},
+      {"id":"eam","label":{"en":"Asset and work management","ar":"إدارة الأصول والأعمال"},"kind":"batch","icon":"Wrench"},
+      {"id":"weather","label":{"en":"Weather and demand forecast","ar":"الطقس وتوقع الطلب"},"kind":"batch","icon":"CloudSun"}
+    ],
+    "apps": [
+      {"id":"experts","label":{"en":"Digital Experts","ar":"الخبراء الرقميون"},"kind":{"en":"AI assistants","ar":"مساعدون ذكيون"}},
+      {"id":"overview","label":{"en":"Executive Overview","ar":"النظرة التنفيذية"},"kind":{"en":"Live dashboard","ar":"لوحة مباشرة"}},
+      {"id":"substations","label":{"en":"Outages and substations","ar":"الانقطاعات والمحطات"},"kind":{"en":"Investigation","ar":"التحقيق"}},
+      {"id":"planning","label":{"en":"Response Planning","ar":"تخطيط الاستجابة"},"kind":{"en":"Decision support","ar":"دعم القرار"}},
+      {"id":"briefs","label":{"en":"Executive Briefs","ar":"الملخصات التنفيذية"},"kind":{"en":"Bilingual report","ar":"تقرير ثنائي اللغة"}}
+    ],
+    "residency": {"en":"In-Kingdom private cloud; data and models stay inside the governed environment.","ar":"سحابة خاصة داخل المملكة؛ تبقى البيانات والنماذج داخل البيئة المحكومة."}
+  },
+  "refusals": {
+    "topics": [
+      {"label":{"en":"Tariffs and pricing","ar":"التعرفة والأسعار"},"keywords":["tariff","price","pricing","bill increase","تعرفة","أسعار","سعر"]},
+      {"label":{"en":"Named employees","ar":"الموظفون بالاسم"},"keywords":["employee performance","salary","fire someone","رواتب","أداء الموظف"]},
+      {"label":{"en":"Unannounced plans","ar":"الخطط غير المعلنة"},"keywords":["merger","acquisition","layoff","استحواذ","اندماج"]},
+      {
+        "label": {"en":"Live switching and dispatch","ar":"التحويل والإرسال المباشر"},
+        "keywords": ["open the breaker","close the breaker","switch the feeder","dispatch the crew","افتح القاطع","أغلق القاطع","أرسل الفريق"]
+      }
+    ],
+    "reply": {
+      "en": "That is outside what I can discuss in this demo. I can help with outages, assets, customer impact and restoration planning; nothing is switched or dispatched from here.",
+      "ar": "هذا خارج ما يمكنني مناقشته في هذا العرض. يمكنني المساعدة في الانقطاعات والأصول وأثر العملاء وتخطيط الاستعادة؛ ولا يتم أي تحويل أو إرسال من هنا."
+    }
+  },
+  "presenter": {
+    "beats": [
+      {
+        "id": "national",
+        "title": {"en":"National situation","ar":"الوضع الوطني"},
+        "narration": {
+          "en": "12:55 in {region.riyadh} on a peak summer day. Regional demand is {fact.demand-above-forecast} above forecast and available capacity is {fact.capacity-reduction} lower. {site.SS-JED-133} is restoring a cable fault.",
+          "ar": "الساعة 12:55 في {region.riyadh} في يوم ذروة صيفي. الطلب الإقليمي أعلى من التوقع بـ{fact.demand-above-forecast} والسعة المتاحة أقل بـ{fact.capacity-reduction}. و{site.SS-JED-133} تستعيد عطل كابل."
+        },
+        "view": "overview",
+        "page": "overview",
+        "clock": "12:55",
+        "spotlight": "kpi-row"
+      },
+      {
+        "id": "trip",
+        "title": {"en":"A transformer trips","ar":"فصل محول"},
+        "narration": {
+          "en": "At 13:05 the overtemperature protection on transformer A at {site.SS-RYD-247} operates. {fact.hero-feeders-off.value} of {fact.hero-feeders-total} lose supply, including a hospital feeder.",
+          "ar": "الساعة 13:05 تعمل حماية الحرارة على المحول A في {site.SS-RYD-247}. تنقطع التغذية عن {fact.hero-feeders-off.value} من {fact.hero-feeders-total}، منها مغذي مستشفى."
+        },
+        "view": "overview",
+        "page": "overview",
+        "clock": "13:10",
+        "spotlight": "region-map",
+        "siteId": "SS-RYD-247"
+      },
+      {
+        "id": "drill",
+        "title": {"en":"Drill into Riyadh","ar":"التعمق في الرياض"},
+        "narration": {
+          "en": "By 14:30 the remaining transformer is above its alarm temperature. We move from the Kingdom to {region.riyadh} and to the substation.",
+          "ar": "بحلول 14:30 تجاوز المحول المتبقي حرارة الإنذار. ننتقل من المملكة إلى {region.riyadh} ثم إلى المحطة."
+        },
+        "view": "overview",
+        "page": "overview",
+        "clock": "14:30",
+        "spotlight": "region-map",
+        "regionId": "riyadh",
+        "siteId": "SS-RYD-247"
+      },
+      {
+        "id": "investigate",
+        "title": {"en":"Substation investigation","ar":"التحقيق في المحطة"},
+        "narration": {
+          "en": "Loading against limits, temperature trends and the timeline. The cause stays a suspected driver until inspection confirms it.",
+          "ar": "التحميل مقابل الحدود واتجاهات الحرارة والجدول الزمني. يبقى السبب مشتبهاً به حتى يؤكده الفحص."
+        },
+        "view": "overview",
+        "page": "sites",
+        "siteId": "SS-RYD-247"
+      },
+      {
+        "id": "report",
+        "title": {"en":"Today's report","ar":"تقرير اليوم"},
+        "narration": {
+          "en": "Today's report counts every feeder outage from the same records: {fact.feeder-outages-today} so far today, against {fact.feeder-outages-yesterday} yesterday.",
+          "ar": "يحصي تقرير اليوم كل انقطاعات المغذيات من السجلات نفسها: {fact.feeder-outages-today} حتى الآن اليوم، مقابل {fact.feeder-outages-yesterday} أمس."
+        },
+        "view": "report",
+        "spotlight": "report-table"
+      },
+      {
+        "id": "ask",
+        "title": {"en":"Ask the expert","ar":"اسأل الخبير"},
+        "narration": {
+          "en": "The executive asks one question in their own language. The expert answers from the data and keeps the context for follow-ups.",
+          "ar": "يطرح المسؤول سؤالاً واحداً بلغته. يجيب الخبير من البيانات ويحتفظ بالسياق لأسئلة المتابعة."
+        },
+        "view": "experts",
+        "page": "experts",
+        "spotlight": "expert-chat",
+        "ask": {"expertId":"grid","question":{"en":"What should I be concerned about right now?","ar":"بماذا يجب أن أقلق الآن؟"},"answerId":"now"}
+      },
+      {
+        "id": "team",
+        "title": {"en":"The operations team investigates","ar":"فريق العمليات يحقق"},
+        "narration": {
+          "en": "Topology, diagnostics and customer specialists work in parallel, then planning, validation and briefing. Every result carries its evidence.",
+          "ar": "يعمل مختصو الطوبولوجيا والتشخيص وأثر العملاء بالتوازي، ثم التخطيط والتحقق والإحاطة. كل نتيجة تحمل أدلتها."
+        },
+        "view": "experts",
+        "page": "experts",
+        "spotlight": "expert-chat",
+        "ask": {"expertId":"grid","question":{"en":"What should we do next?","ar":"ماذا يجب أن نفعل؟"},"answerId":"recommend"}
+      },
+      {
+        "id": "options",
+        "title": {"en":"Compare options within budget","ar":"مقارنة الخيارات ضمن الميزانية"},
+        "narration": {
+          "en": "{fact.plan-budget} restores every interrupted customer at {site.SS-RYD-247} within {fact.plan-window}. {fact.budget-higher} restores no more customers, but removes the second-trip exposure on the remaining transformer.",
+          "ar": "{fact.plan-budget} تعيد كل العملاء المنقطعين في {site.SS-RYD-247} خلال {fact.plan-window}. و{fact.budget-higher} لا تعيد عملاء أكثر لكنها تزيل خطر الفصل الثاني على المحول المتبقي."
+        },
+        "view": "experts",
+        "page": "planning",
+        "ask": {"expertId":"planning","question":{"en":"What changes with SAR 7 million?","ar":"ما الذي يتغير مع 7 مليون ريال؟"},"answerId":"budget-higher"}
+      },
+      {
+        "id": "what-if",
+        "title": {"en":"What if the second transformer trips?","ar":"ماذا لو فصل المحول الثاني؟"},
+        "narration": {
+          "en": "The last transformer in service carries {fact.second-trip-connections} more, including the water pumping station. Raise the heat and watch it approach its trip setting.",
+          "ar": "يغذي المحول العامل الأخير {fact.second-trip-connections} إضافية، منها محطة ضخ المياه. ارفع الحرارة وشاهد اقترابه من حد الفصل."
+        },
+        "view": "experts",
+        "page": "planning",
+        "ask": {"expertId":"asset","question":{"en":"What is the risk of a second trip?","ar":"ما خطر حدوث فصل ثانٍ؟"},"answerId":"second-trip"}
+      },
+      {
+        "id": "brief",
+        "title": {"en":"Executive brief","ar":"الملخص التنفيذي"},
+        "narration": {
+          "en": "A bilingual brief, ready to print or share, and an action assigned for operational review. Nothing is switched or dispatched from this screen.",
+          "ar": "ملخص ثنائي اللغة جاهز للطباعة أو المشاركة، وإجراء محال للمراجعة التشغيلية. لا يتم أي تحويل أو إرسال من هذه الشاشة."
+        },
+        "view": "experts",
+        "page": "briefs",
+        "ask": {"expertId":"planning","question":{"en":"Prepare my executive brief","ar":"أعد ملخصي التنفيذي"},"answerId":"brief"}
+      },
+      {
+        "id": "architecture",
+        "title": {"en":"How it works, on Cloudera","ar":"كيف يعمل، على Cloudera"},
+        "narration": {
+          "en": "The same trip, end to end: the breaker event is ingested, detected in seconds, stored once with lineage, and investigated by agents that call audited tools before the language model writes a word.",
+          "ar": "الفصل نفسه من البداية إلى النهاية: يُستوعب حدث القاطع، ويُكتشف خلال ثوانٍ، ويُحفظ مرة واحدة مع تتبع الأصل، ويحقق فيه وكلاء يستدعون أدوات مدققة قبل أن يكتب النموذج اللغوي أي كلمة."
+        },
+        "view": "overview",
+        "page": "architecture"
+      }
+    ],
+    "stories": [
+      {
+        "id": "riyadh",
+        "title": {"en":"Riyadh transformer trip","ar":"فصل محول الرياض"},
+        "beats": [
+          {
+            "id": "national",
+            "title": {"en":"National situation","ar":"الوضع الوطني"},
+            "narration": {
+              "en": "12:55 in {region.riyadh} on a peak summer day. Regional demand is {fact.demand-above-forecast} above forecast and available capacity is {fact.capacity-reduction} lower. {site.SS-JED-133} is restoring a cable fault.",
+              "ar": "الساعة 12:55 في {region.riyadh} في يوم ذروة صيفي. الطلب الإقليمي أعلى من التوقع بـ{fact.demand-above-forecast} والسعة المتاحة أقل بـ{fact.capacity-reduction}. و{site.SS-JED-133} تستعيد عطل كابل."
+            },
+            "view": "overview",
+            "page": "overview",
+            "clock": "12:55",
+            "spotlight": "kpi-row"
+          },
+          {
+            "id": "trip",
+            "title": {"en":"A transformer trips","ar":"فصل محول"},
+            "narration": {
+              "en": "At 13:05 the overtemperature protection on transformer A at {site.SS-RYD-247} operates. {fact.hero-feeders-off.value} of {fact.hero-feeders-total} lose supply, including a hospital feeder.",
+              "ar": "الساعة 13:05 تعمل حماية الحرارة على المحول A في {site.SS-RYD-247}. تنقطع التغذية عن {fact.hero-feeders-off.value} من {fact.hero-feeders-total}، منها مغذي مستشفى."
+            },
+            "view": "overview",
+            "page": "overview",
+            "clock": "13:10",
+            "spotlight": "region-map",
+            "siteId": "SS-RYD-247"
+          },
+          {
+            "id": "drill",
+            "title": {"en":"Drill into Riyadh","ar":"التعمق في الرياض"},
+            "narration": {
+              "en": "By 14:30 the remaining transformer is above its alarm temperature. We move from the Kingdom to {region.riyadh} and to the substation.",
+              "ar": "بحلول 14:30 تجاوز المحول المتبقي حرارة الإنذار. ننتقل من المملكة إلى {region.riyadh} ثم إلى المحطة."
+            },
+            "view": "overview",
+            "page": "overview",
+            "clock": "14:30",
+            "spotlight": "region-map",
+            "regionId": "riyadh",
+            "siteId": "SS-RYD-247"
+          },
+          {
+            "id": "investigate",
+            "title": {"en":"Substation investigation","ar":"التحقيق في المحطة"},
+            "narration": {
+              "en": "Loading against limits, temperature trends and the timeline. The cause stays a suspected driver until inspection confirms it.",
+              "ar": "التحميل مقابل الحدود واتجاهات الحرارة والجدول الزمني. يبقى السبب مشتبهاً به حتى يؤكده الفحص."
+            },
+            "view": "overview",
+            "page": "sites",
+            "siteId": "SS-RYD-247"
+          },
+          {
+            "id": "report",
+            "title": {"en":"Today's report","ar":"تقرير اليوم"},
+            "narration": {
+              "en": "Today's report counts every feeder outage from the same records: {fact.feeder-outages-today} so far today, against {fact.feeder-outages-yesterday} yesterday.",
+              "ar": "يحصي تقرير اليوم كل انقطاعات المغذيات من السجلات نفسها: {fact.feeder-outages-today} حتى الآن اليوم، مقابل {fact.feeder-outages-yesterday} أمس."
+            },
+            "view": "report",
+            "spotlight": "report-table"
+          },
+          {
+            "id": "ask",
+            "title": {"en":"Ask the expert","ar":"اسأل الخبير"},
+            "narration": {
+              "en": "The executive asks one question in their own language. The expert answers from the data and keeps the context for follow-ups.",
+              "ar": "يطرح المسؤول سؤالاً واحداً بلغته. يجيب الخبير من البيانات ويحتفظ بالسياق لأسئلة المتابعة."
+            },
+            "view": "experts",
+            "page": "experts",
+            "spotlight": "expert-chat",
+            "ask": {"expertId":"grid","question":{"en":"What should I be concerned about right now?","ar":"بماذا يجب أن أقلق الآن؟"},"answerId":"now"}
+          },
+          {
+            "id": "team",
+            "title": {"en":"The operations team investigates","ar":"فريق العمليات يحقق"},
+            "narration": {
+              "en": "Topology, diagnostics and customer specialists work in parallel, then planning, validation and briefing. Every result carries its evidence.",
+              "ar": "يعمل مختصو الطوبولوجيا والتشخيص وأثر العملاء بالتوازي، ثم التخطيط والتحقق والإحاطة. كل نتيجة تحمل أدلتها."
+            },
+            "view": "experts",
+            "page": "experts",
+            "spotlight": "expert-chat",
+            "ask": {"expertId":"grid","question":{"en":"What should we do next?","ar":"ماذا يجب أن نفعل؟"},"answerId":"recommend"}
+          },
+          {
+            "id": "options",
+            "title": {"en":"Compare options within budget","ar":"مقارنة الخيارات ضمن الميزانية"},
+            "narration": {
+              "en": "{fact.plan-budget} restores every interrupted customer at {site.SS-RYD-247} within {fact.plan-window}. {fact.budget-higher} restores no more customers, but removes the second-trip exposure on the remaining transformer.",
+              "ar": "{fact.plan-budget} تعيد كل العملاء المنقطعين في {site.SS-RYD-247} خلال {fact.plan-window}. و{fact.budget-higher} لا تعيد عملاء أكثر لكنها تزيل خطر الفصل الثاني على المحول المتبقي."
+            },
+            "view": "experts",
+            "page": "planning",
+            "ask": {"expertId":"planning","question":{"en":"What changes with SAR 7 million?","ar":"ما الذي يتغير مع 7 مليون ريال؟"},"answerId":"budget-higher"}
+          },
+          {
+            "id": "what-if",
+            "title": {"en":"What if the second transformer trips?","ar":"ماذا لو فصل المحول الثاني؟"},
+            "narration": {
+              "en": "The last transformer in service carries {fact.second-trip-connections} more, including the water pumping station. Raise the heat and watch it approach its trip setting.",
+              "ar": "يغذي المحول العامل الأخير {fact.second-trip-connections} إضافية، منها محطة ضخ المياه. ارفع الحرارة وشاهد اقترابه من حد الفصل."
+            },
+            "view": "experts",
+            "page": "planning",
+            "ask": {"expertId":"asset","question":{"en":"What is the risk of a second trip?","ar":"ما خطر حدوث فصل ثانٍ؟"},"answerId":"second-trip"}
+          },
+          {
+            "id": "brief",
+            "title": {"en":"Executive brief","ar":"الملخص التنفيذي"},
+            "narration": {
+              "en": "A bilingual brief, ready to print or share, and an action assigned for operational review. Nothing is switched or dispatched from this screen.",
+              "ar": "ملخص ثنائي اللغة جاهز للطباعة أو المشاركة، وإجراء محال للمراجعة التشغيلية. لا يتم أي تحويل أو إرسال من هذه الشاشة."
+            },
+            "view": "experts",
+            "page": "briefs",
+            "ask": {"expertId":"planning","question":{"en":"Prepare my executive brief","ar":"أعد ملخصي التنفيذي"},"answerId":"brief"}
+          },
+          {
+            "id": "architecture",
+            "title": {"en":"How it works, on Cloudera","ar":"كيف يعمل، على Cloudera"},
+            "narration": {
+              "en": "The same trip, end to end: the breaker event is ingested, detected in seconds, stored once with lineage, and investigated by agents that call audited tools before the language model writes a word.",
+              "ar": "الفصل نفسه من البداية إلى النهاية: يُستوعب حدث القاطع، ويُكتشف خلال ثوانٍ، ويُحفظ مرة واحدة مع تتبع الأصل، ويحقق فيه وكلاء يستدعون أدوات مدققة قبل أن يكتب النموذج اللغوي أي كلمة."
+            },
+            "view": "overview",
+            "page": "architecture"
+          }
+        ]
+      },
+      {
+        "id": "jeddah",
+        "title": {"en":"Jeddah cable fault","ar":"عطل كابل جدة"},
+        "beats": [
+          {
+            "id": "jeddah-national",
+            "title": {"en":"National situation","ar":"الوضع الوطني"},
+            "narration": {
+              "en": "{site.SS-JED-133} lost a feeder to an underground cable fault this morning; crews are restoring it.",
+              "ar": "فقدت {site.SS-JED-133} مغذياً بسبب عطل كابل أرضي صباح اليوم، والفرق تعمل على الاستعادة."
+            },
+            "view": "overview",
+            "page": "overview",
+            "clock": "14:30",
+            "spotlight": "region-map"
+          },
+          {
+            "id": "jeddah-drill",
+            "title": {"en":"Drill into Jeddah cable fault","ar":"التعمق في عطل كابل جدة"},
+            "narration": {"en":"From the Kingdom to the region, then to the affected substation.","ar":"من المملكة إلى المنطقة ثم إلى المحطة المتأثرة."},
+            "view": "overview",
+            "page": "overview",
+            "spotlight": "region-map",
+            "regionId": "makkah",
+            "siteId": "SS-JED-133"
+          },
+          {
+            "id": "jeddah-investigate",
+            "title": {"en":"Substation investigation","ar":"التحقيق في المحطة"},
+            "narration": {"en":"Feeders, timeline and the restoration estimate for this incident.","ar":"المغذيات والجدول الزمني وتقدير الاستعادة لهذا الحادث."},
+            "view": "overview",
+            "page": "sites",
+            "siteId": "SS-JED-133"
+          },
+          {
+            "id": "jeddah-ask-1",
+            "title": {"en":"Ask the expert","ar":"اسأل الخبير"},
+            "narration": {"en":"A question an executive would ask, answered from the data.","ar":"سؤال قد يطرحه المسؤول، والإجابة من البيانات."},
+            "view": "experts",
+            "page": "experts",
+            "spotlight": "expert-chat",
+            "ask": {"expertId":"grid","question":{"en":"What is happening in Jeddah?","ar":"ما الوضع في جدة؟"},"answerId":"jeddah"}
+          },
+          {
+            "id": "jeddah-ask-2",
+            "title": {"en":"Ask the expert","ar":"اسأل الخبير"},
+            "narration": {"en":"A question an executive would ask, answered from the data.","ar":"سؤال قد يطرحه المسؤول، والإجابة من البيانات."},
+            "view": "experts",
+            "page": "experts",
+            "spotlight": "expert-chat",
+            "ask": {"expertId":"customer","question":{"en":"When will customers be restored?","ar":"متى تعود الخدمة للعملاء؟"},"answerId":"eta"}
+          }
+        ]
+      },
+      {
+        "id": "abha",
+        "title": {"en":"Abha dust storm","ar":"عاصفة أبها الترابية"},
+        "beats": [
+          {
+            "id": "abha-national",
+            "title": {"en":"National situation","ar":"الوضع الوطني"},
+            "narration": {
+              "en": "A dust storm over {region.asir} tripped overhead feeders at {site.SS-ABH-027} shortly before 14:00.",
+              "ar": "تسببت عاصفة ترابية فوق {region.asir} في فصل مغذيات هوائية في {site.SS-ABH-027} قبيل الساعة 14:00."
+            },
+            "view": "overview",
+            "page": "overview",
+            "clock": "14:30",
+            "spotlight": "region-map"
+          },
+          {
+            "id": "abha-drill",
+            "title": {"en":"Drill into Abha dust storm","ar":"التعمق في عاصفة أبها الترابية"},
+            "narration": {"en":"From the Kingdom to the region, then to the affected substation.","ar":"من المملكة إلى المنطقة ثم إلى المحطة المتأثرة."},
+            "view": "overview",
+            "page": "overview",
+            "spotlight": "region-map",
+            "regionId": "asir",
+            "siteId": "SS-ABH-027"
+          },
+          {
+            "id": "abha-investigate",
+            "title": {"en":"Substation investigation","ar":"التحقيق في المحطة"},
+            "narration": {"en":"Feeders, timeline and the restoration estimate for this incident.","ar":"المغذيات والجدول الزمني وتقدير الاستعادة لهذا الحادث."},
+            "view": "overview",
+            "page": "sites",
+            "siteId": "SS-ABH-027"
+          },
+          {
+            "id": "abha-ask-1",
+            "title": {"en":"Ask the expert","ar":"اسأل الخبير"},
+            "narration": {"en":"A question an executive would ask, answered from the data.","ar":"سؤال قد يطرحه المسؤول، والإجابة من البيانات."},
+            "view": "experts",
+            "page": "experts",
+            "spotlight": "expert-chat",
+            "ask": {"expertId":"grid","question":{"en":"Why did the feeders trip?","ar":"لماذا فصلت المغذيات؟"},"answerId":"abha"}
+          },
+          {
+            "id": "abha-ask-2",
+            "title": {"en":"Ask the expert","ar":"اسأل الخبير"},
+            "narration": {"en":"A question an executive would ask, answered from the data.","ar":"سؤال قد يطرحه المسؤول، والإجابة من البيانات."},
+            "view": "experts",
+            "page": "experts",
+            "spotlight": "expert-chat",
+            "ask": {"expertId":"customer","question":{"en":"Is the hospital supplied?","ar":"هل المستشفى مغذى بالكهرباء؟"},"answerId":"hospital"}
+          }
+        ]
+      }
+    ]
+  }
+}

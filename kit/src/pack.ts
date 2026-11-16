@@ -104,6 +104,8 @@ export function collectAssumptions(spec: DemoSpec): Assumption[] {
   spec.facts.forEach((f) => add(`facts.${f.id}`, f, `Figure: ${fmtNumber(f.value, 'en', f.decimals ?? 0)} ${f.unit.en}`))
   spec.incidents.forEach((i) => add(`incidents.${i.id}`, i, `Incident: ${i.title.en}`))
   spec.experts.forEach((e) => add(`experts.${e.id}`, e, `Expert: ${e.name.en}`))
+  spec.alerts?.forEach((a) => add(`alerts.${a.id}`, a, `Alert: ${a.title.en}`))
+  spec.planning?.options.forEach((o) => add(`planning.options.${o.id}`, o, `Response option: ${o.title.en}`))
   return out
 }
 

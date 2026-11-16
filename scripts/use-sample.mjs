@@ -1,4 +1,4 @@
-// Loads a sample (or the blank wizard spec) into pack/: npm run use-sample -- water|telecom|banking|blank [--force]
+// Loads a sample (or the blank wizard spec) into pack/: npm run use-sample -- power|water|telecom|banking|blank [--force]
 import { copyFileSync, existsSync, readdirSync, readFileSync } from 'node:fs'
 
 const name = process.argv[2]
