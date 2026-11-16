@@ -16,6 +16,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Install browser
+        id: browser
+        run: npx playwright install --with-deps chromium
       - name: Typecheck
         run: npm run typecheck
       - name: Lint
@@ -26,12 +29,10 @@ jobs:
         run: npx demo-gates --all-samples
       - name: Build (web and offline)
         run: npm run build && npx vite build --mode offline
-      - name: Install browser
-        run: npx playwright install --with-deps chromium
       - name: Browser checks (EN and AR)
         run: npx playwright test
       - name: Screenshots
-        if: always()
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
         run: |
           npx vite --port 5200 --strictPort &
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:5200/ >/dev/null && break; sleep 1; done
