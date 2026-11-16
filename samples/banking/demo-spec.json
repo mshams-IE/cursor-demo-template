@@ -1,0 +1,919 @@
+{
+  "specVersion": 1,
+  "kitVersion": "0.2.0",
+  "wizard": {
+    "step": 10,
+    "completed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "status": "built"
+  },
+  "id": "harbour-bank",
+  "industry": "banking",
+  "languages": [
+    "en",
+    "ar"
+  ],
+  "customer": {
+    "name": {
+      "en": "Harbour National Bank",
+      "ar": "بنك الميناء الوطني"
+    },
+    "source": "customer"
+  },
+  "title": {
+    "en": "Banking Operations Intelligence",
+    "ar": "ذكاء العمليات المصرفية"
+  },
+  "subtitle": {
+    "en": "Harbour National Bank · executive view",
+    "ar": "بنك الميناء الوطني · العرض التنفيذي"
+  },
+  "audience": {
+    "en": "CEO and chief operating officer",
+    "ar": "الرئيس التنفيذي ورئيس العمليات"
+  },
+  "brand": {
+    "theme": "cloudera",
+    "coBrand": false
+  },
+  "vocabulary": {
+    "entity": {
+      "en": "Channel",
+      "ar": "القناة"
+    },
+    "entityPlural": {
+      "en": "Channels",
+      "ar": "القنوات"
+    },
+    "group": {
+      "en": "Business line",
+      "ar": "قطاع الأعمال"
+    },
+    "groupPlural": {
+      "en": "Business lines",
+      "ar": "قطاعات الأعمال"
+    },
+    "type": {
+      "en": "Channel type",
+      "ar": "نوع القناة"
+    },
+    "typePlural": {
+      "en": "Channel types",
+      "ar": "أنواع القنوات"
+    }
+  },
+  "clock": {
+    "observedAt": "2026-11-16T13:15",
+    "zone": {
+      "en": "GST, Dubai time",
+      "ar": "بتوقيت دبي"
+    }
+  },
+  "regions": [
+    {
+      "id": "retail",
+      "name": {
+        "en": "Retail Banking",
+        "ar": "الخدمات المصرفية للأفراد"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "sme",
+      "name": {
+        "en": "Small Business",
+        "ar": "الأعمال الصغيرة"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "corporate",
+      "name": {
+        "en": "Corporate Banking",
+        "ar": "الخدمات المصرفية للشركات"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "wealth",
+      "name": {
+        "en": "Private Wealth",
+        "ar": "إدارة الثروات الخاصة"
+      },
+      "source": "assumed",
+      "why": "Most Gulf banks of this size run a separate wealth line; not confirmed for this customer."
+    }
+  ],
+  "assetTypes": [
+    {
+      "id": "branch",
+      "name": {
+        "en": "Branch",
+        "ar": "فرع"
+      },
+      "plural": {
+        "en": "branches",
+        "ar": "فروع"
+      },
+      "source": "starter"
+    },
+    {
+      "id": "atm",
+      "name": {
+        "en": "ATM cluster",
+        "ar": "مجموعة صرافات"
+      },
+      "plural": {
+        "en": "ATM clusters",
+        "ar": "مجموعات صرافات"
+      },
+      "source": "starter"
+    },
+    {
+      "id": "digital",
+      "name": {
+        "en": "Digital channel",
+        "ar": "قناة رقمية"
+      },
+      "plural": {
+        "en": "digital channels",
+        "ar": "قنوات رقمية"
+      },
+      "source": "starter"
+    },
+    {
+      "id": "centre",
+      "name": {
+        "en": "Service centre",
+        "ar": "مركز خدمة"
+      },
+      "plural": {
+        "en": "service centres",
+        "ar": "مراكز خدمة"
+      },
+      "source": "starter"
+    }
+  ],
+  "sites": [
+    {
+      "id": "RTL-APP",
+      "name": {
+        "en": "Mobile Banking App",
+        "ar": "تطبيق الخدمات المصرفية عبر الجوال"
+      },
+      "regionId": "retail",
+      "type": "digital",
+      "status": "critical",
+      "source": "customer",
+      "note": {
+        "en": "Card payment approvals failing at the card switch; mobile wallet top-ups stalled.",
+        "ar": "فشل اعتماد مدفوعات البطاقات في محول البطاقات؛ توقف شحن المحفظة عبر الجوال."
+      }
+    },
+    {
+      "id": "RTL-WEB",
+      "name": {
+        "en": "Online Banking",
+        "ar": "الخدمات المصرفية عبر الإنترنت"
+      },
+      "regionId": "retail",
+      "type": "digital",
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Slow log-ins as customers move from the app to the website.",
+        "ar": "بطء تسجيل الدخول مع انتقال العملاء من التطبيق إلى الموقع."
+      }
+    },
+    {
+      "id": "RTL-CC",
+      "name": {
+        "en": "Retail Contact Centre",
+        "ar": "مركز اتصال الأفراد"
+      },
+      "regionId": "retail",
+      "type": "centre",
+      "status": "critical",
+      "source": "customer",
+      "note": {
+        "en": "Call queue far above normal since the card failures began.",
+        "ar": "طابور المكالمات أعلى بكثير من المعتاد منذ بدء أعطال البطاقات."
+      }
+    },
+    {
+      "id": "RTL-MAR",
+      "name": {
+        "en": "Marina Branch",
+        "ar": "فرع المارينا"
+      },
+      "regionId": "retail",
+      "type": "branch",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "RTL-OLD",
+      "name": {
+        "en": "Old Town Branch",
+        "ar": "فرع البلدة القديمة"
+      },
+      "regionId": "retail",
+      "type": "branch",
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Queues longer than usual on salary day.",
+        "ar": "طوابير أطول من المعتاد يوم صرف الرواتب."
+      }
+    },
+    {
+      "id": "RTL-ATM-N",
+      "name": {
+        "en": "North ATM Cluster",
+        "ar": "مجموعة صرافات الشمال"
+      },
+      "regionId": "retail",
+      "type": "atm",
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Repeat cash-outs before the evening refill.",
+        "ar": "نفاد متكرر للنقد قبل تعبئة المساء."
+      }
+    },
+    {
+      "id": "RTL-ATM-S",
+      "name": {
+        "en": "South ATM Cluster",
+        "ar": "مجموعة صرافات الجنوب"
+      },
+      "regionId": "retail",
+      "type": "atm",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "RTL-MALL",
+      "name": {
+        "en": "City Mall Branch",
+        "ar": "فرع سيتي مول"
+      },
+      "regionId": "retail",
+      "type": "branch",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "SME-PORTAL",
+      "name": {
+        "en": "Business Online Portal",
+        "ar": "بوابة الأعمال الإلكترونية"
+      },
+      "regionId": "sme",
+      "type": "digital",
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Merchant settlement files delayed by the card switch issue.",
+        "ar": "تأخر ملفات تسوية التجار بسبب عطل محول البطاقات."
+      }
+    },
+    {
+      "id": "SME-HUB",
+      "name": {
+        "en": "Business Banking Hub",
+        "ar": "مركز الأعمال المصرفية"
+      },
+      "regionId": "sme",
+      "type": "centre",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "SME-PORT",
+      "name": {
+        "en": "Free Zone Branch",
+        "ar": "فرع المنطقة الحرة"
+      },
+      "regionId": "sme",
+      "type": "branch",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "CORP-HOST",
+      "name": {
+        "en": "Corporate Host-to-Host",
+        "ar": "الربط المباشر للشركات"
+      },
+      "regionId": "corporate",
+      "type": "digital",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "CORP-TRADE",
+      "name": {
+        "en": "Trade Finance Desk",
+        "ar": "مكتب تمويل التجارة"
+      },
+      "regionId": "corporate",
+      "type": "centre",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "CORP-HQ",
+      "name": {
+        "en": "Head Office Branch",
+        "ar": "فرع المقر الرئيسي"
+      },
+      "regionId": "corporate",
+      "type": "branch",
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "WLT-APP",
+      "name": {
+        "en": "Wealth Client App",
+        "ar": "تطبيق عملاء الثروات"
+      },
+      "regionId": "wealth",
+      "type": "digital",
+      "status": "normal",
+      "source": "assumed",
+      "why": "Typical wealth channel set; colleague said \"you decide\"."
+    },
+    {
+      "id": "WLT-LNG",
+      "name": {
+        "en": "Private Banking Lounge",
+        "ar": "صالة الخدمات المصرفية الخاصة"
+      },
+      "regionId": "wealth",
+      "type": "branch",
+      "status": "normal",
+      "source": "assumed",
+      "why": "Typical wealth channel set; colleague said \"you decide\"."
+    }
+  ],
+  "kpis": [
+    {
+      "id": "sites-attention",
+      "kind": "count",
+      "label": {
+        "en": "Channels needing attention",
+        "ar": "القنوات التي تتطلب الانتباه"
+      },
+      "unit": {
+        "en": "monitored channels",
+        "ar": "قناة مراقبة"
+      },
+      "derive": {
+        "count": {
+          "status": [
+            "watch",
+            "critical"
+          ]
+        },
+        "of": {}
+      },
+      "trend": [
+        1,
+        1,
+        2,
+        2,
+        4,
+        6
+      ],
+      "delta": {
+        "value": 4,
+        "period": {
+          "en": "since 11:00",
+          "ar": "منذ 11:00"
+        },
+        "worseWhenUp": true
+      },
+      "definition": {
+        "en": "Monitored branches and channels whose status is watch or critical, from the same register as the tiles and the report.",
+        "ar": "الفروع والقنوات المراقبة بحالة مراقبة أو حرجة، من السجل نفسه المستخدم في المربعات والتقرير."
+      },
+      "source": "starter"
+    },
+    {
+      "id": "card-approvals",
+      "kind": "percent",
+      "label": {
+        "en": "Card approval rate",
+        "ar": "معدل اعتماد البطاقات"
+      },
+      "value": 81.4,
+      "decimals": 1,
+      "unit": {
+        "en": "of card payments approved",
+        "ar": "من مدفوعات البطاقات معتمدة"
+      },
+      "trend": [
+        97.8,
+        97.9,
+        97.6,
+        96.2,
+        88.5,
+        81.4
+      ],
+      "delta": {
+        "value": -16.4,
+        "period": {
+          "en": "vs this morning",
+          "ar": "مقارنة بالصباح"
+        },
+        "worseWhenUp": false
+      },
+      "definition": {
+        "en": "Card payments approved in the last hour, as a share of all attempts.",
+        "ar": "مدفوعات البطاقات المعتمدة خلال الساعة الأخيرة كنسبة من كل المحاولات."
+      },
+      "source": "customer"
+    },
+    {
+      "id": "fraud",
+      "kind": "measure",
+      "label": {
+        "en": "Fraud alerts today",
+        "ar": "تنبيهات الاحتيال اليوم"
+      },
+      "value": 186,
+      "unit": {
+        "en": "alerts",
+        "ar": "تنبيهاً"
+      },
+      "trend": [
+        40,
+        70,
+        95,
+        120,
+        150,
+        186
+      ],
+      "delta": {
+        "value": 54,
+        "period": {
+          "en": "above a normal Monday",
+          "ar": "أعلى من يوم اثنين معتاد"
+        },
+        "worseWhenUp": true
+      },
+      "definition": {
+        "en": "Transactions flagged by fraud models since midnight and waiting for review.",
+        "ar": "المعاملات التي رصدتها نماذج الاحتيال منذ منتصف الليل وتنتظر المراجعة."
+      },
+      "source": "assumed",
+      "why": "Mid-range of the banking starter; no customer figure given."
+    },
+    {
+      "id": "digital-uptime",
+      "kind": "percent",
+      "label": {
+        "en": "Digital availability",
+        "ar": "توافر القنوات الرقمية"
+      },
+      "value": 98.7,
+      "decimals": 1,
+      "unit": {
+        "en": "of minutes today",
+        "ar": "من دقائق اليوم"
+      },
+      "trend": [
+        99.9,
+        99.9,
+        99.9,
+        99.6,
+        99.1,
+        98.7
+      ],
+      "delta": {
+        "value": -1.2,
+        "period": {
+          "en": "vs yesterday",
+          "ar": "عن أمس"
+        },
+        "worseWhenUp": false
+      },
+      "definition": {
+        "en": "Share of minutes since midnight in which mobile and online banking were fully available.",
+        "ar": "نسبة الدقائق منذ منتصف الليل التي كانت فيها الخدمات المصرفية عبر الجوال والإنترنت متاحة بالكامل."
+      },
+      "source": "customer"
+    }
+  ],
+  "facts": [
+    {
+      "id": "customers-affected",
+      "value": 42000,
+      "unit": {
+        "en": "customers",
+        "ar": "عميل"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "call-wait",
+      "value": 19,
+      "unit": {
+        "en": "minutes average wait",
+        "ar": "دقيقة متوسط الانتظار"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "cash-outs",
+      "value": 7,
+      "unit": {
+        "en": "cash-outs in the last 30 days",
+        "ar": "حالات نفاد نقد خلال آخر 30 يوماً"
+      },
+      "source": "assumed",
+      "why": "Typical for a busy cluster refilled once a day."
+    }
+  ],
+  "incidents": [
+    {
+      "id": "card-switch",
+      "role": "hero",
+      "title": {
+        "en": "Card payments failing at the lunchtime peak",
+        "ar": "فشل مدفوعات البطاقات في ذروة الظهيرة"
+      },
+      "siteId": "RTL-APP",
+      "severity": "critical",
+      "started": "11:40",
+      "impact": {
+        "en": "{fact.customers-affected} saw a declined card payment; approvals down to {kpi.card-approvals}.",
+        "ar": "تعرض {fact.customers-affected} لرفض دفعة بالبطاقة؛ انخفض الاعتماد إلى {kpi.card-approvals}."
+      },
+      "source": "customer"
+    },
+    {
+      "id": "calls",
+      "title": {
+        "en": "Contact centre queue building",
+        "ar": "تراكم طابور مركز الاتصال"
+      },
+      "siteId": "RTL-CC",
+      "severity": "critical",
+      "started": "11:55",
+      "impact": {
+        "en": "Customers calling about declined cards wait {fact.call-wait}.",
+        "ar": "ينتظر العملاء المتصلون بشأن البطاقات المرفوضة {fact.call-wait}."
+      },
+      "source": "customer"
+    },
+    {
+      "id": "atm-cash",
+      "role": "chronic",
+      "title": {
+        "en": "Repeat cash-outs in the north",
+        "ar": "نفاد النقد المتكرر في الشمال"
+      },
+      "siteId": "RTL-ATM-N",
+      "severity": "watch",
+      "started": "09:10",
+      "impact": {
+        "en": "{fact.cash-outs} at {site.RTL-ATM-N}.",
+        "ar": "{fact.cash-outs} في {site.RTL-ATM-N}."
+      },
+      "source": "assumed",
+      "why": "Starter chronic incident for banking; colleague said \"you decide\"."
+    }
+  ],
+  "experts": [
+    {
+      "id": "ops",
+      "name": {
+        "en": "Layla",
+        "ar": "ليلى"
+      },
+      "role": {
+        "en": "Channel operations expert",
+        "ar": "خبيرة عمليات القنوات"
+      },
+      "focus": {
+        "en": "Outages, queues and failed transactions right now.",
+        "ar": "الأعطال والطوابير والمعاملات الفاشلة الآن."
+      },
+      "source": "starter",
+      "answers": [
+        {
+          "id": "now",
+          "questions": [
+            "What needs my attention right now?",
+            "What is happening across our channels?",
+            "Give me the situation",
+            "ما الذي يتطلب انتباهي الآن؟",
+            "ما وضع القنوات؟"
+          ],
+          "lead": {
+            "en": "Card payments are the priority: approvals are down to {kpi.card-approvals} and {fact.customers-affected} have been declined.",
+            "ar": "الأولوية لمدفوعات البطاقات: انخفض الاعتماد إلى {kpi.card-approvals} وتعرض {fact.customers-affected} للرفض."
+          },
+          "points": [
+            {
+              "en": "{kpi.sites-attention} need attention, most of them knock-on effects of the card switch.",
+              "ar": "{kpi.sites-attention} تتطلب الانتباه، ومعظمها آثار لعطل محول البطاقات."
+            },
+            {
+              "en": "The {site.RTL-CC} queue is at {fact.call-wait}.",
+              "ar": "طابور {site.RTL-CC} عند {fact.call-wait}."
+            },
+            {
+              "en": "The card team expects a fix by 14:00.",
+              "ar": "يتوقع فريق البطاقات الإصلاح بحلول 14:00."
+            }
+          ],
+          "followUps": [
+            "cards",
+            "atm"
+          ]
+        },
+        {
+          "id": "cards",
+          "questions": [
+            "What is wrong with card payments?",
+            "Tell me more about the card failures",
+            "When will cards work again?",
+            "ما مشكلة مدفوعات البطاقات؟",
+            "أخبرني المزيد عن أعطال البطاقات"
+          ],
+          "lead": {
+            "en": "A capacity limit at the card switch is rejecting payments at peak; approvals are at {kpi.card-approvals}.",
+            "ar": "حد في سعة محول البطاقات يرفض المدفوعات وقت الذروة؛ الاعتماد عند {kpi.card-approvals}."
+          },
+          "points": [
+            {
+              "en": "It started at 11:40 as lunchtime volume rose.",
+              "ar": "بدأ الساعة 11:40 مع ارتفاع حجم معاملات الظهيرة."
+            },
+            {
+              "en": "{site.RTL-APP} and {site.SME-PORTAL} are both affected.",
+              "ar": "يتأثر كل من {site.RTL-APP} و{site.SME-PORTAL}."
+            }
+          ],
+          "followUps": [
+            "now"
+          ]
+        },
+        {
+          "id": "atm",
+          "questions": [
+            "What are the repeat problems?",
+            "Why do the ATMs keep running out of cash?",
+            "ما المشكلات المتكررة؟",
+            "لماذا ينفد النقد من الصرافات؟"
+          ],
+          "lead": {
+            "en": "{site.RTL-ATM-N} is the repeat problem: {fact.cash-outs}.",
+            "ar": "{site.RTL-ATM-N} هي المشكلة المتكررة: {fact.cash-outs}."
+          },
+          "points": [
+            {
+              "en": "Demand there peaks before the evening refill.",
+              "ar": "يبلغ الطلب ذروته هناك قبل تعبئة المساء."
+            },
+            {
+              "en": "Forecasting cash by machine and day would move the refill ahead of the peak.",
+              "ar": "التنبؤ بالنقد لكل صراف ويوم ينقل التعبئة قبل الذروة."
+            }
+          ],
+          "followUps": [
+            "now"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "risk",
+      "name": {
+        "en": "Omar",
+        "ar": "عمر"
+      },
+      "role": {
+        "en": "Financial crime expert",
+        "ar": "خبير الجرائم المالية"
+      },
+      "focus": {
+        "en": "Fraud alerts, patterns and exposure.",
+        "ar": "تنبيهات الاحتيال وأنماطه والتعرض."
+      },
+      "source": "starter",
+      "answers": [
+        {
+          "id": "fraud",
+          "questions": [
+            "Are we seeing more fraud today?",
+            "What is the fraud picture?",
+            "Is the outage being exploited?",
+            "هل نرى احتيالاً أكثر اليوم؟",
+            "ما وضع الاحتيال؟"
+          ],
+          "lead": {
+            "en": "Fraud alerts are at {kpi.fraud.value} today, above a normal Monday.",
+            "ar": "تنبيهات الاحتيال عند {kpi.fraud.value} اليوم، أعلى من يوم اثنين معتاد."
+          },
+          "points": [
+            {
+              "en": "Most new alerts are phishing messages pretending to fix declined cards.",
+              "ar": "معظم التنبيهات الجديدة رسائل تصيد تدّعي إصلاح البطاقات المرفوضة."
+            },
+            {
+              "en": "A warning in the app and by text message usually stops this pattern within hours.",
+              "ar": "التحذير في التطبيق وبالرسائل النصية يوقف هذا النمط عادة خلال ساعات."
+            }
+          ],
+          "followUps": [
+            "message"
+          ]
+        },
+        {
+          "id": "message",
+          "questions": [
+            "What should we tell customers?",
+            "Draft a customer message",
+            "ماذا نقول للعملاء؟"
+          ],
+          "lead": {
+            "en": "Tell customers what happened, that their money is safe, and that we never ask for card details by message.",
+            "ar": "أخبر العملاء بما حدث وأن أموالهم آمنة وأننا لا نطلب بيانات البطاقة عبر الرسائل أبداً."
+          },
+          "points": [
+            {
+              "en": "Some card payments were declined this lunchtime; service is being restored.",
+              "ar": "رُفضت بعض مدفوعات البطاقات ظهر اليوم؛ تجري استعادة الخدمة."
+            },
+            {
+              "en": "Ignore any message asking you to confirm card details to fix this.",
+              "ar": "تجاهل أي رسالة تطلب تأكيد بيانات البطاقة لحل المشكلة."
+            }
+          ],
+          "followUps": [
+            "fraud"
+          ]
+        }
+      ]
+    }
+  ],
+  "refusals": {
+    "topics": [
+      {
+        "label": {
+          "en": "Named customers",
+          "ar": "العملاء بالاسم"
+        },
+        "keywords": [
+          "account balance",
+          "customer name",
+          "رصيد",
+          "اسم العميل"
+        ]
+      },
+      {
+        "label": {
+          "en": "Interest rates and pricing",
+          "ar": "أسعار الفائدة والتسعير"
+        },
+        "keywords": [
+          "interest rate",
+          "pricing",
+          "fees",
+          "سعر الفائدة",
+          "رسوم"
+        ]
+      },
+      {
+        "label": {
+          "en": "Unannounced plans",
+          "ar": "الخطط غير المعلنة"
+        },
+        "keywords": [
+          "merger",
+          "acquisition",
+          "layoff",
+          "استحواذ",
+          "اندماج"
+        ]
+      }
+    ],
+    "reply": {
+      "en": "That is outside what I can discuss in this demo. I can help with channels, fraud and what to tell customers.",
+      "ar": "هذا خارج ما يمكنني مناقشته في هذا العرض. يمكنني المساعدة في القنوات والاحتيال وما نقوله للعملاء."
+    }
+  },
+  "presenter": {
+    "beats": [
+      {
+        "id": "open",
+        "view": "overview",
+        "spotlight": "kpi-row",
+        "title": {
+          "en": "The bank at a glance",
+          "ar": "البنك في لمحة"
+        },
+        "narration": {
+          "en": "At 13:15, {kpi.sites-attention} need attention and card approvals are down to {kpi.card-approvals}.",
+          "ar": "الساعة 13:15، {kpi.sites-attention} تتطلب الانتباه وانخفض اعتماد البطاقات إلى {kpi.card-approvals}."
+        }
+      },
+      {
+        "id": "where",
+        "view": "overview",
+        "spotlight": "group-grid",
+        "regionId": "retail",
+        "title": {
+          "en": "Where it is happening",
+          "ar": "أين يحدث ذلك"
+        },
+        "narration": {
+          "en": "It is concentrated in {region.retail}, around one card switch problem.",
+          "ar": "يتركز في {region.retail} حول عطل واحد في محول البطاقات."
+        }
+      },
+      {
+        "id": "hero",
+        "view": "overview",
+        "spotlight": "incident-card-switch",
+        "title": {
+          "en": "The card failures",
+          "ar": "أعطال البطاقات"
+        },
+        "narration": {
+          "en": "Since 11:40, {fact.customers-affected} have had a card payment declined.",
+          "ar": "منذ 11:40، تعرض {fact.customers-affected} لرفض دفعة بالبطاقة."
+        }
+      },
+      {
+        "id": "ask-ops",
+        "view": "experts",
+        "spotlight": "expert-chat",
+        "title": {
+          "en": "Ask the expert",
+          "ar": "اسأل الخبيرة"
+        },
+        "narration": {
+          "en": "We ask the channel operations expert what needs attention.",
+          "ar": "نسأل خبيرة عمليات القنوات عما يتطلب الانتباه."
+        },
+        "ask": {
+          "expertId": "ops",
+          "question": {
+            "en": "What needs my attention right now?",
+            "ar": "ما الذي يتطلب انتباهي الآن؟"
+          },
+          "answerId": "now"
+        }
+      },
+      {
+        "id": "ask-risk",
+        "view": "experts",
+        "spotlight": "expert-chat",
+        "title": {
+          "en": "The fraud risk",
+          "ar": "خطر الاحتيال"
+        },
+        "narration": {
+          "en": "And the risk side: is anyone exploiting the outage?",
+          "ar": "وجانب المخاطر: هل يستغل أحد العطل؟"
+        },
+        "ask": {
+          "expertId": "risk",
+          "question": {
+            "en": "Are we seeing more fraud today?",
+            "ar": "هل نرى احتيالاً أكثر اليوم؟"
+          },
+          "answerId": "fraud"
+        }
+      },
+      {
+        "id": "report",
+        "view": "report",
+        "spotlight": "report-table",
+        "title": {
+          "en": "Every channel, one register",
+          "ar": "كل القنوات في سجل واحد"
+        },
+        "narration": {
+          "en": "Today's report lists every branch and channel from the same register as the tiles.",
+          "ar": "يعرض تقرير اليوم كل الفروع والقنوات من السجل نفسه المستخدم في المربعات."
+        }
+      }
+    ]
+  }
+}

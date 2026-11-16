@@ -1,9 +1,11 @@
 import { expect, test, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
+import { vocabularyTerms } from '../kit/src/terms'
 import type { DemoSpec } from '../kit/src/types'
 
 const spec = JSON.parse(readFileSync('pack/demo-spec.json', 'utf8')) as DemoSpec
 const attention = spec.sites.filter((s) => s.status !== 'normal').length
+const shown = spec.vocabulary ? vocabularyTerms(spec.vocabulary).sitesShown!.en : 'sites shown'
 
 function watchErrors(page: Page) {
   const errors: string[] = []
@@ -30,11 +32,20 @@ test('every key figure shows its unit line', async ({ page }) => {
   for (const k of spec.kpis) await expect(page.getByTestId(`kpi-${k.id}`).getByTestId('kpi-unit')).not.toBeEmpty()
 })
 
-test('the map, the report and the derived key figure agree on sites needing attention', async ({ page }) => {
+test('the map (or group tiles), the report and the derived key figure agree on sites needing attention', async ({ page }) => {
   await page.goto('./?view=report&motion=reduced')
-  await expect(page.getByTestId('report-count')).toContainText(`${spec.sites.length} sites shown · ${attention} need attention`)
-  const bubbles = await page.locator('[data-testid^="map-bubble-"] text').allTextContents()
-  expect(bubbles.reduce((a, b) => a + Number(b), 0)).toBe(attention)
+  await expect(page.getByTestId('report-count')).toContainText(`${spec.sites.length} ${shown} · ${attention} need attention`)
+  if (spec.geo) {
+    const bubbles = await page.locator('[data-testid^="map-bubble-"] text').allTextContents()
+    expect(bubbles.reduce((a, b) => a + Number(b), 0)).toBe(attention)
+  } else {
+    await expect(page.getByTestId('region-map')).toHaveCount(0)
+    for (const r of spec.regions) {
+      const list = spec.sites.filter((s) => s.regionId === r.id)
+      const flagged = list.filter((s) => s.status !== 'normal').length
+      await expect(page.getByTestId(`group-count-${r.id}`)).toHaveText(`${flagged} of ${list.length} need attention`)
+    }
+  }
   const derived = spec.kpis.find((k) => k.kind === 'count' && k.derive?.count.status?.every((s) => s !== 'normal'))
   if (derived) {
     await page.getByTestId('view-switch-overview').click()
@@ -47,7 +58,18 @@ test('report filters drive the table and the map together', async ({ page }) => 
   await page.getByTestId('filter-status-critical').click()
   const critical = spec.sites.filter((s) => s.status === 'critical')
   await expect(page.locator('[data-testid^="row-"]')).toHaveCount(critical.length)
-  await expect(page.locator('[data-testid^="map-site-"]')).toHaveCount(critical.length)
+  if (spec.geo) await expect(page.locator('[data-testid^="map-site-"]')).toHaveCount(critical.length)
+  else await expect(page.locator('[data-testid^="group-site-"]')).toHaveCount(critical.length)
+})
+
+test('selecting a group filters the report to it', async ({ page }) => {
+  test.skip(!!spec.geo, 'Pack has a map')
+  const region = spec.regions.find((r) => spec.sites.some((s) => s.regionId === r.id))!
+  await page.goto('./?view=report&motion=reduced')
+  await page.getByTestId(`group-${region.id}`).click()
+  await expect(page.locator('[data-testid^="row-"]')).toHaveCount(spec.sites.filter((s) => s.regionId === region.id).length)
+  await page.getByTestId('map-back').click()
+  await expect(page.locator('[data-testid^="row-"]')).toHaveCount(spec.sites.length)
 })
 
 test('presenter beats with a question produce the scripted answer', async ({ page }) => {

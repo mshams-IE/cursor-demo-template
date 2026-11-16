@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
+import banking from '../../samples/banking/demo-spec.json'
+import telecom from '../../samples/telecom/demo-spec.json'
 import water from '../../samples/water/demo-spec.json'
 import { ask } from '../src/engine'
-import { vocabularyTerms } from '../src/i18n'
+import { vocabularyTerms } from '../src/terms'
 import { definePack, render } from '../src/pack'
 import type { DemoSpec } from '../src/types'
 import { checkSpec, nameKey, type GateId } from './validate'
@@ -16,6 +18,15 @@ describe('gates on the water sample', () => {
 
   it('lists the assumed values', () => {
     expect(checkSpec(water).assumptions.map((a) => a.path)).toEqual(['sites.KHJ-D1', 'kpis.supply', 'facts.night-flow-rise', 'incidents.night-flow'])
+  })
+})
+
+describe('gates on the other samples', () => {
+  it.each([
+    ['telecom', telecom],
+    ['banking (no map)', banking],
+  ])('%s passes every gate', (_, spec) => {
+    expect(checkSpec(spec).issues.filter((i) => i.level === 'error')).toEqual([])
   })
 })
 
