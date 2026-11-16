@@ -1,0 +1,26 @@
+import type { Text } from '../../types'
+
+export const B = {
+  situationBrief: { en: 'Situation brief', ar: 'موجز الوضع' },
+  auto: { en: 'Generated from the data at the clock', ar: 'مولّد من البيانات عند وقت الساعة' },
+  saved: { en: 'Saved briefs', ar: 'الموجزات المحفوظة' },
+  noSaved: { en: 'No saved briefs yet. Create one from Response Planning or an expert answer.', ar: 'لا توجد موجزات محفوظة بعد. أنشئ موجزاً من تخطيط الاستجابة أو من إجابة خبير.' },
+  executiveBrief: { en: 'Executive brief', ar: 'موجز تنفيذي' },
+  situation: { en: 'Situation', ar: 'الوضع' },
+  keyFigures: { en: 'Key figures', ar: 'الأرقام الرئيسية' },
+  alerts: { en: 'Alerts', ar: 'التنبيهات' },
+  plan: { en: 'Recommended plan', ar: 'الخطة الموصى بها' },
+  actions: { en: 'Planned actions', ar: 'الإجراءات المخططة' },
+  note: { en: 'Note', ar: 'ملاحظة' },
+  illustrative: { en: 'Illustrative data for demonstration.', ar: 'بيانات توضيحية لأغراض العرض.' },
+  noIncidents: { en: 'No active incidents at this time.', ar: 'لا توجد حوادث نشطة في هذا الوقت.' },
+  copy: { en: 'Copy', ar: 'نسخ' },
+  copied: { en: 'Brief copied', ar: 'تم نسخ الموجز' },
+  print: { en: 'Print', ar: 'طباعة' },
+  download: { en: 'Download', ar: 'تنزيل' },
+  readAloud: { en: 'Read aloud', ar: 'قراءة بصوت عالٍ' },
+  stop: { en: 'Stop', ar: 'إيقاف' },
+  presentPack: { en: 'Present executive pack', ar: 'عرض الحزمة التنفيذية' },
+  preparedFor: { en: 'Prepared for', ar: 'أُعدّ لـ' },
+  footer: { en: 'Prepared with Cloudera digital experts · illustrative data for demonstration', ar: 'أُعدّ بواسطة الخبراء الرقميين من Cloudera · بيانات توضيحية لأغراض العرض' },
+} satisfies Record<string, Text>

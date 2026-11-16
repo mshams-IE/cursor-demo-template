@@ -1,0 +1,26 @@
+import type { Text } from '../../types'
+
+export const P = {
+  executivePack: { en: 'Executive pack', ar: 'الحزمة التنفيذية' },
+  preparedFor: { en: 'Prepared for', ar: 'أُعدّ لـ' },
+  situation: { en: 'Situation', ar: 'الوضع' },
+  statusAt: { en: 'Status at', ar: 'الوضع عند' },
+  incidents: { en: 'Incidents', ar: 'الحوادث' },
+  activeIncidents: { en: 'Active incidents', ar: 'الحوادث النشطة' },
+  noIncidents: { en: 'No active incidents at this time', ar: 'لا توجد حوادث نشطة في هذا الوقت' },
+  timeline: { en: 'Timeline', ar: 'التسلسل الزمني' },
+  plan: { en: 'Recommended plan', ar: 'الخطة الموصى بها' },
+  baseline: { en: 'Baseline', ar: 'خط الأساس' },
+  planLabel: { en: 'Plan', ar: 'الخطة' },
+  exposure: { en: 'Exposure', ar: 'التعرض' },
+  briefs: { en: 'Executive briefs', ar: 'الموجزات التنفيذية' },
+  latestBrief: { en: 'Latest brief', ar: 'أحدث موجز' },
+  assumptions: { en: 'Assumptions', ar: 'الافتراضات' },
+  assumptionsTitle: { en: 'What this demo assumes', ar: 'ما يفترضه هذا العرض' },
+  more: { en: 'more in the pack', ar: 'أخرى في الحزمة' },
+  print: { en: 'Print or save as PDF', ar: 'طباعة أو حفظ PDF' },
+  back: { en: 'Back', ar: 'رجوع' },
+  previous: { en: 'Previous', ar: 'السابق' },
+  next: { en: 'Next', ar: 'التالي' },
+  illustrative: { en: 'Illustrative data for demonstration', ar: 'بيانات توضيحية لأغراض العرض' },
+} satisfies Record<string, Text>

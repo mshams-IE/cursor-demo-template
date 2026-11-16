@@ -85,7 +85,7 @@ export function evaluatePlan(spec: DemoSpec, inputs: PlanInputs): PlanEvaluation
   const effective = Object.fromEntries(options.map((o) => [o.id, Math.max(0, o.benefit * (1 - (o.sensitivity ?? 0) * inputs.scenario))]))
   const total = totalAffected(spec, p, inputs.clockMs)
   const maxHours = Math.max(inputs.windowHours, ...p.windows, ...options.map((o) => o.hours[1]))
-  const curveHours = [...new Set([0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 36, 48, 72].filter((h) => h <= maxHours).concat(inputs.windowHours))].sort((a, b) => a - b)
+  const curveHours = [...new Set([0, 1, 2, 3, 4, 6, 8, 12, 16, 24, 36, 48, 72].filter((h) => h <= maxHours).concat(inputs.windowHours, ...options.map((o) => o.hours[1]).filter((h) => h <= 72)))].sort((a, b) => a - b)
   const plan = optimise(options, effective, total, inputs.windowHours, inputs.budget, curveHours)
   const baseline = outcome([], effective, total, inputs.windowHours, curveHours)
   const left = inputs.budget - plan.cost

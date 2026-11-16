@@ -1,0 +1,86 @@
+.wall {
+  background: radial-gradient(120% 90% at 20% 0%, #2a1a7a 0%, var(--brand-primary) 48%, #07001f 100%);
+}
+.pack {
+  background: radial-gradient(120% 90% at 50% 0%, #2a1a7a 0%, var(--brand-primary) 55%, #07001f 100%);
+}
+.wall-btn {
+  display: inline-flex;
+  height: 2.6rem;
+  width: 2.6rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+  transition: background 0.2s;
+  cursor: pointer;
+}
+.wall-btn:hover {
+  background: rgb(255 255 255 / 0.18);
+}
+.wall-btn[aria-pressed='true'] {
+  background: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+}
+.wall-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.ticker {
+  animation: ticker 60s linear infinite;
+}
+.ticker-rtl {
+  animation-name: ticker-rtl;
+}
+@keyframes ticker {
+  to {
+    transform: translateX(-50%);
+  }
+}
+@keyframes ticker-rtl {
+  to {
+    transform: translateX(50%);
+  }
+}
+.pack-bar {
+  animation: pack-bar 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-origin: left;
+}
+@keyframes pack-bar {
+  from {
+    transform: scaleX(0);
+  }
+}
+html[data-reduced-motion='true'] .ticker,
+html[data-reduced-motion='true'] .pack-bar {
+  animation: none;
+}
+
+.pack-print {
+  display: none;
+}
+@page pack-slide {
+  size: 1280px 720px;
+  margin: 0;
+}
+@media print {
+  .pack {
+    background: none;
+    display: block;
+    padding: 0;
+  }
+  .pack-screen {
+    display: none;
+  }
+  .pack-print {
+    display: block;
+  }
+  .pack-slide {
+    page: pack-slide;
+    box-shadow: none;
+    border-radius: 0;
+    break-after: page;
+  }
+}

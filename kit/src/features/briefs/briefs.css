@@ -1,0 +1,19 @@
+@media print {
+  body:has(.brief-sheet) * {
+    visibility: hidden;
+  }
+  body:has(.brief-sheet) .brief-sheet,
+  body:has(.brief-sheet) .brief-sheet * {
+    visibility: visible;
+  }
+  body:has(.brief-sheet) .brief-sheet {
+    position: absolute;
+    inset: 0 0 auto 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  body:has(.brief-sheet) #main {
+    overflow: visible;
+  }
+}
