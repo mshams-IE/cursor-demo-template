@@ -5,13 +5,17 @@ description: How to write digital expert personas and their answers for a demo p
 
 # Writing expert answers
 
-The kit's answer engine (`kit/src/engine.ts`) routes a question to the answer whose `questions` phrasings best match it, after checking refusal keywords first. Answers are written, not generated, so they stay accurate on stage.
+The kit's answer engine (`kit/src/engine.ts`, `kit/src/engine/`) routes a question to the answer whose `questions` phrasings best match it, after checking refusal keywords first. Answers are written, not generated, so they stay accurate on stage.
 
 ## Personas
 
 - Two to four experts, each with a distinct job, such as operations now, asset health or customers.
 - Use a first name and a role ("Sara, Network operations expert"). Never use a real person's name.
 - `focus` is one sentence on what they are good for. It shows on their card.
+- Optional, for the full experts home: `portrait` (`kit:man-1` … `kit:man-3`, `kit:woman-1` … `kit:woman-3`, AI-generated, or an image in `public/`), `available: false` for "available on request", `category` (from `expertCategories`), `tags`, `intro` and `greeting`.
+- A **team**: `specialists` are AI agents (name, role, `activities` lines, `stage`) that an expert calls through `team`. They animate while an answer is prepared. `topics` are words that hand a question over from another expert.
+
+When no scripted answer matches well, the engine composes one from the data (status, incidents, key figures, sites, `history`, `planning`, report counts), and a connected OpenAI model can answer too, with its numbers checked against the data. Scripted answers still win for the questions you script, so write the ones the presenter will ask.
 
 ## Answer shape
 

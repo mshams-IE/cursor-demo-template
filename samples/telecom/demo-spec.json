@@ -1,6 +1,6 @@
 {
   "specVersion": 1,
-  "kitVersion": "0.2.0",
+  "kitVersion": "0.3.0",
   "wizard": {
     "step": 9,
     "completed": [

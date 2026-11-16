@@ -7,10 +7,13 @@ description: How to write the presenter beats and teleprompter story for a demo,
 
 The presenter bar (clapperboard button in the top bar) walks through `presenter.beats`. Each beat can:
 
-- switch the view (`view`);
-- zoom the map to a region, or select its group tile when there is no map (`regionId`);
+- open a page (`page`: `experts`, `overview`, `sites`, `planning`, `briefs` or `architecture`; the older `view` still works);
+- move the clock (`clock`, a local time such as `13:05`) so the story replays through the day;
+- zoom the map to a region, or select its group tile when there is no map (`regionId`), or pick a site (`siteId`);
 - spotlight one element (`spotlight`);
-- ask an expert a scripted question (`ask`).
+- ask an expert a scripted question (`ask`); the bar opens that expert's chat and the answer appears live.
+
+`presenter.beats` is the default story. Add `presenter.stories` (each with its own `beats`) for alternative walk-throughs; the bar has a story picker.
 
 ## The story arc (five to seven beats)
 
@@ -27,7 +30,10 @@ The presenter bar (clapperboard button in the top bar) walks through `presenter.
 - `narration` is what the presenter says: one or two spoken sentences. Numbers and names come from placeholders, as in answers.
 - `spotlight` must be a kit element:
   - `kpi-row`, `kpi-<id>`, `region-map`, `map-legend`, `group-grid`, `group-<regionId>`, `incident-list`, `incident-<id>`;
-  - `report-filters`, `report-table`, `expert-cards`, `expert-card-<id>`, `expert-chat`, `chat-input`.
+  - `report-filters`, `report-table`, `expert-cards`, `expert-card-<id>`, `expert-chat`, `chat-input`;
+  - `team-strip`, `context-panel`, `site-investigation`, `metric-chart-<id>`, `alert-<id>`, `sites-page`, `site-table`;
+  - `plan-card`, `budget-slider`, `whatif-card`, `restoration-curve`, `brief-preview`, `architecture-page`, `arch-trace`, `report-overview`, `report-tiles`.
+  The full list is `KNOWN_TESTIDS` in `kit/src/testids.ts`; the gates reject anything else.
 - `ask.question` is written exactly as the presenter will type or say it, in each language. `ask.answerId` is the answer it must produce. `npm run gates` fails if the question routes anywhere else.
 - Check the presenter bar's assumptions note (clipboard icon) before presenting. Never claim an assumed value as a customer fact.
 

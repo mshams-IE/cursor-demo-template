@@ -71,6 +71,12 @@ Each step writes its part of the spec, then runs `npm run gates:spec -- --step N
 6. **Story.** The hero incident (what, where, when, impact), the chronic problem, and one or two supporting incidents, plus `clock.observedAt`. Mark them with `"role": "hero"` and `"role": "chronic"`. Impact text uses placeholders, for example `"{fact.customers-affected} in {site.KHB-D1} without supply"`.
 7. **Experts.** Two to four personas from the starter's roles, each with a name, role, focus and three to five answers. Write the answers following `.cursor/skills/demo-experts/SKILL.md`. Set the refusal topics and reply.
 8. **Presenter.** Five to seven beats following `.cursor/skills/demo-presenter/SKILL.md`, including at least one `ask` beat for the hero incident.
+   **Richer demos (optional, after step 8).** Each of these switches on more of the app; offer them when the user wants the full experience, and write them the way `samples/power/demo-spec.json` does:
+   - the day moving: `clock.replay`, site `timeline` and `metrics` with `series`, KPI `series`, incident `resolved`, `timeline`, `cause`, `evidence`, `restoreHours`, `affected`, and `alerts`;
+   - expert portraits (`kit:man-1` … `kit:woman-3` or an image in `public/`), `available`, `category` with `expertCategories`, `tags`, `intro`, `greeting`, `topics`, and a team from `specialists`;
+   - `planning` (options with cost, benefit and hours, budget, windows, optional scenario and what-if) for the Response planning page;
+   - `history` series for questions about the past year, `report.records` for *Today's report*, `architecture` sources and apps, and `presenter.stories`.
+   Every new item still needs `source`, Arabic text and numbers from the data; the gates check all of it.
 9. **Review.** Show a one-page summary:
    - customer, industry, languages and brand;
    - wording (`vocabulary`) and map (`geo`, or tiles);
