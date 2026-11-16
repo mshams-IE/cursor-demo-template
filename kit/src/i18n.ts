@@ -54,6 +54,7 @@ const UI = {
   language: { en: 'Language', ar: 'اللغة' },
   open: { en: 'Open', ar: 'افتح' },
   steps: { en: 'steps', ar: 'خطوات' },
+  mapPending: { en: 'The map appears once the wizard has the organisation and sites.', ar: 'تظهر الخريطة بعد إدخال المناطق والمواقع في المعالج.' },
 } satisfies Record<string, Text>
 
 export type UiKey = keyof typeof UI

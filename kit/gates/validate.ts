@@ -1,6 +1,6 @@
 import { ask, fold } from '../src/engine'
 import { BOUNDARIES, featureBBox, pointInBBox } from '../src/geo'
-import { definePack, type Pack } from '../src/pack'
+import { collectAssumptions, definePack, type Pack } from '../src/pack'
 import { KNOWN_TESTIDS } from '../src/testids'
 import type { DemoSpec, Kpi, Locale, Sourced, Text } from '../src/types'
 import { KIT_VERSION } from '../src/version'
@@ -188,7 +188,7 @@ export function checkSpec(raw: unknown, opts: { upToStep?: number } = {}): Repor
   if (pack) checkNumbers(spec, names, languages, has, err)
   if (pack && has(7) && has(8)) checkPresenter(spec, pack, languages, err)
 
-  return { issues, assumptions: pack?.assumptions ?? [], stepsChecked: [...done].sort((a, b) => a - b) }
+  return { issues, assumptions: collectAssumptions(spec), stepsChecked: [...done].sort((a, b) => a - b) }
 }
 
 function safePack(spec: DemoSpec) {

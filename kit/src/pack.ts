@@ -88,7 +88,7 @@ export function render(pack: Pack, text: string, locale: Locale): string {
   })
 }
 
-function collectAssumptions(spec: DemoSpec): Assumption[] {
+export function collectAssumptions(spec: DemoSpec): Assumption[] {
   const out: Assumption[] = []
   const add = (path: string, item: Sourced, label: string) => {
     if (item.source === 'assumed') out.push({ path, label, why: item.why ?? '' })

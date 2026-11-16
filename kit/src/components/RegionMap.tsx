@@ -47,7 +47,8 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
     const sel = spec.regions.find((r) => r.id === regionId)
     const inView = spec.sites.filter((s) => !sel || s.regionId === sel.id)
     if (!inView.length) {
-      const feats = boundaries.features.filter((f) => (sel ? f.properties.id === sel.geoId : packFeatures.has(f.properties.id)))
+      if (!spec.regions.length) return [0, 0, 1, 1]
+      const feats = (boundaries?.features ?? []).filter((f) => (sel ? f.properties.id === sel.geoId : packFeatures.has(f.properties.id)))
       return padBox(unionBBox(feats.map(featureBBox)), 0.06)
     }
     return minSpan(padBox(unionBBox(inView.map((s) => [...s.coordinates, ...s.coordinates] as BBox)), 0.2), sel ? 1.4 : 4)
@@ -56,7 +57,7 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
 
   const paths = useMemo(
     () =>
-      boundaries.features.map((f) => {
+      (boundaries?.features ?? []).map((f) => {
         const polys = f.geometry.type === 'Polygon' ? [f.geometry.coordinates] : f.geometry.coordinates
         const d = polys.map((poly) => poly.map((ring) => 'M' + ring.map((pt) => proj(pt).map((v) => v.toFixed(1)).join(',')).join('L') + 'Z').join('')).join('')
         return { geoId: f.properties.id, d, bbox: featureBBox(f) }
@@ -90,6 +91,13 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
   const popupSite = popup ? pack.site(popup) : undefined
   const Back = rtl ? ArrowRight : ArrowLeft
   const ordered = [...sites].sort((a, b) => SEVERITY_RANK[a.status] - SEVERITY_RANK[b.status])
+
+  if (!spec.regions.length || !boundaries)
+    return (
+      <div className="flex w-full items-center justify-center rounded-[var(--radius-card)] border border-dashed border-line bg-white text-[0.9rem] text-muted" style={{ height }} data-testid={testid}>
+        {t('mapPending')}
+      </div>
+    )
 
   return (
     <div className="relative w-full overflow-hidden rounded-[var(--radius-card)] border border-line bg-[#e4edf3]" style={{ height }} data-testid={testid}>
