@@ -4,7 +4,9 @@ A Cloudera-branded template for executive AI demos. Every demo built from it sha
 
 | | |
 |---|---|
-| **Views** | Executive overview, Today's report (map above a filterable table), Digital experts (chat), Presenter bar |
+| **Views** | Executive overview, Today's report (map, or group tiles, above a filterable table), Digital experts (chat), Presenter bar |
+| **Fits** | Any industry: starters for power, water, telecom, aviation, banking, retail and healthcare, with a generic starter for everything else. The demo's own wording ("Branch", "Business line") replaces "Site" and "Region" |
+| **Maps** | Saudi Arabia, UAE, Qatar, Kuwait, Oman and Bahrain built in; any other country in one command; or no map at all |
 | **Languages** | English, or English and Arabic, with right-to-left layout |
 | **Theme** | Cloudera by default; optional customer co-branding (logo and accent colour) |
 | **Checks** | Names, units, numbers, languages, sources and presenter script, run on every pull request |
@@ -54,7 +56,8 @@ npm run gates:spec -- --step 4   # gates for the wizard steps done so far
 npx playwright test              # browser checks in every pack language
 node scripts/shots.mjs           # screenshots of every view (with dev running)
 npm run build:offline            # one self-contained HTML file in dist-offline/
-npm run use-sample -- telecom    # load a sample (water, telecom) or "blank"
+npm run use-sample -- telecom    # load a sample (water, telecom, banking) or "blank"
+node scripts/add-geo.mjs ARE     # import a country's ADM1 boundaries into kit/geo/
 ```
 
 ## What's where
@@ -63,8 +66,9 @@ npm run use-sample -- telecom    # load a sample (water, telecom) or "blank"
 pack/demo-spec.json   the demo: customer, regions, sites, key figures, story, experts, presenter (edit this)
 kit/                  shared look, components, answer engine, gates and starters (don't edit in a demo)
 kit/themes/           Cloudera theme
-kit/starters/         industry starter lists that back "You decide"
-samples/              finished example demos (water, telecom)
+kit/starters/         industry starter lists that back "You decide" (plus a generic fallback)
+kit/geo/              simplified country boundary sets for the map
+samples/              finished example demos (water and telecom with a map, banking without)
 .cursor/skills/       new-demo wizard, demo-design, demo-experts, demo-gates, demo-presenter, update-from-template
 .cursor/rules/        always-on demo standards
 .github/workflows/    gates on every pull request, with screenshots as an artifact
@@ -77,5 +81,6 @@ When the template improves, open the demo in Cursor and say **"update from templ
 ## Notes
 
 - **Branding:** the colours, font and logo come from the public cloudera.com site and are pending confirmation by Cloudera marketing. Replace `kit/assets/cloudera-logo.png` with the official SVG when the brand kit is available.
-- **Map boundaries:** geoBoundaries gbOpen SAU ADM1 (OpenStreetMap contributors), ODbL 1.0. To add another country, put a simplified ADM1 GeoJSON in `kit/geo/` and register it in `kit/src/geo.ts`.
+- **Map boundaries:** geoBoundaries gbOpen ADM1 (OpenStreetMap contributors), ODbL 1.0, for Saudi Arabia (`sa-adm1`), the UAE (`ae-adm1`), Qatar (`qa-adm1`), Kuwait (`kw-adm1`), Oman (`om-adm1`) and Bahrain (`bh-adm1`). To add another country, run `node scripts/add-geo.mjs <ISO3>` and register the file it writes in `kit/src/geo.ts`. A demo whose organisation doesn't map to geography (business lines, products, departments) leaves `geo` out and shows one tile per group instead.
+- **Wording:** `vocabulary` in the spec sets what the demo calls its sites, regions and asset types, in every pack language. Without it, the UI says "Site", "Region" and "Asset type".
 - **Data:** all data in the samples is fictional and illustrative.
