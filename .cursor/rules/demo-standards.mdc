@@ -1,0 +1,17 @@
+---
+description: Standards every demo built from this template follows
+alwaysApply: true
+---
+
+# Demo standards
+
+This repository is a Cloudera executive demo built from `cursor-demo-template`. The look, layout and behaviour come from `kit/`; the demo's content lives in `pack/demo-spec.json`.
+
+- **Edit `pack/` only.** Never edit `kit/` in a demo repository. If the kit is missing something, say so and suggest raising it with the template owner; the `update-from-template` skill brings kit changes in.
+- **Use kit components.** No hand-built cards, maps, tiles, charts or chat panels. No new colours outside the theme tokens; status colours (normal, watch, critical) are never re-branded.
+- **One spelling per name.** Every region and site name is spelled once, in the spec. Answers, narration and incident text refer to them with `{site.ID}` and `{region.ID}`.
+- **Every number comes from the data.** Text uses `{kpi.ID}`, `{kpi.ID.value}`, `{fact.ID}` or `{fact.ID.value}`; only times (HH:MM) and years may be typed in. A count always has an "of N" basis.
+- **Every pack language, everywhere.** When `languages` includes `ar`, every text has Arabic, and every answer has at least one Arabic question phrasing.
+- **Say where values came from.** Every item has `source: customer | starter | assumed`; assumed items carry a one-line `why`. Never assume the customer's name or logo, real people's names, or figures the customer has officially reported.
+- **Run the gates before saying something is done:** `npm run gates` (full) or `npm run gates:spec -- --step N` (during the wizard). Fix every error; mention warnings.
+- To start or continue building a demo, follow `.cursor/skills/new-demo/SKILL.md`.
