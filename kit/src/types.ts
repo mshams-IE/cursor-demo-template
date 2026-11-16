@@ -18,7 +18,34 @@ export interface Sourced {
   why?: string
 }
 
-export type Industry = 'power' | 'water' | 'telecom' | 'aviation' | 'oil-gas' | 'other'
+export type Industry =
+  | 'power'
+  | 'water'
+  | 'telecom'
+  | 'aviation'
+  | 'oil-gas'
+  | 'banking'
+  | 'retail'
+  | 'healthcare'
+  | 'government'
+  | 'manufacturing'
+  | 'logistics'
+  | 'other'
+
+/**
+ * What this demo calls its sites, regions and asset types, e.g. "Branch" and "Business line" for a bank.
+ * English is a label ("Business line"); lists use it lower-cased ("All business lines").
+ * Arabic is written with the definite article ("الفرع", "الفروع") so it reads in "كل الفروع" and "حالة الفرع".
+ * Omit to keep "Site", "Region" and "Asset type".
+ */
+export interface Vocabulary {
+  entity: Text
+  entityPlural: Text
+  group: Text
+  groupPlural: Text
+  type?: Text
+  typePlural?: Text
+}
 
 /** Status colours are fixed by the kit and never re-branded. */
 export type Severity = 'normal' | 'watch' | 'critical'
@@ -39,8 +66,8 @@ export interface Clock {
 
 export interface Region extends Sourced {
   id: string
-  /** Feature id in the boundary set named by `geo`. */
-  geoId: string
+  /** Feature id in the boundary set named by `geo`. Required when the pack has a map. */
+  geoId?: string
   name: Text
 }
 
@@ -56,8 +83,8 @@ export interface Site extends Sourced {
   name: Text
   regionId: string
   type: string
-  /** [longitude, latitude] */
-  coordinates: [number, number]
+  /** [longitude, latitude]. Required when the pack has a map. */
+  coordinates?: [number, number]
   status: Severity
   /** Why the site is not normal. Required for watch and critical. */
   note?: Text
@@ -180,7 +207,9 @@ export interface DemoSpec {
   subtitle: Text
   audience: Text
   brand: { theme: 'cloudera'; coBrand: boolean }
-  geo: string
+  /** Boundary set for the map, e.g. "sa-adm1". Omit when the organisation does not map to geography; groups then show as tiles. */
+  geo?: string
+  vocabulary?: Vocabulary
   clock: Clock
   regions: Region[]
   assetTypes: AssetType[]

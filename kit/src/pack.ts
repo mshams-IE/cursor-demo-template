@@ -16,7 +16,8 @@ export interface Assumption {
 
 export interface Pack {
   spec: DemoSpec
-  boundaries: Boundaries
+  /** Undefined when the pack has no map; the kit then shows groups as tiles. */
+  boundaries?: Boundaries
   bilingual: boolean
   site: (id: string) => Site | undefined
   regionName: (id: string, locale: Locale) => string
@@ -94,9 +95,10 @@ export function collectAssumptions(spec: DemoSpec): Assumption[] {
     if (item.source === 'assumed') out.push({ path, label, why: item.why ?? '' })
   }
   add('customer', spec.customer, `Customer: ${spec.customer.name.en}`)
-  spec.regions.forEach((r) => add(`regions.${r.id}`, r, `Region: ${r.name.en}`))
-  spec.assetTypes.forEach((a) => add(`assetTypes.${a.id}`, a, `Asset type: ${a.name.en}`))
-  spec.sites.forEach((s) => add(`sites.${s.id}`, s, `Site: ${s.name.en}`))
+  const v = spec.vocabulary
+  spec.regions.forEach((r) => add(`regions.${r.id}`, r, `${v?.group.en ?? 'Region'}: ${r.name.en}`))
+  spec.assetTypes.forEach((a) => add(`assetTypes.${a.id}`, a, `${v?.type?.en ?? 'Asset type'}: ${a.name.en}`))
+  spec.sites.forEach((s) => add(`sites.${s.id}`, s, `${v?.entity.en ?? 'Site'}: ${s.name.en}`))
   spec.kpis.forEach((k) => add(`kpis.${k.id}`, k, `Key figure: ${k.label.en}`))
   spec.facts.forEach((f) => add(`facts.${f.id}`, f, `Figure: ${fmtNumber(f.value, 'en', f.decimals ?? 0)} ${f.unit.en}`))
   spec.incidents.forEach((i) => add(`incidents.${i.id}`, i, `Incident: ${i.title.en}`))
@@ -106,7 +108,7 @@ export function collectAssumptions(spec: DemoSpec): Assumption[] {
 
 export function definePack(raw: unknown): Pack {
   const spec = raw as DemoSpec
-  const boundaries = BOUNDARIES[spec.geo]
+  const boundaries = spec.geo ? BOUNDARIES[spec.geo] : undefined
   const sites = new Map(spec.sites.map((s) => [s.id, s]))
   const regions = new Map(spec.regions.map((r) => [r.id, r]))
   const types = new Map(spec.assetTypes.map((t) => [t.id, t]))

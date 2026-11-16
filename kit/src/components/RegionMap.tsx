@@ -43,16 +43,17 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
   const { spec, boundaries } = pack
 
   const packFeatures = useMemo(() => new Map(spec.regions.map((r) => [r.geoId, r])), [spec.regions])
+  const placed = useMemo(() => spec.sites.filter((s): s is Site & { coordinates: [number, number] } => !!s.coordinates), [spec.sites])
   const view = useMemo<BBox>(() => {
     const sel = spec.regions.find((r) => r.id === regionId)
-    const inView = spec.sites.filter((s) => !sel || s.regionId === sel.id)
+    const inView = placed.filter((s) => !sel || s.regionId === sel.id)
     if (!inView.length) {
       if (!spec.regions.length) return [0, 0, 1, 1]
       const feats = (boundaries?.features ?? []).filter((f) => (sel ? f.properties.id === sel.geoId : packFeatures.has(f.properties.id)))
       return padBox(unionBBox(feats.map(featureBBox)), 0.06)
     }
     return minSpan(padBox(unionBBox(inView.map((s) => [...s.coordinates, ...s.coordinates] as BBox)), 0.2), sel ? 1.4 : 4)
-  }, [regionId, spec.regions, spec.sites, boundaries, packFeatures])
+  }, [regionId, spec.regions, placed, boundaries, packFeatures])
   const proj = useMemo(() => projector(view), [view])
 
   const paths = useMemo(
@@ -74,7 +75,7 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
   const regionBox = (rid: string) => paths.find((x) => x.geoId === spec.regions.find((r) => r.id === rid)?.geoId)?.bbox
   /** Bubble sits on the region's sites; the label sits in the visible part of the region, away from the dots. */
   const bubbleAt = (rid: string): [number, number] => {
-    const list = spec.sites.filter((s) => s.regionId === rid)
+    const list = placed.filter((s) => s.regionId === rid)
     if (!list.length) return labelAt(rid)
     const [x, y] = proj([Math.max(...list.map((s) => s.coordinates[0])), Math.max(...list.map((s) => s.coordinates[1]))])
     return [x + 22, y - 18]
@@ -90,7 +91,7 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
   const showSiteLabels = zoomed
   const popupSite = popup ? pack.site(popup) : undefined
   const Back = rtl ? ArrowRight : ArrowLeft
-  const ordered = [...sites].sort((a, b) => SEVERITY_RANK[a.status] - SEVERITY_RANK[b.status])
+  const ordered = sites.filter((s) => s.coordinates).sort((a, b) => SEVERITY_RANK[a.status] - SEVERITY_RANK[b.status])
 
   if (!spec.regions.length || !boundaries)
     return (
@@ -144,7 +145,7 @@ export function RegionMap({ sites, height = '26rem', testid = 'region-map' }: { 
             )
           })}
         {ordered.map((s) => {
-          const [x, y] = proj(s.coordinates)
+          const [x, y] = proj(s.coordinates!)
           const color = STATUS_VAR[s.status]
           const r = s.status === 'normal' ? 6.5 : 8.5
           return (

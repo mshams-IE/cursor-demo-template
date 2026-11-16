@@ -6,6 +6,8 @@ export const KNOWN_TESTIDS = [
   'kpi',
   'region-map',
   'map-legend',
+  'group-grid',
+  'group',
   'incident-list',
   'incident',
   'report-filters',

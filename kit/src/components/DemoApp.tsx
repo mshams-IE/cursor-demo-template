@@ -4,10 +4,10 @@ import { definePack, type Pack } from '../pack'
 import { useDemo } from '../store'
 import type { DemoSpec } from '../types'
 import { ExpertsView } from './ExpertsView'
+import { OrganisationView } from './GroupGrid'
 import { IncidentList } from './IncidentList'
 import { KpiRow } from './KpiRow'
 import { PresenterBar } from './PresenterBar'
-import { RegionMap } from './RegionMap'
 import { ReportView } from './ReportView'
 import { TopBar } from './TopBar'
 
@@ -17,7 +17,7 @@ export function OverviewView() {
     <div className="space-y-4">
       <KpiRow />
       <div className="grid gap-4 xl:grid-cols-[1fr_24rem]">
-        <RegionMap sites={pack.spec.sites} height="30rem" />
+        <OrganisationView sites={pack.spec.sites} height="30rem" />
         <IncidentList />
       </div>
     </div>

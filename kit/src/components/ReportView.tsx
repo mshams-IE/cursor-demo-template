@@ -5,10 +5,10 @@ import { useT } from '../i18n'
 import { SEVERITY_RANK } from '../pack'
 import { useDemo } from '../store'
 import type { Severity } from '../types'
-import { RegionMap } from './RegionMap'
+import { OrganisationView } from './GroupGrid'
 import { Card, Segmented, StatusChip } from './ui'
 
-/** Full-width map above a filterable site table. Filters drive both, so the map and table always agree. */
+/** Full-width map (or group tiles) above a filterable site table. Filters drive both, so the map and table always agree. */
 export function ReportView() {
   const { pack, p, t, sev, locale } = useT()
   const { regionId, statusFilter, typeFilter, search } = useDemo()
@@ -24,7 +24,7 @@ export function ReportView() {
 
   return (
     <div className="space-y-4">
-      <RegionMap sites={sites} height="24rem" />
+      <OrganisationView sites={sites} height="24rem" />
       <Card testid="report-table">
         <div className="mb-4 flex flex-wrap items-center gap-3" data-testid="report-filters">
           <select className="rounded-full border border-line bg-white px-3 py-2 text-[0.88rem]" value={regionId ?? ''} onChange={(e) => st.selectRegion(e.target.value || undefined)} aria-label={t('region')} data-testid="filter-region">
