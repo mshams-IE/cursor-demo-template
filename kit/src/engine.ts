@@ -17,7 +17,7 @@ export function fold(s: string): string {
   return s
     .toLowerCase()
     .normalize('NFKD')
-    .replace(/[\u064B-\u065F\u0670\u0640\u0300-\u036f]/g, '')
+    .replace(/\p{M}|\u0640/gu, '')
     .replace(/[\u0622\u0623\u0625\u0627]/g, '\u0627')
     .replace(/ى/g, 'ي')
     .replace(/ة/g, 'ه')
