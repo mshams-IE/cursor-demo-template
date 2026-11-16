@@ -34,12 +34,12 @@ function ClockControl() {
       >
         {playing ? <Pause size={16} /> : <Play size={16} />}
       </button>
-      <div className="leading-tight">
+      <div className="whitespace-nowrap leading-tight">
         <div className="num text-[1.35rem] font-semibold tracking-tight text-ink" data-testid="clock-time">
           {formatTime(clockMs, locale)} <span className="text-[0.8rem] font-medium text-muted">{p(pack.spec.clock.zone)}</span>
         </div>
-        <div className="hidden text-[0.72rem] text-muted sm:block" data-testid="observed">
-          {formatDate(clockMs, locale)} · {live ? t('realTime') : playing ? t('replay') : pack.spec.clock.snapshotLabel ? p(pack.spec.clock.snapshotLabel) : t('snapshot')}
+        <div className="hidden whitespace-nowrap text-[0.72rem] text-muted sm:block" data-testid="observed">
+          <span className="hidden min-[2200px]:inline">{formatDate(clockMs, locale)} · </span>{live ? t('realTime') : playing ? t('replay') : pack.spec.clock.snapshotLabel ? p(pack.spec.clock.snapshotLabel) : t('snapshot')}
         </div>
       </div>
       <input
@@ -51,11 +51,11 @@ function ClockControl() {
         disabled={live}
         onChange={(e) => s.setClock(Number(e.target.value))}
         aria-label={t('replay')}
-        className="hidden w-36 accent-[var(--brand-secondary)] 2xl:block"
+        className="hidden w-36 accent-[var(--brand-secondary)] min-[2200px]:block"
         dir="ltr"
         data-testid="clock-slider"
       />
-      <select value={speed} onChange={(e) => s.setClockSpeed(Number(e.target.value))} className="hidden rounded-md bg-transparent text-[0.8rem] text-muted xl:block" aria-label={t('speed')} disabled={live}>
+      <select value={speed} onChange={(e) => s.setClockSpeed(Number(e.target.value))} className="hidden rounded-md bg-transparent text-[0.8rem] text-muted min-[2200px]:block" aria-label={t('speed')} disabled={live}>
         {[60, 120, 300, 600].map((v) => (
           <option key={v} value={v}>
             ×{v}
@@ -106,8 +106,8 @@ export function TopBar() {
   const go = (path: string) => navigate({ pathname: path, search: globalThis.location.hash.split('?')[1] ?? '' })
   return (
     <header className="no-print flex h-[5.2rem] shrink-0 items-center gap-2 border-b border-line bg-white px-3 sm:gap-4 sm:px-5" data-testid="top-bar">
-      <img src={coBrand ? customer.logo : clouderaLogo} alt={coBrand ? p(customer.name) : 'Cloudera'} className={coBrand ? 'h-[2.6rem] w-auto sm:h-[3.2rem]' : 'h-[1.35rem] w-auto'} data-testid="brand-logo" />
-      <div className="me-auto hidden min-w-0 border-s border-line ps-4 leading-tight sm:block">
+      <img src={coBrand ? customer.logo : clouderaLogo} alt={coBrand ? p(customer.name) : 'Cloudera'} className={coBrand ? 'h-[2.6rem] w-auto sm:h-[3.2rem]' : 'h-[1.1rem] w-auto'} data-testid="brand-logo" />
+      <div className="me-auto hidden min-w-[9rem] flex-1 border-s border-line ps-4 leading-tight sm:block">
         <h1 className="truncate text-[1.4rem] font-bold tracking-tight text-ink">{p(pack.spec.title)}</h1>
         <div className="truncate text-[0.85rem] text-muted">{p(pack.spec.subtitle)}</div>
       </div>
@@ -145,7 +145,7 @@ export function TopBar() {
         )}
         <button type="button" className="btn btn-ghost hidden !px-3 md:inline-flex" onClick={() => s.setScale(SCALES[(SCALES.indexOf(s.scale) + 1) % SCALES.length])} title={t('textSize')} aria-label={t('textSize')}>
           <Type size={16} />
-          <span className="num text-[0.75rem]">{Math.round(s.scale * 100)}%</span>
+          <span className="num hidden text-[0.75rem] min-[2200px]:inline">{Math.round(s.scale * 100)}%</span>
         </button>
         <button type="button" className="btn btn-ghost hidden !px-3 md:inline-flex" title={t('fullscreen')} aria-label={t('fullscreen')} onClick={() => (document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen?.())}>
           {fs ? <Minimize size={16} /> : <Maximize size={16} />}
