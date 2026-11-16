@@ -37,7 +37,7 @@ jobs:
           npx vite --port 5200 --strictPort &
           for i in $(seq 1 60); do curl -sf http://127.0.0.1:5200/ >/dev/null && break; sleep 1; done
           node scripts/shots.mjs
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: demo-screenshots
