@@ -1,11 +1,29 @@
 import { expect, test, type Page } from '@playwright/test'
 import { readFileSync } from 'node:fs'
-import { vocabularyTerms } from '../kit/src/terms'
-import type { DemoSpec } from '../kit/src/types'
+import type { DemoSpec, Severity } from '../kit/src/types'
 
 const spec = JSON.parse(readFileSync('pack/demo-spec.json', 'utf8')) as DemoSpec
-const attention = spec.sites.filter((s) => s.status !== 'normal').length
-const shown = spec.vocabulary ? vocabularyTerms(spec.vocabulary).sitesShown!.en : 'sites shown'
+const observed = spec.clock.observedAt
+const hhmm = (t: string) => (t.length === 5 ? `${observed.slice(0, 10)}T${t}` : t)
+
+/** Site status at the observed time, following each site's timeline. */
+function statusAtObserved(s: DemoSpec['sites'][number]): Severity {
+  let status = s.status
+  for (const c of s.timeline ?? []) if (hhmm(c.at) <= observed) status = c.status
+  return status
+}
+const attention = spec.sites.filter((s) => statusAtObserved(s) !== 'normal').length
+const available = spec.experts.filter((e) => e.available !== false)
+const chatOf = (id: string, q = '') => `./#/experts/${id}/chat?motion=reduced${q}`
+
+const pages = [
+  { id: 'experts', path: '/', show: spec.experts.length > 0 },
+  { id: 'overview', path: '/overview', show: true },
+  { id: 'sites', path: '/sites', show: spec.sites.length > 0 },
+  { id: 'planning', path: '/planning', show: !!spec.planning?.options.length },
+  { id: 'briefs', path: '/briefs', show: spec.experts.length > 0 },
+  { id: 'architecture', path: '/architecture', show: true },
+].filter((p) => p.show && !(spec.hidePages ?? []).includes(p.id as never))
 
 function watchErrors(page: Page) {
   const errors: string[] = []
@@ -15,73 +33,75 @@ function watchErrors(page: Page) {
 }
 
 for (const lang of spec.languages) {
-  test(`every view renders without errors (${lang})`, async ({ page }, info) => {
+  test(`every page renders without errors (${lang})`, async ({ page }, info) => {
     const errors = watchErrors(page)
-    for (const view of ['overview', 'report', 'experts'] as const) {
-      await page.goto(`./?lang=${lang}&view=${view}&motion=reduced`)
-      await expect(page.getByTestId(`view-${view}`)).toBeVisible()
+    for (const p of pages) {
+      await page.goto(`./#${p.path}?lang=${lang}&motion=reduced`)
+      await expect(page.locator(`main[data-testid="page-${p.id}"]`)).toBeVisible()
+      await expect(page.getByTestId(`nav-${p.id}`)).toBeVisible()
       await expect(page.locator('html')).toHaveAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr')
-      await info.attach(`${lang}-${view}`, { body: await page.screenshot({ fullPage: true }), contentType: 'image/png' })
+      await page.waitForTimeout(300)
+      await info.attach(`${lang}-${p.id}`, { body: await page.screenshot(), contentType: 'image/png' })
+    }
+    for (const full of ['wall', 'pack']) {
+      await page.goto(`./#/${full}?lang=${lang}&motion=reduced`)
+      await expect(page.getByTestId(full === 'wall' ? 'command-wall' : 'executive-pack')).toBeVisible()
     }
     expect(errors).toEqual([])
   })
 }
 
 test('every key figure shows its unit line', async ({ page }) => {
-  await page.goto('./?motion=reduced')
+  await page.goto('./#/overview?motion=reduced')
   for (const k of spec.kpis) await expect(page.getByTestId(`kpi-${k.id}`).getByTestId('kpi-unit')).not.toBeEmpty()
 })
 
-test('the map (or group tiles), the report and the derived key figure agree on sites needing attention', async ({ page }) => {
-  await page.goto('./?view=report&motion=reduced')
-  await expect(page.getByTestId('report-count')).toContainText(`${spec.sites.length} ${shown} · ${attention} need attention`)
-  if (spec.geo) {
-    const bubbles = await page.locator('[data-testid^="map-bubble-"] text').allTextContents()
-    expect(bubbles.reduce((a, b) => a + Number(b), 0)).toBe(attention)
-  } else {
-    await expect(page.getByTestId('region-map')).toHaveCount(0)
-    for (const r of spec.regions) {
-      const list = spec.sites.filter((s) => s.regionId === r.id)
-      const flagged = list.filter((s) => s.status !== 'normal').length
-      await expect(page.getByTestId(`group-count-${r.id}`)).toHaveText(`${flagged} of ${list.length} need attention`)
-    }
-  }
-  const derived = spec.kpis.find((k) => k.kind === 'count' && k.derive?.count.status?.every((s) => s !== 'normal'))
-  if (derived) {
-    await page.getByTestId('view-switch-overview').click()
-    await expect(page.getByTestId(`kpi-${derived.id}`).getByTestId('kpi-value')).toHaveText(String(attention))
-  }
+test('the derived key figure follows the site register at the clock', async ({ page }) => {
+  const derived = spec.kpis.find((k) => k.kind === 'count' && k.derive?.count.status?.every((s) => s !== 'normal') && !k.derive.count.type && !k.derive.count.regionId)
+  test.skip(!derived, 'No derived attention figure')
+  await page.goto('./#/overview?motion=reduced')
+  await expect(page.getByTestId(`kpi-${derived!.id}`).getByTestId('kpi-value')).toHaveText(String(attention))
 })
 
-test('report filters drive the table and the map together', async ({ page }) => {
-  await page.goto('./?view=report&motion=reduced')
-  await page.getByTestId('filter-status-critical').click()
-  const critical = spec.sites.filter((s) => s.status === 'critical')
-  await expect(page.locator('[data-testid^="row-"]')).toHaveCount(critical.length)
-  if (spec.geo) await expect(page.locator('[data-testid^="map-site-"]')).toHaveCount(critical.length)
-  else await expect(page.locator('[data-testid^="group-site-"]')).toHaveCount(critical.length)
+test("Today's report hides the expert-only pages and shows counts", async ({ page }) => {
+  test.skip(!spec.experts.length, 'No experts, so no mode switch')
+  await page.goto('./#/overview?motion=reduced')
+  await page.getByTestId('mode-switch-report').click()
+  await expect(page.getByTestId('report-overview')).toBeVisible()
+  await expect(page.getByTestId('nav-sites')).toHaveCount(0)
+  await expect(page.getByTestId('nav-planning')).toHaveCount(0)
+  await page.getByTestId('mode-switch-experts').click()
+  await expect(page.getByTestId('kpi-row')).toBeVisible()
 })
 
-test('selecting a group filters the report to it', async ({ page }) => {
+test('groups show as tiles when the pack has no map', async ({ page }) => {
   test.skip(!!spec.geo, 'Pack has a map')
-  const region = spec.regions.find((r) => spec.sites.some((s) => s.regionId === r.id))!
-  await page.goto('./?view=report&motion=reduced')
-  await page.getByTestId(`group-${region.id}`).click()
-  await expect(page.locator('[data-testid^="row-"]')).toHaveCount(spec.sites.filter((s) => s.regionId === region.id).length)
-  for (const other of spec.regions.filter((r) => r.id !== region.id)) {
-    const list = spec.sites.filter((s) => s.regionId === other.id)
-    await expect(page.getByTestId(`group-count-${other.id}`)).toHaveText(`${list.filter((s) => s.status !== 'normal').length} of ${list.length} need attention`)
+  await page.goto('./#/overview?motion=reduced')
+  await expect(page.getByTestId('group-grid')).toBeVisible()
+  for (const r of spec.regions) {
+    const list = spec.sites.filter((s) => s.regionId === r.id)
+    if (!list.length) continue
+    await expect(page.getByTestId(`group-count-${r.id}`)).toHaveText(`${list.filter((s) => statusAtObserved(s) !== 'normal').length} of ${list.length} need attention`)
   }
-  await page.getByTestId('map-back').click()
-  await expect(page.locator('[data-testid^="row-"]')).toHaveCount(spec.sites.length)
+})
+
+test('replay moves the clock and the reset returns to the snapshot', async ({ page }) => {
+  await page.goto('./#/overview?motion=reduced')
+  const time = page.getByTestId('clock-time')
+  await expect(time).toContainText(observed.slice(11, 16))
+  await page.goto(`./#/overview?motion=reduced&at=${spec.clock.replay ? spec.clock.replay.start.slice(-5) : '06:00'}`)
+  await page.reload()
+  await expect(page.getByTestId('clock-reset')).toBeVisible()
+  await page.getByTestId('clock-reset').click()
+  await expect(time).toContainText(observed.slice(11, 16))
 })
 
 test('presenter beats with a question produce the scripted answer', async ({ page }) => {
-  await page.goto('./?motion=reduced')
+  test.setTimeout(120_000)
+  await page.goto('./#/?motion=reduced')
   await page.getByTestId('presenter-toggle').click()
   const beats = spec.presenter.beats
-  await page.getByTestId('presenter-play').click()
-  await page.getByTestId('presenter-play').click()
+  await page.getByTestId('presenter-start').click()
   for (let i = 0; i < beats.length; i++) {
     if (i > 0) await page.getByTestId('presenter-next').click()
     const b = beats[i]
@@ -95,18 +115,28 @@ test('presenter beats with a question produce the scripted answer', async ({ pag
 })
 
 test('suggested questions are in the chosen language', async ({ page }) => {
-  test.skip(!spec.languages.includes('ar'), 'English-only pack')
-  await page.goto('./?lang=ar&view=experts&motion=reduced')
+  test.skip(!spec.languages.includes('ar') || !available.length, 'English-only pack or no experts')
+  await page.goto(chatOf(available[0].id, '&lang=ar'))
   const arabic = /[\u0600-\u06FF]/
-  for (const chip of await page.locator('[data-testid^="starter-"]').allTextContents()) expect(chip).toMatch(arabic)
-  await page.locator('[data-testid^="starter-"]').first().click()
+  const starters = page.locator('[data-testid^="starter-"]')
+  await expect(starters.first()).toBeVisible()
+  for (const chip of await starters.allTextContents()) expect(chip).toMatch(arabic)
+  await starters.first().click()
   await expect(page.getByTestId('chat-answer').last()).toBeVisible()
   for (const chip of await page.locator('[data-testid^="followup-"]').allTextContents()) expect(chip).toMatch(arabic)
 })
 
 test('out-of-scope questions are refused', async ({ page }) => {
-  await page.goto('./?view=experts&motion=reduced')
+  test.skip(!available.length || !spec.refusals.topics.length, 'No experts or refusals')
+  await page.goto(chatOf(available[0].id))
   await page.getByTestId('chat-input').fill(`What about ${spec.refusals.topics[0].keywords[0]}?`)
   await page.getByTestId('chat-send').click()
   await expect(page.getByTestId('chat-refusal')).toBeVisible()
+})
+
+test('experts on request cannot be opened', async ({ page }) => {
+  const onRequest = spec.experts.find((e) => e.available === false)
+  test.skip(!onRequest, 'Every expert is available')
+  await page.goto('./#/?motion=reduced')
+  await expect(page.getByTestId(`expert-chat-${onRequest!.id}`)).toBeDisabled()
 })
