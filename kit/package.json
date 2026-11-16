@@ -8,7 +8,8 @@
     "./styles.css": "./styles/kit.css",
     "./themes/cloudera.css": "./themes/cloudera.css",
     "./gates": "./gates/index.ts",
-    "./starters": "./starters/index.ts"
+    "./starters": "./starters/index.ts",
+    "./vite-plugin": "./vite-plugin.ts"
   },
   "bin": {
     "demo-gates": "./bin/demo-gates.mjs"

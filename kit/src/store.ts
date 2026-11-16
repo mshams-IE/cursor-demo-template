@@ -31,6 +31,8 @@ export interface ChatTurn {
   /** Chart or table attached to the answer. */
   visual?: Visual
   expertId?: string
+  /** Expert the question was handed to (set on handoff notes). */
+  handoffTo?: string
 }
 
 /** "Today's report" shows counts only; "experts" adds the digital experts and the investigation pages. */

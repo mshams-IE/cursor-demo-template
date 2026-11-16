@@ -1,12 +1,15 @@
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
+import { loadEnv } from 'vite'
 import { viteSingleFile } from 'vite-plugin-singlefile'
 import { defineConfig } from 'vitest/config'
+import { expertApi } from './kit/vite-plugin.ts'
 
 export default defineConfig(({ mode }) => {
   const offline = mode === 'offline'
+  for (const [k, v] of Object.entries(loadEnv(mode, process.cwd(), 'OPENAI_'))) process.env[k] ??= v
   return {
-    plugins: [react(), tailwindcss(), ...(offline ? [viteSingleFile({ removeViteModuleLoader: true })] : [])],
+    plugins: [react(), tailwindcss(), expertApi(), ...(offline ? [viteSingleFile({ removeViteModuleLoader: true })] : [])],
     base: './',
     build: offline ? { outDir: 'dist-offline', assetsInlineLimit: () => true, chunkSizeWarningLimit: 10_000 } : { chunkSizeWarningLimit: 2_500 },
     server: { host: '127.0.0.1', port: 5200 },

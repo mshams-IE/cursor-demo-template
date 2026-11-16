@@ -40,18 +40,30 @@ function score(question: string, phrasing: string): number {
 }
 
 export const MATCH_THRESHOLD = 0.5
+/** Scripted answers win outright at or above this score; below it a data-specific answer may be composed instead. */
+export const STRONG_MATCH = 0.75
 
-export function ask(pack: Pack, expertId: string, question: string): Reply {
-  const expert = pack.spec.experts.find((e) => e.id === expertId) ?? pack.spec.experts[0]
-  const q = fold(question)
-  for (const t of pack.spec.refusals.topics)
-    if (t.keywords.some((k) => q.includes(fold(k)))) return { kind: 'refusal', expert, topic: t.label.en }
-  let best: { answer: Answer; score: number } | undefined
+/** The expert's scripted answer closest to the question, with the phrasing that matched. */
+export function bestAnswer(expert: Expert, question: string): { answer: Answer; score: number; phrasing: string } | undefined {
+  let best: { answer: Answer; score: number; phrasing: string } | undefined
   for (const answer of expert.answers)
     for (const phrasing of answer.questions) {
       const s = score(question, phrasing)
-      if (!best || s > best.score) best = { answer, score: s }
+      if (!best || s > best.score) best = { answer, score: s, phrasing }
     }
+  return best
+}
+
+export function refusalTopic(pack: Pack, question: string): string | undefined {
+  const q = fold(question)
+  return pack.spec.refusals.topics.find((t) => t.keywords.some((k) => q.includes(fold(k))))?.label.en
+}
+
+export function ask(pack: Pack, expertId: string, question: string): Reply {
+  const expert = pack.spec.experts.find((e) => e.id === expertId) ?? pack.spec.experts[0]
+  const topic = refusalTopic(pack, question)
+  if (topic) return { kind: 'refusal', expert, topic }
+  const best = bestAnswer(expert, question)
   if (best && best.score >= MATCH_THRESHOLD) return { kind: 'answer', expert, answer: best.answer, score: best.score }
   return { kind: 'fallback', expert, suggestions: expert.answers.slice(0, 3) }
 }
