@@ -1,0 +1,42 @@
+.robot { display: inline-flex; flex-shrink: 0; }
+.robot svg { overflow: visible; }
+.robot-queued .robot-figure { opacity: 0.45; filter: grayscale(0.7); }
+.robot-working .robot-figure { animation: robot-bob 1.1s ease-in-out infinite; transform-origin: 32px 60px; }
+.robot-working .robot-eye { animation: robot-blink 2.6s infinite; transform-origin: 32px 25px; }
+.robot-working .robot-tip { animation: robot-tip 0.9s ease-in-out infinite; }
+.robot-working .robot-needle { animation: robot-needle 1.4s ease-in-out infinite; transform-origin: 32px 25px; }
+.robot-scan { animation: robot-scan 1.3s ease-in-out infinite alternate; }
+.robot-badge { animation: robot-pop 0.45s cubic-bezier(0.3, 1.6, 0.5, 1); transform-origin: 52px 13px; }
+@keyframes robot-bob { 50% { transform: translateY(-2.5px) rotate(-2deg); } }
+@keyframes robot-blink { 0%, 44%, 52%, 100% { transform: scaleY(1); } 48% { transform: scaleY(0.1); } }
+@keyframes robot-tip { 50% { opacity: 0.35; } }
+@keyframes robot-needle { 0% { transform: rotate(-60deg); } 50% { transform: rotate(40deg); } 100% { transform: rotate(-60deg); } }
+@keyframes robot-scan { from { transform: translateX(0); } to { transform: translateX(30px); } }
+@keyframes robot-pop { from { transform: scale(0); } }
+
+.agent-live {
+  border-color: var(--brand-secondary) !important;
+  box-shadow: 0 0 0 4px rgb(65 60 195 / 0.16), 0 0 18px rgb(65 60 195 / 0.3);
+  animation: agent-pulse 1.1s ease-in-out infinite;
+}
+@keyframes agent-pulse { 50% { box-shadow: 0 0 0 7px rgb(65 60 195 / 0.08), 0 0 26px rgb(65 60 195 / 0.4); } }
+
+.running-bar {
+  background: linear-gradient(90deg, transparent, rgb(65 60 195 / 0.4), transparent);
+  background-size: 200% 100%;
+  animation: agent-shimmer 1.4s linear infinite;
+}
+@keyframes agent-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+.mic-live::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 9999px;
+  border: 2px solid rgb(217 45 32 / 0.5);
+  animation: mic-ring 1.2s ease-out infinite;
+}
+@keyframes mic-ring { from { transform: scale(0.9); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
+
+html[data-reduced-motion='true'] .robot *, html[data-reduced-motion='true'] .agent-live, html[data-reduced-motion='true'] .running-bar { animation: none !important; }
+@media (prefers-reduced-motion: reduce) { .robot *, .agent-live, .running-bar { animation: none !important; } }

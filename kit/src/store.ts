@@ -161,7 +161,7 @@ const initial = {
   briefs: [],
   actions: [],
   toast: undefined,
-  contextOpen: false,
+  contextOpen: true,
 }
 
 function query() {
