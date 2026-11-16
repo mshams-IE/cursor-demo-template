@@ -1,0 +1,195 @@
+{
+  "specVersion": 1,
+  "kitVersion": "0.1.0",
+  "wizard": { "step": 10, "completed": [1, 2, 3, 4, 5, 6, 7, 8, 9], "status": "built" },
+  "id": "coastal-water",
+  "industry": "water",
+  "languages": ["en", "ar"],
+  "customer": { "name": { "en": "Coastal Water Company", "ar": "شركة المياه الساحلية" }, "source": "customer" },
+  "title": { "en": "Water Network Intelligence", "ar": "ذكاء شبكة المياه" },
+  "subtitle": { "en": "Coastal Water Company · executive view", "ar": "شركة المياه الساحلية · العرض التنفيذي" },
+  "audience": { "en": "CEO and operations director", "ar": "الرئيس التنفيذي ومدير العمليات" },
+  "brand": { "theme": "cloudera", "coBrand": false },
+  "geo": "sa-adm1",
+  "clock": { "observedAt": "2026-11-16T10:30", "zone": { "en": "AST, Riyadh time", "ar": "بتوقيت الرياض" } },
+  "regions": [
+    { "id": "eastern", "geoId": "eastern", "name": { "en": "Eastern Province", "ar": "المنطقة الشرقية" }, "source": "customer" },
+    { "id": "riyadh", "geoId": "riyadh", "name": { "en": "Riyadh", "ar": "الرياض" }, "source": "customer" }
+  ],
+  "assetTypes": [
+    { "id": "desal", "name": { "en": "Desalination plant", "ar": "محطة تحلية" }, "plural": { "en": "desalination plants", "ar": "محطات تحلية" }, "source": "starter" },
+    { "id": "pump", "name": { "en": "Pumping station", "ar": "محطة ضخ" }, "plural": { "en": "pumping stations", "ar": "محطات ضخ" }, "source": "starter" },
+    { "id": "reservoir", "name": { "en": "Reservoir", "ar": "خزان" }, "plural": { "en": "reservoirs", "ar": "خزانات" }, "source": "starter" },
+    { "id": "district", "name": { "en": "Supply district", "ar": "منطقة إمداد" }, "plural": { "en": "supply districts", "ar": "مناطق إمداد" }, "source": "starter" }
+  ],
+  "sites": [
+    { "id": "JUB-DS1", "name": { "en": "Jubail Desalination Plant", "ar": "محطة تحلية الجبيل" }, "regionId": "eastern", "type": "desal", "coordinates": [49.68, 27.05], "status": "normal", "source": "customer" },
+    { "id": "RTN-DS2", "name": { "en": "Ras Tanura Desalination Plant", "ar": "محطة تحلية رأس تنورة" }, "regionId": "eastern", "type": "desal", "coordinates": [50.15, 26.7], "status": "watch", "note": { "en": "Intake filters fouling faster than usual; cleaning planned tonight.", "ar": "انسداد مرشحات المأخذ أسرع من المعتاد؛ التنظيف مقرر الليلة." }, "source": "customer" },
+    { "id": "DMM-PS1", "name": { "en": "Ad Dammam Pumping Station 1", "ar": "محطة ضخ الدمام 1" }, "regionId": "eastern", "type": "pump", "coordinates": [50.08, 26.42], "status": "critical", "note": { "en": "Trunk main burst downstream; pumps throttled to protect the network.", "ar": "كسر في الخط الرئيسي بعد المحطة؛ خُفضت المضخات لحماية الشبكة." }, "source": "customer" },
+    { "id": "DMM-PS2", "name": { "en": "Ad Dammam Pumping Station 2", "ar": "محطة ضخ الدمام 2" }, "regionId": "eastern", "type": "pump", "coordinates": [50.14, 26.37], "status": "normal", "source": "customer" },
+    { "id": "KHB-PS1", "name": { "en": "Al Khobar Pumping Station", "ar": "محطة ضخ الخبر" }, "regionId": "eastern", "type": "pump", "coordinates": [50.2, 26.27], "status": "watch", "note": { "en": "Running on the standby pump while the duty pump is inspected.", "ar": "تعمل على المضخة الاحتياطية أثناء فحص المضخة الرئيسية." }, "source": "customer" },
+    { "id": "QTF-RS1", "name": { "en": "Qatif Reservoir", "ar": "خزان القطيف" }, "regionId": "eastern", "type": "reservoir", "coordinates": [50.0, 26.56], "status": "normal", "source": "customer" },
+    { "id": "DMM-RS1", "name": { "en": "Ad Dammam North Reservoir", "ar": "خزان شمال الدمام" }, "regionId": "eastern", "type": "reservoir", "coordinates": [50.04, 26.48], "status": "watch", "note": { "en": "Level falling while the trunk main is isolated.", "ar": "المنسوب ينخفض أثناء عزل الخط الرئيسي." }, "source": "customer" },
+    { "id": "KHB-D1", "name": { "en": "Al Khobar North District", "ar": "منطقة شمال الخبر" }, "regionId": "eastern", "type": "district", "coordinates": [50.19, 26.31], "status": "critical", "note": { "en": "Low pressure or no supply since the burst.", "ar": "ضغط منخفض أو انقطاع منذ الكسر." }, "source": "customer" },
+    { "id": "KHB-D2", "name": { "en": "Al Khobar South District", "ar": "منطقة جنوب الخبر" }, "regionId": "eastern", "type": "district", "coordinates": [50.22, 26.22], "status": "watch", "note": { "en": "Low pressure at peak hours.", "ar": "ضغط منخفض في ساعات الذروة." }, "source": "customer" },
+    { "id": "HOF-D1", "name": { "en": "Alhufuf Old Town District", "ar": "منطقة الهفوف القديمة" }, "regionId": "eastern", "type": "district", "coordinates": [49.58, 25.37], "status": "watch", "note": { "en": "Repeat leaks on ageing asbestos-cement pipes.", "ar": "تسربات متكررة في أنابيب أسمنتية قديمة." }, "source": "customer" },
+    { "id": "HOF-PS1", "name": { "en": "Alhufuf Pumping Station", "ar": "محطة ضخ الهفوف" }, "regionId": "eastern", "type": "pump", "coordinates": [49.63, 25.41], "status": "normal", "source": "customer" },
+    { "id": "ABQ-RS1", "name": { "en": "Abqaiq Reservoir", "ar": "خزان بقيق" }, "regionId": "eastern", "type": "reservoir", "coordinates": [49.67, 25.93], "status": "normal", "source": "customer" },
+    { "id": "JUB-D1", "name": { "en": "Jubail Industrial District", "ar": "منطقة الجبيل الصناعية" }, "regionId": "eastern", "type": "district", "coordinates": [49.6, 26.99], "status": "normal", "source": "customer" },
+    { "id": "RYD-PS1", "name": { "en": "Riyadh East Pumping Station", "ar": "محطة ضخ شرق الرياض" }, "regionId": "riyadh", "type": "pump", "coordinates": [46.83, 24.7], "status": "normal", "source": "customer" },
+    { "id": "RYD-RS1", "name": { "en": "Riyadh North Reservoir", "ar": "خزان شمال الرياض" }, "regionId": "riyadh", "type": "reservoir", "coordinates": [46.65, 24.85], "status": "normal", "source": "customer" },
+    { "id": "KHJ-D1", "name": { "en": "Alkharj District", "ar": "منطقة الخرج" }, "regionId": "riyadh", "type": "district", "coordinates": [47.31, 24.15], "status": "watch", "note": { "en": "Night flow rising, pointing to hidden leakage.", "ar": "ارتفاع التدفق الليلي يشير إلى تسرب خفي." }, "source": "assumed", "why": "Night-flow rise is the most common early leakage signal in starter data for water networks." },
+    { "id": "RYD-D1", "name": { "en": "Riyadh South District", "ar": "منطقة جنوب الرياض" }, "regionId": "riyadh", "type": "district", "coordinates": [46.72, 24.55], "status": "normal", "source": "customer" }
+  ],
+  "kpis": [
+    {
+      "id": "sites-attention",
+      "kind": "count",
+      "label": { "en": "Sites needing attention", "ar": "المواقع التي تتطلب الانتباه" },
+      "unit": { "en": "monitored sites", "ar": "موقعاً مراقباً" },
+      "derive": { "count": { "status": ["watch", "critical"] }, "of": {} },
+      "trend": [4, 4, 4, 5, 4, 4, 5, 5, 6, 8, 8, 8],
+      "delta": { "value": 3, "period": { "en": "since 08:00", "ar": "منذ 08:00" }, "worseWhenUp": true },
+      "definition": { "en": "Monitored sites whose status is watch or critical. Counted from the same site register as the map and today's report.", "ar": "المواقع المراقبة بحالة مراقبة أو حرجة، محتسبة من سجل المواقع نفسه المستخدم في الخريطة وتقرير اليوم." },
+      "source": "customer"
+    },
+    {
+      "id": "nrw",
+      "kind": "percent",
+      "label": { "en": "Non-revenue water", "ar": "المياه غير المدرة للدخل" },
+      "value": 24.3,
+      "decimals": 1,
+      "unit": { "en": "of water supplied", "ar": "من المياه الموردة" },
+      "trend": [22.9, 23.1, 23.0, 23.4, 23.6, 23.5, 23.9, 24.0, 24.3],
+      "delta": { "value": 0.8, "period": { "en": "vs last month", "ar": "عن الشهر الماضي" }, "worseWhenUp": true },
+      "definition": { "en": "Water produced but not billed (leaks, bursts, metering error and unbilled use) as a share of water supplied, rolling 30 days.", "ar": "المياه المنتجة غير المفوترة (تسربات وكسور وأخطاء قياس واستهلاك غير مفوتر) كنسبة من المياه الموردة، آخر 30 يوماً." },
+      "source": "starter"
+    },
+    {
+      "id": "bursts",
+      "kind": "measure",
+      "label": { "en": "Pipe bursts today", "ar": "كسور الأنابيب اليوم" },
+      "value": 7,
+      "unit": { "en": "bursts since midnight", "ar": "كسور منذ منتصف الليل" },
+      "trend": [1, 1, 2, 2, 3, 4, 5, 6, 7],
+      "delta": { "value": 2, "period": { "en": "vs same time yesterday", "ar": "عن الوقت نفسه أمس" }, "worseWhenUp": true },
+      "definition": { "en": "Confirmed main and service pipe bursts reported since midnight.", "ar": "كسور الأنابيب الرئيسية والفرعية المؤكدة منذ منتصف الليل." },
+      "source": "customer"
+    },
+    {
+      "id": "supply",
+      "kind": "percent",
+      "label": { "en": "Supply reliability", "ar": "موثوقية الإمداد" },
+      "value": 98.6,
+      "decimals": 1,
+      "unit": { "en": "of customers with continuous supply", "ar": "من العملاء بإمداد مستمر" },
+      "trend": [99.4, 99.4, 99.3, 99.4, 99.2, 98.9, 98.7, 98.6],
+      "delta": { "value": -0.6, "period": { "en": "vs yesterday", "ar": "عن أمس" }, "worseWhenUp": false },
+      "definition": { "en": "Share of customers with uninterrupted supply over the last 24 hours.", "ar": "نسبة العملاء بإمداد دون انقطاع خلال آخر 24 ساعة." },
+      "source": "assumed",
+      "why": "Typical reliability for a Gulf utility on a day with one major burst; no customer figure was given."
+    }
+  ],
+  "facts": [
+    { "id": "customers-affected", "value": 18400, "unit": { "en": "customers", "ar": "عميل" }, "source": "customer" },
+    { "id": "leaks-90d", "value": 23, "unit": { "en": "leaks in the last 90 days", "ar": "تسرباً خلال آخر 90 يوماً" }, "source": "customer" },
+    { "id": "night-flow-rise", "value": 14, "unit": { "en": "per cent", "ar": "بالمئة" }, "source": "assumed", "why": "Mid-range of the night-flow rises that usually trigger a leak survey." }
+  ],
+  "incidents": [
+    { "id": "burst", "role": "hero", "title": { "en": "Trunk main burst, Ad Dammam to Al Khobar", "ar": "كسر في الخط الرئيسي بين الدمام والخبر" }, "siteId": "DMM-PS1", "severity": "critical", "started": "08:40", "impact": { "en": "{fact.customers-affected} in {site.KHB-D1} on low pressure or no supply. Repair crew on site; supply back by 13:30.", "ar": "{fact.customers-affected} في {site.KHB-D1} بضغط منخفض أو دون إمداد. فريق الإصلاح في الموقع؛ عودة الإمداد بحلول 13:30." }, "source": "customer" },
+    { "id": "repeat-leaks", "role": "chronic", "title": { "en": "Repeat leaks in Alhufuf Old Town", "ar": "تسربات متكررة في الهفوف القديمة" }, "siteId": "HOF-D1", "severity": "watch", "started": "05:55", "impact": { "en": "{fact.leaks-90d} on the same ageing pipes.", "ar": "{fact.leaks-90d} في الأنابيب القديمة نفسها." }, "source": "customer" },
+    { "id": "intake", "title": { "en": "Desalination intake fouling", "ar": "انسداد مأخذ التحلية" }, "siteId": "RTN-DS2", "severity": "watch", "started": "07:15", "impact": { "en": "Output trimmed while intake filters are cleaned; no customer impact yet.", "ar": "خُفض الإنتاج أثناء تنظيف مرشحات المأخذ؛ لا أثر على العملاء حتى الآن." }, "source": "customer" },
+    { "id": "night-flow", "title": { "en": "Night flow rising in Alkharj", "ar": "ارتفاع التدفق الليلي في الخرج" }, "siteId": "KHJ-D1", "severity": "watch", "started": "03:00", "impact": { "en": "Night flow up {fact.night-flow-rise} on last week, pointing to hidden leakage.", "ar": "التدفق الليلي أعلى بنسبة {fact.night-flow-rise} عن الأسبوع الماضي، ما يشير إلى تسرب خفي." }, "source": "assumed", "why": "Added so the chronic-leakage story has an early signal outside the Eastern Province." }
+  ],
+  "experts": [
+    {
+      "id": "ops",
+      "name": { "en": "Sara", "ar": "سارة" },
+      "role": { "en": "Network operations expert", "ar": "خبيرة عمليات الشبكة" },
+      "focus": { "en": "Bursts, pressure and supply interruptions right now.", "ar": "الكسور والضغط وانقطاعات الإمداد الآن." },
+      "source": "starter",
+      "answers": [
+        {
+          "id": "now",
+          "questions": ["What needs my attention right now?", "What's happening now?", "Give me the situation", "ما الذي يتطلب انتباهي الآن؟", "ما الوضع الآن؟"],
+          "lead": { "en": "The trunk main burst between {site.DMM-PS1} and {site.KHB-D1} is the priority: {fact.customers-affected} are on low pressure or no supply.", "ar": "الأولوية لكسر الخط الرئيسي بين {site.DMM-PS1} و{site.KHB-D1}: {fact.customers-affected} بضغط منخفض أو دون إمداد." },
+          "points": [
+            { "en": "{kpi.sites-attention} need attention, most of them knock-on effects of the same burst.", "ar": "{kpi.sites-attention} تتطلب الانتباه، ومعظمها آثار للكسر نفسه." },
+            { "en": "The repair crew has been on site since 09:15 and expects supply back by 13:30.", "ar": "فريق الإصلاح في الموقع منذ 09:15 ويتوقع عودة الإمداد بحلول 13:30." },
+            { "en": "{site.DMM-RS1} is drawing down while the main is isolated, so tankers are on standby for {site.KHB-D1}.", "ar": "منسوب {site.DMM-RS1} ينخفض أثناء عزل الخط، لذا الصهاريج جاهزة لـ{site.KHB-D1}." }
+          ],
+          "followUps": ["burst", "nrw"]
+        },
+        {
+          "id": "burst",
+          "questions": ["When will supply be back?", "Tell me more about the burst", "What caused the burst?", "متى يعود الإمداد؟", "أخبرني المزيد عن الكسر"],
+          "lead": { "en": "Supply to {site.KHB-D1} should be back by 13:30, once the damaged section of the trunk main is replaced.", "ar": "يُتوقع عودة الإمداد إلى {site.KHB-D1} بحلول 13:30 بعد استبدال الجزء المتضرر من الخط الرئيسي." },
+          "points": [
+            { "en": "The main burst at 08:40, at the morning peak, when pressure on that section is highest.", "ar": "حدث الكسر الساعة 08:40 في ذروة الصباح، حين يكون الضغط على هذا الجزء في أعلى مستوياته." },
+            { "en": "Pumps at {site.DMM-PS1} were throttled to protect the rest of the network.", "ar": "خُفضت المضخات في {site.DMM-PS1} لحماية بقية الشبكة." },
+            { "en": "It is one of {kpi.bursts} and the only one with customer impact.", "ar": "هو واحد من {kpi.bursts} والوحيد الذي أثر على العملاء." }
+          ],
+          "followUps": ["now"]
+        },
+        {
+          "id": "nrw",
+          "questions": ["How is non-revenue water trending?", "What is our water loss?", "Non-revenue water", "ما نسبة المياه غير المدرة للدخل؟", "كم الفاقد من المياه؟"],
+          "lead": { "en": "Non-revenue water is {kpi.nrw}, up on last month.", "ar": "المياه غير المدرة للدخل {kpi.nrw}، بارتفاع عن الشهر الماضي." },
+          "points": [
+            { "en": "Most of the rise comes from {site.HOF-D1} and {site.KHJ-D1}.", "ar": "معظم الارتفاع من {site.HOF-D1} و{site.KHJ-D1}." },
+            { "en": "Night flow in {site.KHJ-D1} is up {fact.night-flow-rise} on last week, a typical sign of hidden leakage.", "ar": "التدفق الليلي في {site.KHJ-D1} أعلى بنسبة {fact.night-flow-rise} عن الأسبوع الماضي، وهي علامة معتادة على تسرب خفي." }
+          ],
+          "followUps": ["now"]
+        }
+      ]
+    },
+    {
+      "id": "assets",
+      "name": { "en": "Omar", "ar": "عمر" },
+      "role": { "en": "Asset health expert", "ar": "خبير صحة الأصول" },
+      "focus": { "en": "Which pumps, plants and pipes are degrading, and why.", "ar": "أي المضخات والمحطات والأنابيب تتدهور ولماذا." },
+      "source": "starter",
+      "answers": [
+        {
+          "id": "chronic",
+          "questions": ["What are the repeat problems?", "Which areas keep failing?", "Why does Alhufuf Old Town keep leaking?", "ما المشكلات المتكررة؟", "لماذا تتكرر التسربات في الهفوف؟"],
+          "lead": { "en": "{site.HOF-D1} is the repeat problem: {fact.leaks-90d}, on ageing asbestos-cement pipes.", "ar": "{site.HOF-D1} هي المشكلة المتكررة: {fact.leaks-90d} في أنابيب أسمنتية قديمة." },
+          "points": [
+            { "en": "The leaks cluster on pipes laid before 1990, which fail at the joints as pressure cycles.", "ar": "تتركز التسربات في أنابيب مُدّت قبل 1990 وتنهار عند الوصلات مع تقلب الضغط." },
+            { "en": "Replacing the worst section would remove most repeat leaks and lower non-revenue water in the district.", "ar": "استبدال أسوأ جزء يزيل معظم التسربات المتكررة ويخفض المياه غير المدرة للدخل في المنطقة." },
+            { "en": "A pressure-management trial would reduce bursts while the replacement is planned.", "ar": "تجربة لإدارة الضغط تقلل الكسور ريثما يُخطط للاستبدال." }
+          ],
+          "followUps": ["pumps"]
+        },
+        {
+          "id": "pumps",
+          "questions": ["Which pumps are at risk?", "What is the condition of our assets?", "Asset health", "ما المضخات المعرضة للخطر؟", "ما حالة الأصول؟"],
+          "lead": { "en": "{site.KHB-PS1} is the pump station to watch: it is running on its standby pump while the duty pump is inspected.", "ar": "{site.KHB-PS1} هي المحطة التي تستحق المراقبة: تعمل على المضخة الاحتياطية أثناء فحص المضخة الرئيسية." },
+          "points": [
+            { "en": "If the standby pump fails too, {site.KHB-D2} would lose pressure at peak.", "ar": "إذا تعطلت المضخة الاحتياطية أيضاً، ستفقد {site.KHB-D2} الضغط في الذروة." },
+            { "en": "{site.RTN-DS2} intake filters are fouling faster than usual; cleaning is planned tonight.", "ar": "مرشحات مأخذ {site.RTN-DS2} تنسد أسرع من المعتاد؛ التنظيف مقرر الليلة." }
+          ],
+          "followUps": ["chronic"]
+        }
+      ]
+    }
+  ],
+  "refusals": {
+    "topics": [
+      { "label": { "en": "Tariffs and pricing", "ar": "التعرفة والأسعار" }, "keywords": ["tariff", "price", "pricing", "bill increase", "تعرفة", "أسعار", "سعر"] },
+      { "label": { "en": "Named employees", "ar": "الموظفون بالاسم" }, "keywords": ["employee performance", "salary", "fire someone", "رواتب", "أداء الموظف"] },
+      { "label": { "en": "Unannounced plans", "ar": "الخطط غير المعلنة" }, "keywords": ["merger", "acquisition", "layoff", "استحواذ", "اندماج"] }
+    ],
+    "reply": { "en": "That is outside what I can discuss in this demo. I can help with operations, assets and customer impact.", "ar": "هذا خارج ما يمكنني مناقشته في هذا العرض. يمكنني المساعدة في العمليات والأصول وأثر العملاء." }
+  },
+  "presenter": {
+    "beats": [
+      { "id": "open", "view": "overview", "spotlight": "kpi-row", "title": { "en": "The network at a glance", "ar": "الشبكة في لمحة" }, "narration": { "en": "This is the network at 10:30: {kpi.sites-attention} need attention, and non-revenue water stands at {kpi.nrw}.", "ar": "هذه الشبكة الساعة 10:30: {kpi.sites-attention} تتطلب الانتباه، والمياه غير المدرة للدخل عند {kpi.nrw}." } },
+      { "id": "where", "view": "overview", "spotlight": "region-map", "regionId": "eastern", "title": { "en": "Where it is happening", "ar": "أين يحدث ذلك" }, "narration": { "en": "Almost all of it is in {region.eastern}, around one trunk main burst.", "ar": "معظم ذلك في {region.eastern}، حول كسر واحد في الخط الرئيسي." } },
+      { "id": "hero", "view": "overview", "spotlight": "incident-burst", "title": { "en": "The burst", "ar": "الكسر" }, "narration": { "en": "The main burst at the morning peak and left {fact.customers-affected} on low pressure or no supply.", "ar": "انكسر الخط في ذروة الصباح وترك {fact.customers-affected} بضغط منخفض أو دون إمداد." } },
+      { "id": "ask-ops", "view": "experts", "spotlight": "expert-chat", "title": { "en": "Ask the expert", "ar": "اسأل الخبير" }, "narration": { "en": "Instead of calling three teams, we ask the network operations expert.", "ar": "بدلاً من الاتصال بثلاثة فرق، نسأل خبيرة عمليات الشبكة." }, "ask": { "expertId": "ops", "question": { "en": "What needs my attention right now?", "ar": "ما الذي يتطلب انتباهي الآن؟" }, "answerId": "now" } },
+      { "id": "report", "view": "report", "spotlight": "report-table", "title": { "en": "Every site, one register", "ar": "كل المواقع في سجل واحد" }, "narration": { "en": "Today's report lists every site from the same register as the map, so the numbers always agree.", "ar": "يعرض تقرير اليوم كل المواقع من السجل نفسه المستخدم في الخريطة، فتتطابق الأرقام دائماً." } },
+      { "id": "ask-assets", "view": "experts", "spotlight": "expert-chat", "title": { "en": "The recurring problem", "ar": "المشكلة المتكررة" }, "narration": { "en": "And the recurring problem: one ageing district drives most repeat leaks.", "ar": "والمشكلة المتكررة: منطقة واحدة قديمة تقف وراء معظم التسربات المتكررة." }, "ask": { "expertId": "assets", "question": { "en": "What are the repeat problems?", "ar": "ما المشكلات المتكررة؟" }, "answerId": "chronic" } }
+    ]
+  }
+}

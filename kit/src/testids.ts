@@ -1,0 +1,18 @@
+/** Elements a presenter beat can spotlight. Ids ending in a dash accept a suffix, e.g. kpi-nrw. */
+export const KNOWN_TESTIDS = [
+  'top-bar',
+  'view-switch',
+  'kpi-row',
+  'kpi',
+  'region-map',
+  'map-legend',
+  'incident-list',
+  'incident',
+  'report-filters',
+  'report-table',
+  'expert-cards',
+  'expert-card',
+  'expert-chat',
+  'chat-input',
+  'presenter-bar',
+]
