@@ -122,11 +122,19 @@ export function checkSpec(raw: unknown, opts: { upToStep?: number; assetExists?:
     if (!languages.includes('en')) err('languages', 'languages', 'English is always required')
   }
 
-  const boundaries = BOUNDARIES[spec.geo]
+  const mapped = !!spec.geo
+  const boundaries = spec.geo ? BOUNDARIES[spec.geo] : undefined
   if (has(3)) {
-    if (!boundaries) err('structure', 'geo', `Unknown boundary set "${spec.geo}". Known: ${Object.keys(BOUNDARIES).join(', ')}`)
+    if (mapped && !boundaries) err('structure', 'geo', `Unknown boundary set "${spec.geo}". Known: ${Object.keys(BOUNDARIES).join(', ')}. Add one with scripts/add-geo.mjs, or remove geo for a demo without a map`)
     unique(spec.regions, 'regions')
-    for (const r of spec.regions ?? []) if (boundaries && !boundaries.features.some((f) => f.properties.id === r.geoId)) err('structure', `regions.${r.id}.geoId`, `No boundary "${r.geoId}" in ${spec.geo}`)
+    for (const r of spec.regions ?? []) {
+      if (!mapped) continue
+      if (!r.geoId) err('structure', `regions.${r.id}.geoId`, `${r.name.en} has no geoId, which the map needs`)
+      else if (boundaries && !boundaries.features.some((f) => f.properties.id === r.geoId)) err('structure', `regions.${r.id}.geoId`, `No boundary "${r.geoId}" in ${spec.geo}`)
+    }
+    const v = spec.vocabulary
+    if (v) for (const k of ['entity', 'entityPlural', 'group', 'groupPlural'] as const) if (!v[k]?.en?.trim()) err('structure', `vocabulary.${k}`, `Vocabulary needs "${k}"`)
+    if (v && !v.type !== !v.typePlural) err('structure', 'vocabulary', 'Give both "type" and "typePlural", or neither')
   }
 
   if (has(4)) {
@@ -137,9 +145,12 @@ export function checkSpec(raw: unknown, opts: { upToStep?: number; assetExists?:
     for (const s of spec.sites ?? []) {
       if (!regionIds.has(s.regionId)) err('structure', `sites.${s.id}.regionId`, `Unknown region "${s.regionId}"`)
       if (!typeIds.has(s.type)) err('structure', `sites.${s.id}.type`, `Unknown asset type "${s.type}"`)
-      const region = spec.regions.find((r) => r.id === s.regionId)
-      const feature = boundaries?.features.find((f) => f.properties.id === region?.geoId)
-      if (feature && !pointInBBox(s.coordinates, featureBBox(feature), 0.3)) warn('structure', `sites.${s.id}.coordinates`, `Site sits outside ${region?.name.en}`)
+      if (mapped) {
+        const region = spec.regions.find((r) => r.id === s.regionId)
+        const feature = boundaries?.features.find((f) => f.properties.id === region?.geoId)
+        if (!s.coordinates) err('structure', `sites.${s.id}.coordinates`, `${s.name.en} has no coordinates, which the map needs`)
+        else if (feature && !pointInBBox(s.coordinates, featureBBox(feature), 0.3)) warn('structure', `sites.${s.id}.coordinates`, `${s.name.en} sits outside ${region?.name.en}`)
+      }
       if (s.status !== 'normal' && !s.note?.en) err('status', `sites.${s.id}.note`, `${s.name.en} is ${s.status} but has no note saying why`)
     }
   }
@@ -222,7 +233,7 @@ function checkKpi(k: Kpi, err: Flag, warn: Flag) {
 function checkLanguages(spec: DemoSpec, languages: Locale[], has: (n: number) => boolean, err: Flag) {
   if (!languages.includes('ar')) return
   const sections: [number, keyof DemoSpec][] = [
-    [1, 'customer'], [1, 'title'], [1, 'subtitle'], [1, 'audience'], [3, 'regions'], [4, 'assetTypes'], [4, 'sites'],
+    [1, 'customer'], [1, 'title'], [1, 'subtitle'], [1, 'audience'], [3, 'regions'], [3, 'vocabulary'], [4, 'assetTypes'], [4, 'sites'],
     [5, 'kpis'], [5, 'facts'], [6, 'incidents'], [6, 'clock'], [7, 'experts'], [7, 'refusals'], [8, 'presenter'],
   ]
   for (const [step, key] of sections) {

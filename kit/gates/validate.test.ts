@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import water from '../../samples/water/demo-spec.json'
 import { ask } from '../src/engine'
+import { vocabularyTerms } from '../src/i18n'
 import { definePack, render } from '../src/pack'
 import type { DemoSpec } from '../src/types'
 import { checkSpec, nameKey, type GateId } from './validate'
@@ -121,6 +122,40 @@ describe('gates catch seeded failures', () => {
     expect(errorsIn(s, 'structure')[0].message).toContain('Unknown region "mars"')
   })
 
+  it('structure: a pack without a map needs no geoId or coordinates', () => {
+    const s = clone()
+    delete s.geo
+    for (const r of s.regions) delete r.geoId
+    for (const x of s.sites) delete x.coordinates
+    expect(errorsIn(s, 'structure')).toEqual([])
+    expect(definePack(s).boundaries).toBeUndefined()
+  })
+
+  it('structure: a pack with a map needs coordinates and geoIds', () => {
+    const s = clone()
+    delete s.sites[0].coordinates
+    delete s.regions[0].geoId
+    expect(errorsIn(s, 'structure').map((e) => e.path)).toEqual([`regions.${s.regions[0].id}.geoId`, `sites.${s.sites[0].id}.coordinates`])
+  })
+
+  it('structure: catches an unknown boundary set', () => {
+    const s = clone()
+    s.geo = 'xx-adm1'
+    expect(errorsIn(s, 'structure')[0].message).toContain('Unknown boundary set "xx-adm1"')
+  })
+
+  it('structure: catches an incomplete vocabulary', () => {
+    const s = clone()
+    s.vocabulary = { entity: { en: 'Branch', ar: 'الفرع' }, entityPlural: { en: 'Branches', ar: 'الفروع' }, group: { en: 'Business line', ar: 'قطاع الأعمال' }, groupPlural: { en: '', ar: '' }, type: { en: 'Channel', ar: 'القناة' } }
+    expect(errorsIn(s, 'structure').map((e) => e.path)).toEqual(['vocabulary.groupPlural', 'vocabulary'])
+  })
+
+  it('languages: catches missing Arabic in the vocabulary', () => {
+    const s = clone()
+    s.vocabulary = { entity: { en: 'Branch' }, entityPlural: { en: 'Branches', ar: 'الفروع' }, group: { en: 'Business line', ar: 'قطاع الأعمال' }, groupPlural: { en: 'Business lines', ar: 'قطاعات الأعمال' } }
+    expect(errorsIn(s, 'languages').map((e) => e.path)).toEqual(['vocabulary.entity'])
+  })
+
   it('wizard: a full check fails while steps are unfinished', () => {
     const s = clone()
     s.wizard.completed = [1, 2, 3]
@@ -168,5 +203,28 @@ describe('answers and rendering', () => {
   it('falls back with suggestions when nothing matches', () => {
     const r = ask(pack, 'ops', 'Who won the football?')
     expect(r.kind).toBe('fallback')
+  })
+})
+
+describe('vocabulary', () => {
+  const v = {
+    entity: { en: 'Branch', ar: 'الفرع' },
+    entityPlural: { en: 'Branches', ar: 'الفروع' },
+    group: { en: 'Business line', ar: 'قطاع الأعمال' },
+    groupPlural: { en: 'Business lines', ar: 'قطاعات الأعمال' },
+  }
+
+  it('rebuilds the UI wording from the pack', () => {
+    const t = vocabularyTerms(v)
+    expect(t.allRegions).toEqual({ en: 'All business lines', ar: 'كل قطاعات الأعمال' })
+    expect(t.search).toEqual({ en: 'Search branches', ar: 'ابحث في الفروع' })
+    expect(t.site).toEqual(v.entity)
+    expect(t.type).toEqual({ en: 'Asset type', ar: 'نوع الأصل' })
+  })
+
+  it('labels assumptions with the pack wording', () => {
+    const s = clone()
+    s.vocabulary = v
+    expect(definePack(s).assumptions.find((a) => a.path === 'sites.KHJ-D1')?.label).toMatch(/^Branch: /)
   })
 })
