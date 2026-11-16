@@ -1,0 +1,964 @@
+{
+  "specVersion": 1,
+  "kitVersion": "0.1.0",
+  "wizard": {
+    "step": 9,
+    "completed": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "status": "built"
+  },
+  "id": "orbit-telecom",
+  "industry": "telecom",
+  "languages": [
+    "en",
+    "ar"
+  ],
+  "customer": {
+    "name": {
+      "en": "Orbit Telecom",
+      "ar": "أوربت للاتصالات"
+    },
+    "source": "customer",
+    "logo": "./brand/orbit-logo.svg",
+    "accent": "#7A2BD6"
+  },
+  "title": {
+    "en": "Network Experience Intelligence",
+    "ar": "ذكاء تجربة الشبكة"
+  },
+  "subtitle": {
+    "en": "Orbit Telecom · operations view",
+    "ar": "أوربت للاتصالات · عرض العمليات"
+  },
+  "audience": {
+    "en": "COO and network director",
+    "ar": "الرئيس التنفيذي للعمليات ومدير الشبكة"
+  },
+  "brand": {
+    "theme": "cloudera",
+    "coBrand": true
+  },
+  "geo": "sa-adm1",
+  "clock": {
+    "observedAt": "2026-11-16T10:45",
+    "zone": {
+      "en": "AST, Riyadh time",
+      "ar": "بتوقيت الرياض"
+    }
+  },
+  "regions": [
+    {
+      "id": "makkah",
+      "geoId": "makkah",
+      "name": {
+        "en": "Makkah",
+        "ar": "مكة المكرمة"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "madinah",
+      "geoId": "madinah",
+      "name": {
+        "en": "Almadinah",
+        "ar": "المدينة المنورة"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "riyadh",
+      "geoId": "riyadh",
+      "name": {
+        "en": "Riyadh",
+        "ar": "الرياض"
+      },
+      "source": "customer"
+    }
+  ],
+  "assetTypes": [
+    {
+      "id": "site",
+      "name": {
+        "en": "Cell site",
+        "ar": "موقع خلوي"
+      },
+      "plural": {
+        "en": "cell sites",
+        "ar": "مواقع خلوية"
+      },
+      "source": "starter"
+    },
+    {
+      "id": "exchange",
+      "name": {
+        "en": "Exchange",
+        "ar": "مقسم"
+      },
+      "plural": {
+        "en": "exchanges",
+        "ar": "مقاسم"
+      },
+      "source": "starter"
+    },
+    {
+      "id": "dc",
+      "name": {
+        "en": "Data centre",
+        "ar": "مركز بيانات"
+      },
+      "plural": {
+        "en": "data centres",
+        "ar": "مراكز بيانات"
+      },
+      "source": "starter"
+    },
+    {
+      "id": "fibre",
+      "name": {
+        "en": "Fibre hub",
+        "ar": "مركز ألياف"
+      },
+      "plural": {
+        "en": "fibre hubs",
+        "ar": "مراكز ألياف"
+      },
+      "source": "starter"
+    }
+  ],
+  "sites": [
+    {
+      "id": "JED-F01",
+      "name": {
+        "en": "Jeddah North Fibre Hub",
+        "ar": "مركز ألياف شمال جدة"
+      },
+      "regionId": "makkah",
+      "type": "fibre",
+      "coordinates": [
+        39.15,
+        21.63
+      ],
+      "status": "critical",
+      "source": "customer",
+      "note": {
+        "en": "Fibre cut by roadworks; splicing crew on site.",
+        "ar": "قطع ألياف بسبب أعمال طرق؛ فريق اللحام في الموقع."
+      }
+    },
+    {
+      "id": "JED-C01",
+      "name": {
+        "en": "Jeddah Corniche Cell Site",
+        "ar": "موقع كورنيش جدة"
+      },
+      "regionId": "makkah",
+      "type": "site",
+      "coordinates": [
+        39.11,
+        21.6
+      ],
+      "status": "critical",
+      "source": "customer",
+      "note": {
+        "en": "Isolated by the fibre cut; on microwave backup at reduced capacity.",
+        "ar": "معزول بسبب قطع الألياف؛ يعمل على وصلة الميكروويف الاحتياطية بسعة أقل."
+      }
+    },
+    {
+      "id": "JED-C02",
+      "name": {
+        "en": "Jeddah Al Hamra Cell Site",
+        "ar": "موقع الحمراء في جدة"
+      },
+      "regionId": "makkah",
+      "type": "site",
+      "coordinates": [
+        39.16,
+        21.55
+      ],
+      "status": "critical",
+      "source": "customer",
+      "note": {
+        "en": "Isolated by the fibre cut.",
+        "ar": "معزول بسبب قطع الألياف."
+      }
+    },
+    {
+      "id": "JED-C03",
+      "name": {
+        "en": "Jeddah Airport Cell Site",
+        "ar": "موقع مطار جدة"
+      },
+      "regionId": "makkah",
+      "type": "site",
+      "coordinates": [
+        39.17,
+        21.68
+      ],
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Traffic rerouted here; load near its limit.",
+        "ar": "حُوّلت الحركة إليه؛ الحمل قريب من حده."
+      }
+    },
+    {
+      "id": "JED-X01",
+      "name": {
+        "en": "Jeddah Central Exchange",
+        "ar": "مقسم جدة المركزي"
+      },
+      "regionId": "makkah",
+      "type": "exchange",
+      "coordinates": [
+        39.19,
+        21.5
+      ],
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "JED-DC1",
+      "name": {
+        "en": "Jeddah Data Centre",
+        "ar": "مركز بيانات جدة"
+      },
+      "regionId": "makkah",
+      "type": "dc",
+      "coordinates": [
+        39.22,
+        21.45
+      ],
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "MKH-C01",
+      "name": {
+        "en": "Makkah Haram Cell Site",
+        "ar": "موقع الحرم في مكة"
+      },
+      "regionId": "makkah",
+      "type": "site",
+      "coordinates": [
+        39.83,
+        21.42
+      ],
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Event traffic peaking; extra capacity on standby.",
+        "ar": "حركة الفعالية في ذروتها؛ سعة إضافية جاهزة."
+      }
+    },
+    {
+      "id": "MKH-X01",
+      "name": {
+        "en": "Makkah Exchange",
+        "ar": "مقسم مكة"
+      },
+      "regionId": "makkah",
+      "type": "exchange",
+      "coordinates": [
+        39.86,
+        21.39
+      ],
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "TIF-C01",
+      "name": {
+        "en": "Taif Hills Cell Site",
+        "ar": "موقع مرتفعات الطائف"
+      },
+      "regionId": "makkah",
+      "type": "site",
+      "coordinates": [
+        40.42,
+        21.27
+      ],
+      "status": "watch",
+      "source": "customer",
+      "note": {
+        "en": "Repeat power failures; running on batteries.",
+        "ar": "انقطاعات كهرباء متكررة؛ يعمل على البطاريات."
+      }
+    },
+    {
+      "id": "TIF-C02",
+      "name": {
+        "en": "Taif South Cell Site",
+        "ar": "موقع جنوب الطائف"
+      },
+      "regionId": "makkah",
+      "type": "site",
+      "coordinates": [
+        40.4,
+        21.21
+      ],
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "MED-C01",
+      "name": {
+        "en": "Almadinah Central Cell Site",
+        "ar": "موقع وسط المدينة"
+      },
+      "regionId": "madinah",
+      "type": "site",
+      "coordinates": [
+        39.61,
+        24.47
+      ],
+      "status": "normal",
+      "source": "assumed",
+      "why": "Colleague said \"you decide\" for Madinah; a typical urban and industrial footprint."
+    },
+    {
+      "id": "MED-X01",
+      "name": {
+        "en": "Almadinah Exchange",
+        "ar": "مقسم المدينة"
+      },
+      "regionId": "madinah",
+      "type": "exchange",
+      "coordinates": [
+        39.58,
+        24.5
+      ],
+      "status": "normal",
+      "source": "assumed",
+      "why": "Colleague said \"you decide\" for Madinah; a typical urban and industrial footprint."
+    },
+    {
+      "id": "YNB-C01",
+      "name": {
+        "en": "Yanbu Industrial Cell Site",
+        "ar": "موقع ينبع الصناعية"
+      },
+      "regionId": "madinah",
+      "type": "site",
+      "coordinates": [
+        38.06,
+        24.09
+      ],
+      "status": "normal",
+      "source": "assumed",
+      "why": "Colleague said \"you decide\" for Madinah; a typical urban and industrial footprint."
+    },
+    {
+      "id": "RYD-DC1",
+      "name": {
+        "en": "Riyadh Data Centre",
+        "ar": "مركز بيانات الرياض"
+      },
+      "regionId": "riyadh",
+      "type": "dc",
+      "coordinates": [
+        46.67,
+        24.71
+      ],
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "RYD-X01",
+      "name": {
+        "en": "Riyadh Core Exchange",
+        "ar": "مقسم الرياض الرئيسي"
+      },
+      "regionId": "riyadh",
+      "type": "exchange",
+      "coordinates": [
+        46.72,
+        24.69
+      ],
+      "status": "normal",
+      "source": "customer"
+    },
+    {
+      "id": "RYD-C01",
+      "name": {
+        "en": "Riyadh King Fahd Road Cell Site",
+        "ar": "موقع طريق الملك فهد في الرياض"
+      },
+      "regionId": "riyadh",
+      "type": "site",
+      "coordinates": [
+        46.66,
+        24.75
+      ],
+      "status": "normal",
+      "source": "customer"
+    }
+  ],
+  "kpis": [
+    {
+      "id": "sites-attention",
+      "kind": "count",
+      "label": {
+        "en": "Sites needing attention",
+        "ar": "المواقع التي تتطلب الانتباه"
+      },
+      "unit": {
+        "en": "monitored sites",
+        "ar": "موقعاً مراقباً"
+      },
+      "derive": {
+        "count": {
+          "status": [
+            "watch",
+            "critical"
+          ]
+        },
+        "of": {}
+      },
+      "trend": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        5,
+        6,
+        6
+      ],
+      "delta": {
+        "value": 4,
+        "period": {
+          "en": "since 07:00",
+          "ar": "منذ 07:00"
+        },
+        "worseWhenUp": true
+      },
+      "definition": {
+        "en": "Monitored sites whose status is watch or critical, from the same register as the map and the report.",
+        "ar": "المواقع المراقبة بحالة مراقبة أو حرجة، من السجل نفسه المستخدم في الخريطة والتقرير."
+      },
+      "source": "starter"
+    },
+    {
+      "id": "availability",
+      "kind": "percent",
+      "label": {
+        "en": "Network availability",
+        "ar": "توافر الشبكة"
+      },
+      "value": 99.42,
+      "decimals": 2,
+      "unit": {
+        "en": "of site-hours today",
+        "ar": "من ساعات المواقع اليوم"
+      },
+      "trend": [
+        99.91,
+        99.9,
+        99.9,
+        99.88,
+        99.7,
+        99.55,
+        99.45,
+        99.42
+      ],
+      "delta": {
+        "value": -0.46,
+        "period": {
+          "en": "vs yesterday",
+          "ar": "عن أمس"
+        },
+        "worseWhenUp": false
+      },
+      "definition": {
+        "en": "Share of cell-site hours in service since midnight.",
+        "ar": "نسبة ساعات المواقع الخلوية في الخدمة منذ منتصف الليل."
+      },
+      "source": "assumed",
+      "why": "Colleague said \"you decide\"; mid-range of the telecom starter for a national operator."
+    },
+    {
+      "id": "dropped",
+      "kind": "percent",
+      "label": {
+        "en": "Dropped-call rate",
+        "ar": "معدل المكالمات المنقطعة"
+      },
+      "value": 1.2,
+      "decimals": 1,
+      "unit": {
+        "en": "of calls",
+        "ar": "من المكالمات"
+      },
+      "trend": [
+        0.6,
+        0.6,
+        0.7,
+        0.7,
+        0.9,
+        1.1,
+        1.2
+      ],
+      "delta": {
+        "value": 0.5,
+        "period": {
+          "en": "vs yesterday",
+          "ar": "عن أمس"
+        },
+        "worseWhenUp": true
+      },
+      "definition": {
+        "en": "Calls ended abnormally by the network, as a share of all calls today.",
+        "ar": "المكالمات التي أنهتها الشبكة بشكل غير طبيعي، كنسبة من مكالمات اليوم."
+      },
+      "source": "assumed",
+      "why": "Colleague said \"you decide\"; mid-range of the telecom starter for a national operator."
+    },
+    {
+      "id": "churn-risk",
+      "kind": "measure",
+      "label": {
+        "en": "Customers at churn risk",
+        "ar": "العملاء المعرضون للمغادرة"
+      },
+      "value": 12600,
+      "unit": {
+        "en": "subscribers",
+        "ar": "مشترك"
+      },
+      "trend": [
+        9100,
+        9200,
+        9300,
+        9800,
+        11200,
+        12600
+      ],
+      "delta": {
+        "value": 3300,
+        "period": {
+          "en": "since yesterday",
+          "ar": "منذ أمس"
+        },
+        "worseWhenUp": true
+      },
+      "definition": {
+        "en": "Subscribers whose recent experience scores put them at high churn risk.",
+        "ar": "المشتركون الذين تضعهم مؤشرات تجربتهم الأخيرة في خطر مغادرة مرتفع."
+      },
+      "source": "assumed",
+      "why": "Colleague said \"you decide\"; mid-range of the telecom starter for a national operator."
+    }
+  ],
+  "facts": [
+    {
+      "id": "subscribers-affected",
+      "value": 46000,
+      "unit": {
+        "en": "subscribers",
+        "ar": "مشترك"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "taif-outages",
+      "value": 9,
+      "unit": {
+        "en": "power failures in the last 30 days",
+        "ar": "انقطاعات كهرباء خلال آخر 30 يوماً"
+      },
+      "source": "customer"
+    },
+    {
+      "id": "event-traffic",
+      "value": 38,
+      "unit": {
+        "en": "per cent",
+        "ar": "بالمئة"
+      },
+      "source": "assumed",
+      "why": "Typical uplift at a large religious-event site at midday."
+    }
+  ],
+  "incidents": [
+    {
+      "id": "fibre-cut",
+      "role": "hero",
+      "title": {
+        "en": "Fibre cut isolates north Jeddah",
+        "ar": "قطع ألياف يعزل شمال جدة"
+      },
+      "siteId": "JED-F01",
+      "severity": "critical",
+      "started": "07:50",
+      "impact": {
+        "en": "{fact.subscribers-affected} on degraded or no service around {site.JED-C01} and {site.JED-C02}. Splice complete by 12:00.",
+        "ar": "{fact.subscribers-affected} بخدمة متدهورة أو دون خدمة حول {site.JED-C01} و{site.JED-C02}. اكتمال اللحام بحلول 12:00."
+      },
+      "source": "customer"
+    },
+    {
+      "id": "taif-power",
+      "role": "chronic",
+      "title": {
+        "en": "Repeat power failures in Taif",
+        "ar": "انقطاعات كهرباء متكررة في الطائف"
+      },
+      "siteId": "TIF-C01",
+      "severity": "watch",
+      "started": "02:30",
+      "impact": {
+        "en": "{fact.taif-outages} at the same hilltop site.",
+        "ar": "{fact.taif-outages} في الموقع المرتفع نفسه."
+      },
+      "source": "customer"
+    },
+    {
+      "id": "event",
+      "title": {
+        "en": "Event congestion in Makkah",
+        "ar": "ازدحام الفعالية في مكة"
+      },
+      "siteId": "MKH-C01",
+      "severity": "watch",
+      "started": "09:00",
+      "impact": {
+        "en": "Traffic up {fact.event-traffic} on normal; extra capacity on standby.",
+        "ar": "الحركة أعلى بنسبة {fact.event-traffic} من المعتاد؛ سعة إضافية جاهزة."
+      },
+      "source": "assumed",
+      "why": "Colleague said \"you decide\" for a supporting incident."
+    }
+  ],
+  "experts": [
+    {
+      "id": "ops",
+      "name": {
+        "en": "Faris",
+        "ar": "فارس"
+      },
+      "role": {
+        "en": "Network operations expert",
+        "ar": "خبير عمليات الشبكة"
+      },
+      "focus": {
+        "en": "Outages, congestion and restoration right now.",
+        "ar": "الانقطاعات والازدحام والاستعادة الآن."
+      },
+      "source": "starter",
+      "answers": [
+        {
+          "id": "now",
+          "questions": [
+            "What needs my attention right now?",
+            "What's happening on the network?",
+            "Give me the situation",
+            "ما الذي يتطلب انتباهي الآن؟",
+            "ما وضع الشبكة؟"
+          ],
+          "lead": {
+            "en": "The fibre cut at {site.JED-F01} is the priority: {fact.subscribers-affected} are on degraded or no service.",
+            "ar": "الأولوية لقطع الألياف في {site.JED-F01}: {fact.subscribers-affected} بخدمة متدهورة أو دون خدمة."
+          },
+          "points": [
+            {
+              "en": "{kpi.sites-attention} need attention; three of them are knock-on effects of the same cut.",
+              "ar": "{kpi.sites-attention} تتطلب الانتباه، ثلاثة منها آثار للقطع نفسه."
+            },
+            {
+              "en": "Traffic is rerouted through {site.JED-C03}, which is close to its limit.",
+              "ar": "حُوّلت الحركة عبر {site.JED-C03} وهو قريب من حده."
+            },
+            {
+              "en": "The splicing crew expects full service back by 12:00.",
+              "ar": "يتوقع فريق اللحام عودة الخدمة كاملة بحلول 12:00."
+            }
+          ],
+          "followUps": [
+            "fibre",
+            "taif"
+          ]
+        },
+        {
+          "id": "fibre",
+          "questions": [
+            "When will service be back in Jeddah?",
+            "Tell me more about the fibre cut",
+            "What caused the outage?",
+            "متى تعود الخدمة في جدة؟",
+            "أخبرني المزيد عن قطع الألياف"
+          ],
+          "lead": {
+            "en": "Service around {site.JED-C01} should be fully back by 12:00, when the splice is complete.",
+            "ar": "يُتوقع عودة الخدمة حول {site.JED-C01} بالكامل بحلول 12:00 عند اكتمال اللحام."
+          },
+          "points": [
+            {
+              "en": "Roadworks cut the main fibre route into {site.JED-F01} at 07:50.",
+              "ar": "قطعت أعمال الطرق مسار الألياف الرئيسي إلى {site.JED-F01} الساعة 07:50."
+            },
+            {
+              "en": "{site.JED-C01} is carrying traffic on microwave backup at reduced capacity.",
+              "ar": "يحمل {site.JED-C01} الحركة على وصلة الميكروويف الاحتياطية بسعة أقل."
+            }
+          ],
+          "followUps": [
+            "now"
+          ]
+        },
+        {
+          "id": "taif",
+          "questions": [
+            "What are the repeat problems?",
+            "Why does Taif keep failing?",
+            "Which sites keep failing?",
+            "ما المشكلات المتكررة؟",
+            "لماذا تتكرر الأعطال في الطائف؟"
+          ],
+          "lead": {
+            "en": "{site.TIF-C01} is the repeat problem: {fact.taif-outages}.",
+            "ar": "{site.TIF-C01} هو المشكلة المتكررة: {fact.taif-outages}."
+          },
+          "points": [
+            {
+              "en": "The site sits at the end of a weak rural power line, so every grid dip takes it onto batteries.",
+              "ar": "يقع الموقع في نهاية خط كهرباء ريفي ضعيف، فكل انخفاض في الشبكة ينقله إلى البطاريات."
+            },
+            {
+              "en": "A hybrid solar and battery upgrade would remove most of these failures.",
+              "ar": "ترقية هجينة بالطاقة الشمسية والبطاريات تزيل معظم هذه الأعطال."
+            }
+          ],
+          "followUps": [
+            "now"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "cx",
+      "name": {
+        "en": "Huda",
+        "ar": "هدى"
+      },
+      "role": {
+        "en": "Customer experience expert",
+        "ar": "خبيرة تجربة العملاء"
+      },
+      "focus": {
+        "en": "Who is affected, churn risk and what to tell customers.",
+        "ar": "من المتأثرون وخطر المغادرة وما نقوله للعملاء."
+      },
+      "source": "starter",
+      "answers": [
+        {
+          "id": "churn",
+          "questions": [
+            "Who is at risk of leaving?",
+            "What is the churn risk?",
+            "How are customers affected?",
+            "من المعرض لمغادرة الشبكة؟",
+            "ما خطر المغادرة؟"
+          ],
+          "lead": {
+            "en": "{kpi.churn-risk.value} subscribers are now at high churn risk, up since yesterday, mostly in north Jeddah.",
+            "ar": "{kpi.churn-risk.value} مشترك في خطر مغادرة مرتفع الآن، بارتفاع منذ أمس، ومعظمهم في شمال جدة."
+          },
+          "points": [
+            {
+              "en": "The rise follows the fibre cut: dropped calls are at {kpi.dropped}.",
+              "ar": "جاء الارتفاع بعد قطع الألياف: المكالمات المنقطعة عند {kpi.dropped}."
+            },
+            {
+              "en": "A goodwill data bundle to affected subscribers usually halves churn after an outage like this.",
+              "ar": "باقة بيانات مجانية للمشتركين المتأثرين تخفض المغادرة إلى النصف عادة بعد انقطاع كهذا."
+            }
+          ],
+          "followUps": [
+            "message"
+          ]
+        },
+        {
+          "id": "message",
+          "questions": [
+            "What should we tell customers?",
+            "Draft a customer message",
+            "ماذا نقول للعملاء؟"
+          ],
+          "lead": {
+            "en": "Tell affected customers what happened, when service is back, and what we are giving them.",
+            "ar": "أخبر العملاء المتأثرين بما حدث ومتى تعود الخدمة وما سنقدمه لهم."
+          },
+          "points": [
+            {
+              "en": "Roadworks damaged a fibre cable in north Jeddah this morning; service is back by 12:00.",
+              "ar": "تضرر كابل ألياف في شمال جدة صباح اليوم بسبب أعمال الطرق؛ تعود الخدمة بحلول 12:00."
+            },
+            {
+              "en": "Affected customers receive a free data bundle today.",
+              "ar": "يحصل العملاء المتأثرون على باقة بيانات مجانية اليوم."
+            }
+          ],
+          "followUps": [
+            "churn"
+          ]
+        }
+      ]
+    }
+  ],
+  "refusals": {
+    "topics": [
+      {
+        "label": {
+          "en": "Tariffs and pricing",
+          "ar": "التعرفة والأسعار"
+        },
+        "keywords": [
+          "tariff",
+          "price",
+          "pricing",
+          "تعرفة",
+          "أسعار",
+          "سعر"
+        ]
+      },
+      {
+        "label": {
+          "en": "Named employees",
+          "ar": "الموظفون بالاسم"
+        },
+        "keywords": [
+          "employee performance",
+          "salary",
+          "رواتب",
+          "أداء الموظف"
+        ]
+      },
+      {
+        "label": {
+          "en": "Competitors",
+          "ar": "المنافسون"
+        },
+        "keywords": [
+          "competitor",
+          "stc",
+          "mobily",
+          "zain",
+          "المنافس"
+        ]
+      }
+    ],
+    "reply": {
+      "en": "That is outside what I can discuss in this demo. I can help with the network, customers and what to do next.",
+      "ar": "هذا خارج ما يمكنني مناقشته في هذا العرض. يمكنني المساعدة في الشبكة والعملاء والخطوات التالية."
+    }
+  },
+  "presenter": {
+    "beats": [
+      {
+        "id": "open",
+        "view": "overview",
+        "spotlight": "kpi-row",
+        "title": {
+          "en": "The network at a glance",
+          "ar": "الشبكة في لمحة"
+        },
+        "narration": {
+          "en": "At 10:45, {kpi.sites-attention} need attention and availability is down to {kpi.availability}.",
+          "ar": "الساعة 10:45، {kpi.sites-attention} تتطلب الانتباه والتوافر انخفض إلى {kpi.availability}."
+        }
+      },
+      {
+        "id": "where",
+        "view": "overview",
+        "spotlight": "region-map",
+        "title": {
+          "en": "Where it is happening",
+          "ar": "أين يحدث ذلك"
+        },
+        "narration": {
+          "en": "It is concentrated in {region.makkah}, around one fibre cut in Jeddah.",
+          "ar": "يتركز في {region.makkah} حول قطع ألياف واحد في جدة."
+        },
+        "regionId": "makkah"
+      },
+      {
+        "id": "hero",
+        "view": "overview",
+        "spotlight": "incident-fibre-cut",
+        "title": {
+          "en": "The fibre cut",
+          "ar": "قطع الألياف"
+        },
+        "narration": {
+          "en": "Roadworks cut the fibre at 07:50 and {fact.subscribers-affected} lost service or quality.",
+          "ar": "قطعت أعمال الطرق الألياف الساعة 07:50 وفقد {fact.subscribers-affected} الخدمة أو جودتها."
+        }
+      },
+      {
+        "id": "ask-ops",
+        "view": "experts",
+        "spotlight": "expert-chat",
+        "title": {
+          "en": "Ask the expert",
+          "ar": "اسأل الخبير"
+        },
+        "narration": {
+          "en": "We ask the network operations expert what needs attention.",
+          "ar": "نسأل خبير عمليات الشبكة عما يتطلب الانتباه."
+        },
+        "ask": {
+          "expertId": "ops",
+          "question": {
+            "en": "What needs my attention right now?",
+            "ar": "ما الذي يتطلب انتباهي الآن؟"
+          },
+          "answerId": "now"
+        }
+      },
+      {
+        "id": "ask-cx",
+        "view": "experts",
+        "spotlight": "expert-chat",
+        "title": {
+          "en": "The customer impact",
+          "ar": "أثر العملاء"
+        },
+        "narration": {
+          "en": "And the customer side: who might leave, and what we tell them.",
+          "ar": "وجانب العملاء: من قد يغادر وماذا نقول لهم."
+        },
+        "ask": {
+          "expertId": "cx",
+          "question": {
+            "en": "Who is at risk of leaving?",
+            "ar": "من المعرض لمغادرة الشبكة؟"
+          },
+          "answerId": "churn"
+        }
+      },
+      {
+        "id": "report",
+        "view": "report",
+        "spotlight": "report-table",
+        "title": {
+          "en": "Every site, one register",
+          "ar": "كل المواقع في سجل واحد"
+        },
+        "narration": {
+          "en": "Today's report lists every site from the same register as the map.",
+          "ar": "يعرض تقرير اليوم كل المواقع من السجل نفسه المستخدم في الخريطة."
+        }
+      }
+    ]
+  }
+}

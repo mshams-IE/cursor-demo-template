@@ -1,0 +1,27 @@
+{
+  "name": "@cloudera-demos/kit",
+  "version": "0.1.0",
+  "description": "Shared look, layout, components, answer engine and quality gates for Cloudera executive demos.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./styles.css": "./styles/kit.css",
+    "./themes/cloudera.css": "./themes/cloudera.css",
+    "./gates": "./gates/index.ts",
+    "./starters": "./starters/index.ts"
+  },
+  "bin": {
+    "demo-gates": "./bin/demo-gates.mjs"
+  },
+  "dependencies": {
+    "@fontsource/ibm-plex-sans-arabic": "^5.3.0",
+    "@fontsource/plus-jakarta-sans": "^5.3.0",
+    "lucide-react": "^1.72.0",
+    "tsx": "^4.23.15",
+    "zustand": "^5.1.0"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
+}

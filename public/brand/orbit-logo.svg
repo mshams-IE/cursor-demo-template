@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 40" role="img" aria-label="Orbit Telecom (fictional)">
+  <circle cx="20" cy="20" r="9" fill="#7A2BD6"/>
+  <ellipse cx="20" cy="20" rx="17" ry="7" fill="none" stroke="#7A2BD6" stroke-width="2.5" transform="rotate(-25 20 20)"/>
+  <text x="44" y="27" font-family="Plus Jakarta Sans, Arial, sans-serif" font-size="20" font-weight="700" fill="#2A1347">Orbit<tspan font-weight="400" fill="#7A2BD6"> Telecom</tspan></text>
+</svg>

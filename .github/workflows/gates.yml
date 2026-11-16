@@ -1,0 +1,47 @@
+name: Demo gates
+
+on:
+  pull_request:
+  push:
+    branches: [main, 'cursor/**']
+
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Install browser
+        id: browser
+        run: npx playwright install --with-deps chromium
+      - name: Typecheck
+        run: npm run typecheck
+      - name: Lint
+        run: npm run lint
+      - name: Unit tests (gates and answer engine)
+        run: npm test
+      - name: Demo gates (pack and samples)
+        run: npx demo-gates --all-samples
+      - name: Build (web and offline)
+        run: npm run build && npx vite build --mode offline
+      - name: Browser checks (EN and AR)
+        run: npx playwright test
+      - name: Screenshots
+        if: ${{ !cancelled() && steps.browser.outcome == 'success' }}
+        run: |
+          npx vite --port 5200 --strictPort &
+          for i in $(seq 1 60); do curl -sf http://127.0.0.1:5200/ >/dev/null && break; sleep 1; done
+          node scripts/shots.mjs
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: demo-screenshots
+          path: |
+            shots/
+            playwright-report/
+          if-no-files-found: ignore
