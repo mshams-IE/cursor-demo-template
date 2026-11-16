@@ -7,7 +7,10 @@ import type { Site } from '../types'
 import { RegionMap } from './RegionMap'
 import { STATUS_SOFT, STATUS_VAR, StatusChip } from './ui'
 
-/** The map's stand-in for packs without geography: one tile per group, shaded by its worst status. */
+/**
+ * The map's stand-in for packs without geography: one tile per group, shaded by its worst status.
+ * Status and counts always come from the whole register; `sites` (the current filters) only decides which flagged items are listed.
+ */
 export function GroupGrid({ sites, height = '26rem', testid = 'group-grid' }: { sites: Site[]; height?: string; testid?: string }) {
   const { pack, p, t, rtl, locale } = useT()
   const regionId = useDemo((s) => s.regionId)
@@ -15,11 +18,13 @@ export function GroupGrid({ sites, height = '26rem', testid = 'group-grid' }: { 
   const { spec } = pack
   const Back = rtl ? ArrowRight : ArrowLeft
 
-  const byRegion = useMemo(() => {
+  const group = (list: Site[]) => {
     const m = new Map<string, Site[]>()
-    for (const s of sites) m.set(s.regionId, [...(m.get(s.regionId) ?? []), s])
+    for (const s of list) m.set(s.regionId, [...(m.get(s.regionId) ?? []), s])
     return m
-  }, [sites])
+  }
+  const register = useMemo(() => group(spec.sites), [spec.sites])
+  const visible = useMemo(() => group(sites), [sites])
 
   if (!spec.regions.length)
     return (
@@ -40,8 +45,9 @@ export function GroupGrid({ sites, height = '26rem', testid = 'group-grid' }: { 
       </header>
       <div className="grid flex-1 auto-rows-fr gap-3 sm:grid-cols-2 2xl:grid-cols-3">
         {spec.regions.map((r) => {
-          const list = byRegion.get(r.id) ?? []
-          const flagged = list.filter((s) => s.status !== 'normal').sort((a, b) => SEVERITY_RANK[b.status] - SEVERITY_RANK[a.status])
+          const list = register.get(r.id) ?? []
+          const attention = list.filter((s) => s.status !== 'normal').length
+          const flagged = (visible.get(r.id) ?? []).filter((s) => s.status !== 'normal').sort((a, b) => SEVERITY_RANK[b.status] - SEVERITY_RANK[a.status])
           const w = worst(list.map((s) => s.status))
           const selected = r.id === regionId
           return (
@@ -64,7 +70,7 @@ export function GroupGrid({ sites, height = '26rem', testid = 'group-grid' }: { 
                 <StatusChip status={w} />
               </div>
               <div className="text-[0.86rem] text-muted" data-testid={`group-count-${r.id}`}>
-                <span className="num font-semibold text-ink">{fmtNumber(flagged.length, locale)}</span> {t('ofTotal')} <span className="num font-semibold text-ink">{fmtNumber(list.length, locale)}</span> {t('needAttention')}
+                <span className="num font-semibold text-ink">{fmtNumber(attention, locale)}</span> {t('ofTotal')} <span className="num font-semibold text-ink">{fmtNumber(list.length, locale)}</span> {t('needAttention')}
               </div>
               {flagged.length > 0 && (
                 <ul className="space-y-1 text-[0.84rem] text-body">

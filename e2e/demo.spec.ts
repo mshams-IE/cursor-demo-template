@@ -68,6 +68,10 @@ test('selecting a group filters the report to it', async ({ page }) => {
   await page.goto('./?view=report&motion=reduced')
   await page.getByTestId(`group-${region.id}`).click()
   await expect(page.locator('[data-testid^="row-"]')).toHaveCount(spec.sites.filter((s) => s.regionId === region.id).length)
+  for (const other of spec.regions.filter((r) => r.id !== region.id)) {
+    const list = spec.sites.filter((s) => s.regionId === other.id)
+    await expect(page.getByTestId(`group-count-${other.id}`)).toHaveText(`${list.filter((s) => s.status !== 'normal').length} of ${list.length} need attention`)
+  }
   await page.getByTestId('map-back').click()
   await expect(page.locator('[data-testid^="row-"]')).toHaveCount(spec.sites.length)
 })
